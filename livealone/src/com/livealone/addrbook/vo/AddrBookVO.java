@@ -1,6 +1,8 @@
 package com.livealone.addrbook.vo;
 
-public class AddrBookVO {
+import com.livealone.common.page.PageVO;
+
+public class AddrBookVO extends PageVO {
 
 	private int abId;
 	private String abName;

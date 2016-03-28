@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.livealone.addrbook.vo.AddrBookVO;
-import com.livealone.common.Service;
+import com.livealone.common.service.Service;
 
 @Controller
 public class AddrBookController {

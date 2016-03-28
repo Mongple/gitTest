@@ -1,4 +1,4 @@
-package com.livealone.common;
+package com.livealone.common.service;
 
 import java.util.List;
 
