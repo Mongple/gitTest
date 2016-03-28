@@ -9,9 +9,9 @@
 	<context:component-scan base-package="com.livealone.bootstrap.controller"></context:component-scan>
 	
 	<!-- VO 클래스 DI 자동주입 클래스(여기다가 등록하세요) -->
-	<bean class="com.livealone.addrbook.service.AddrBookVO" id="addrBookVO"></bean>
+	<bean class="com.livealone.addrbook.vo.AddrBookVO" id="addrBookVO"></bean>
 	
 	<!-- DAO 클래스 DI 자동주입 클래스(여기다가 등록하세요) -->
-	<bean class="com.livealone.addrbook.service.AddrBookDAOMB" id="addrBookDAO"></bean>
+	<bean class="com.livealone.common.ServiceImpl" id="service"></bean>
 
 </beans>

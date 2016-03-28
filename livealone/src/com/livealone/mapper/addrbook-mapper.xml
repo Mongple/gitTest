@@ -4,7 +4,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="addrbook">
-	<resultMap type="com.livealone.addrbook.service.AddrBookVO" id="addrbookMap">
+	<resultMap type="com.livealone.addrbook.vo.AddrBookVO" id="addrbookMap">
 		<id column="AB_ID" property="abId"/>
 		<result column="AB_NAME" property="abName"/>
 		<result column="AB_BIRTH" property="abBirth"/>
@@ -23,7 +23,7 @@
 		FROM ADDRBOOK
 		WHERE AB_ID = #{abId}
 	</select>
-	<update id="updateAddrBook" parameterType="com.livealone.addrbook.service.AddrBookVO">
+	<update id="updateAddrBook" parameterType="com.livealone.addrbook.vo.AddrBookVO">
 		UPDATE ADDRBOOK 
 		<set>
 			<if test="abName != null">AB_NAME = #{abName},</if>
@@ -39,7 +39,7 @@
 		DELETE ADDRBOOK
 		WHERE AB_ID=#{adId}
 	</delete>
-	<insert id="insertAddrBook" parameterType="com.livealone.addrbook.service.AddrBookVO">
+	<insert id="insertAddrBook" parameterType="com.livealone.addrbook.vo.AddrBookVO">
 		INSERT 
 			INTO ADDRBOOK 
 			(	
