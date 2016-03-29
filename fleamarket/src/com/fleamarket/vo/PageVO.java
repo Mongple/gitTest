@@ -1,4 +1,4 @@
-package com.fleamarket.common.page;
+package com.fleamarket.vo;
 
 public class PageVO {
 	private int page;		//현재 페이지

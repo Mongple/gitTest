@@ -1,6 +1,6 @@
 package com.fleamarket.addrbook.vo;
 
-import com.fleamarket.common.page.PageVO;
+import com.fleamarket.vo.PageVO;
 
 public class AddrBookVO extends PageVO {
 

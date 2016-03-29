@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fleamarket.addrbook.vo.AddrBookVO;
-import com.fleamarket.common.service.Service;
+import com.fleamarket.service.Service;
 
 @Controller
 public class AddrBookController {

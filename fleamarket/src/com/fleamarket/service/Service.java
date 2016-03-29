@@ -1,4 +1,4 @@
-package com.fleamarket.common.service;
+package com.fleamarket.service;
 
 import java.util.List;
 
