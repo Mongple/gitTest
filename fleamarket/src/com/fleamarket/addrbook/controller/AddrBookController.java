@@ -23,7 +23,7 @@ public class AddrBookController {
 	
 	Logger logger = LogManager.getLogger(this.getClass());
 	
-	@RequestMapping("listaddrbook.do")
+	@RequestMapping("/listaddrbook")
 	public String listAddrBook(HttpServletRequest req) throws Exception {
 		
 		logger.debug("listaddrbook.do");

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 	
 	<!-- 	컨트롤러등록을 여기다가 하세요!!!!! -->
-	<context:component-scan base-package="com.fleamarket.addrbook.controller"></context:component-scan>
-	<context:component-scan base-package="com.fleamarket.bootstrap.controller"></context:component-scan>
+	<context:component-scan base-package="com.fleamarket"></context:component-scan>
 	
 	<!-- VO 클래스 DI 자동주입 클래스(여기다가 등록하세요) -->
 	<bean class="com.fleamarket.addrbook.vo.AddrBookVO" id="addrBookVO"></bean>
@@ -14,4 +16,8 @@
 	
 	<!-- DAO 클래스 DI 자동주입 클래스(여기다가 등록하세요) -->
 	<bean class="com.fleamarket.common.service.ServiceImpl" id="service"></bean>
+	
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<mvc:resources mapping="/css/**" location="/css/"></mvc:resources>
+	<mvc:resources mapping="/js/**" location="/js/"></mvc:resources>
 </beans>
