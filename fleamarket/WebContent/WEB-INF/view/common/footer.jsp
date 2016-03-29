@@ -6,6 +6,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-	<h1>여기는 푸터!!</h1>
+<hr>
+	<div id="footer" align="center">
+		<h1>여기는 푸터!!</h1>
+	</div>
 </body>
 </html>
