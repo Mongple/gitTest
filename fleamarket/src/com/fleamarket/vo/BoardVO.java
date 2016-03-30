@@ -10,11 +10,14 @@ public class BoardVO extends PageVO{
 	private int baCount;
 	private String baDate;
 	
+	private String memId;
+	private String memName;
+	
 	public BoardVO() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public BoardVO(int baNo, int memNo, String baType, String baTitle, String baContent, int baCount, String baDate) {
+	public BoardVO(int baNo, int memNo, String baType, String baTitle, String baContent, int baCount, String baDate, String memId, String memName ) {
 		super();
 		this.baNo = baNo;
 		this.memNo = memNo;
@@ -23,8 +26,10 @@ public class BoardVO extends PageVO{
 		this.baContent = baContent;
 		this.baCount = baCount;
 		this.baDate = baDate;
+		this.memId = memId;
+		this.memName = memName;
 	}
-	
+
 	public int getBaNo() {
 		return baNo;
 	}
@@ -68,5 +73,19 @@ public class BoardVO extends PageVO{
 		this.baDate = baDate;
 	}
 	
-	
+	public String getMemId() {
+		return memId;
+	}
+
+	public void setMemId(String memId) {
+		this.memId = memId;
+	}
+
+	public String getMemName() {
+		return memName;
+	}
+
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
 }
