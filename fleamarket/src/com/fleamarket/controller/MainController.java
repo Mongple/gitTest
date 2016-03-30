@@ -1,5 +1,7 @@
 package com.fleamarket.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,14 +47,27 @@ public class MainController {
 	}
 	
 	@RequestMapping("/login")
-	public String goLogin() throws Exception {
-		
+	public String goLogin(HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") != null) {
+			return "redirect:/main";
+		}
 		return "/WEB-INF/view/member/login.jsp";
 	}
 	
 	@RequestMapping("/join")
-	public String goJoin() throws Exception {
-		
+	public String goJoin(HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") != null) {
+			return "redirect:/main";
+		}
 		return "/WEB-INF/view/member/join.jsp";
+	}
+	
+	@RequestMapping("/mypage")
+	public String goMyPage(HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/main";
+		}
+		
+		return "/WEB-INF/view/member/mypage.jsp";
 	}
 }
