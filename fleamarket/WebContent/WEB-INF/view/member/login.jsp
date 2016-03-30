@@ -3,15 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="css/login.css">
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/login.css">
 <title>Insert title here</title>
 <script type="text/javascript">
 	$(document).ready(init);
 
 	function init() {
 		$('a').click(clickA);
+		$('input').click(clickBtn);
 		$('#memId, #memPwd').keypress(clickEnter);
 	}
 	
@@ -20,8 +21,7 @@
 		  $('#login').click();
 		}
 	}
-	
-	function clickA() {
+	function clickBtn() {
 		var type = $(this).attr('id');
 		if(type == 'login')
 		{	
@@ -43,48 +43,52 @@
 			});
 		}else if(type == 'join'){
 			$(location).attr('href', '/fleamarket/join');
-		}else if(type == 'idSearch'){
+		}
+	}
+	function clickA() {
+		var type = $(this).attr('id');
+		if(type == 'idSearch'){
 				
 		}else if(type == 'passSearch'){
 				
 		}
-		
 	}
 </script>
 </head>
 <body>
-	<div class="login-screen" align="center" >
-		<div class="app-title">
-			<h1>Login</h1>
+	<div id="div_login">
+		<div id="title">
+			<span id="title_name">MEMBER LOGIN</span>
 		</div>
 		
-		<div class="login-form">
-			<div class="control-group">
-				<input type="text" id="memId" class="login-field" value="" placeholder="username" > 
-				<label class="login-field-icon fui-user" for="login-name"></label>
-			</div>
-
-			<div class="control-group">
-				<input type="password" id="memPwd" class="login-field" value="" placeholder="password" > 
-				<label class="login-field-icon fui-lock" for="login-pass"></label>
-				
-			</div>
-			<div class="control-group">
-				<div align="center">
-					<table>
-						<tr>
-							<td><a id="login" class="btn btn-primary btn-large btn-block" >login</a> </td>
-							<td>&nbsp&nbsp&nbsp</td>
-							<td><a id="join" class="btn btn-primary btn-large btn-block" >join</a> </td>
-						</tr>
-					</table>
-				</div>
-			</div>
-			<a id="idSearch" class="login-link" href="#">아이디 찾기</a>
-			<a id="passSearch"class="login-link" href="#">비밀번호 찾기</a>
+		<div id="content">
+		
+			<table id="form_table">
+				<tr>
+					<td><input type="text" name="memId" id="memId" value="" placeholder="아이디"/></td>
+				</tr>
+				<tr>
+					<td><input type="password" name="memPwd" id="memPwd" value="" placeholder="비밀번호"/></td>
+				</tr>
+			</table>
 			
+			<table>
+				<tr>
+					<td colspan="2" align="center">
+						<input type="button" id="login" class="btn" value="로그인" />
+						<input type="button" id="join" class="btn" value="회원가입" />
+					</td>
+				</tr>
+			</table>
+			<div align="left">
+				<a id="idSearch" href="#" class="a" style="text-decoration: none;">아이디를 찾으시겠습니까?</a><br>
+				<a id="passSearch" href="#" class="a" style="text-decoration: none;">비밀번호를 찾으시겠습니까?</a>
+			</div>
+			
+		
 		</div>
 	</div>
+	
 	
 </body>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
