@@ -23,13 +23,7 @@ public class MemberController {
 	@RequestMapping("/member/loginSign")
 	@ResponseBody
 	public String loginSign(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
-		
-		/*int login =  (int) service.selectOne("member.selectLoginSuccess", vo);
-		if(login == 1){
-			req.getSession().setAttribute("sessionId", vo.getMemId());
-			return "SUCCESS";
-		}*/
-		
+
 		MemberVO vo2 = (MemberVO) service.selectOne("member.selectMemberInfo", vo);
 		if(vo2 == null)
 			return "FAIL";
@@ -38,6 +32,13 @@ public class MemberController {
 			req.getSession().setAttribute("sessionGrant", vo2.getMemGrant());
 			return "SUCCESS";
 		}
+	}
+	
+	@RequestMapping("/member/logout")
+	public String logout(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		req.getSession().invalidate();
+		
+		return "redirect:/main";
 	}
 	
 	/*
