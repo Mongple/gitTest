@@ -28,9 +28,10 @@
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse"
 						data-target="#gnb2">
-						<span class="sr-only">Toggle navigation</span> <span
-							class="icon-bar"></span> <span class="icon-bar"></span> <span
-							class="icon-bar"></span>
+						<span class="sr-only">Toggle navigation</span> 
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span> 
+						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="/fleamarket/">FleaMarket</a>
 				</div>
@@ -43,19 +44,19 @@
 					</ul>
 					<div id="loginbtn" align="right" style="margin-top: 15px">
 						<c:if test="${sessionId == null }">
-							<a href="/fleamarket/login">login</a>
-							<a href="/fleamarket/join">join</a>
+							<a href="/fleamarket/login" style="text-decoration: none;cursor: pointer;color: white;">login</a>
+							<a href="/fleamarket/join" style="text-decoration: none;cursor: pointer;color: white;">join</a>
 						</c:if>
 						<c:if test="${sessionId != null }">
 							<c:if test="${sessionGrant == 'A' }">
-								<a>${sessionId}님 환영합니다.</a>&nbsp&nbsp
-								<a href="/fleamarket/member/logout">logout</a>&nbsp&nbsp
-								<a href="#">AdminPage</a>
+								<a style="text-decoration: none; color: white;">${sessionId}님 환영합니다.</a>&nbsp&nbsp
+								<a href="/fleamarket/member/logout" style="text-decoration: none;cursor: pointer;color: white;">logout</a>&nbsp&nbsp
+								<a href="#" style="text-decoration: none;cursor: pointer;color: white;">AdminPage</a>
 							</c:if>
 							<c:if test="${sessionGrant == 'U' }">
-								<a>${sessionId}님 환영합니다.</a>&nbsp&nbsp
-								<a href="/fleamarket/member/logout">logout</a>&nbsp&nbsp
-								<a href="/fleamarket/mypage">MyPage</a>
+								<a style="text-decoration: none;color: white;">${sessionId}님 환영합니다.</a>&nbsp&nbsp
+								<a href="/fleamarket/member/logout" style="text-decoration: none;cursor: pointer;color: white;">logout</a>&nbsp&nbsp
+								<a href="/fleamarket/mypage" style="text-decoration: none;cursor: pointer;color: white;">MyPage</a>
 							</c:if>
 						</c:if>
 					</div>
