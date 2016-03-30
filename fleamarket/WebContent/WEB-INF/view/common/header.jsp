@@ -42,26 +42,22 @@
 						<li><a href="/fleamarket/notice">notice</a></li>
 					</ul>
 					<div id="loginbtn" align="right" style="margin-top: 15px">
-						<c:choose>
-							
-							<c:when test="${sessionId == null }">
-								<a href="/fleamarket/login">로그인</a>
-								<a href="/fleamarket/join">회원가입</a>
-							</c:when>
-							<c:otherwise>
-								<c:if test="${memGrant=='U'}">
-									<a>${sessionId }님 환영합니다.   </a>
-									<button type="button">로그아웃</button>
-									<button type="button">MyPage</button>
-								</c:if>
-								
-								<c:if test="${memGrant=='A'}">
-									<a>${sessionId }님 환영합니다.   </a>
-									<button type="button">로그아웃</button>
-									<button type="button">AdminPage</button>
-								</c:if>
-							</c:otherwise>
-						</c:choose>
+						<c:if test="${sessionId == null }">
+							<a href="/fleamarket/login">login</a>
+							<a href="/fleamarket/join">join</a>
+						</c:if>
+						<c:if test="${sessionId != null }">
+							<c:if test="${sessionGrant == 'A' }">
+								<a>${sessionId}님 환영합니다.</a>&nbsp&nbsp
+								<a href="/fleamarket/member/logout">logout</a>&nbsp&nbsp
+								<a href="#">AdminPage</a>
+							</c:if>
+							<c:if test="${sessionGrant == 'U' }">
+								<a>${sessionId}님 환영합니다.</a>&nbsp&nbsp
+								<a href="/fleamarket/member/logout">logout</a>&nbsp&nbsp
+								<a href="/fleamarket/mypage">MyPage</a>
+							</c:if>
+						</c:if>
 					</div>
 				</div>
 				<!-- /.navbar-collapse -->

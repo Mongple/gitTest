@@ -12,35 +12,43 @@
 
 	function init() {
 		$('a').click(clickA);
+		$('#memId, #memPwd').keypress(clickEnter);
 	}
+	
+	function clickEnter(event){
+		if(event.keyCode == 13){
+		  $('#login').click();
+		}
+	}
+	
 	function clickA() {
 		var type = $(this).attr('id');
 		if(type == 'login')
 		{	
-		/* 	var memId = $('#memId').val();
-			var memPwd = $('#memPwd').val(); */
 			$.ajax({
 				type:"post",
 				url:"/fleamarket/member/loginSign?memId="+$('#memId').val()+"&memPwd="+$('#memPwd').val(),
 				success : function(data){
-		    		alert(data);
-		    		/* if(data == 'SUCCESS')
-		    			$(location).attr('href', '/flea'); */
+		    		if(data == 'SUCCESS')
+		    			$(location).attr('href', '/fleamarket/');
+		    		else if(data == 'FAIL') {
+		    			alert("아이디 또는 비밀번호가 올바르지 않습니다.");
+		    			$('#memId').val('');	
+		    			$('#memPwd').val('');		    			
+		    			$('#memId').focus();	
+		    		}
 				},
 				error : function(){
 				}
 			});
 		}else if(type == 'join'){
-				
+			$(location).attr('href', '/fleamarket/join');
 		}else if(type == 'idSearch'){
 				
 		}else if(type == 'passSearch'){
 				
 		}
-		/* $(location).attr('href', 'editView.do?abId=' + this.innerHTML); */
-		/* pwd = prompt('수정/삭제 하려면 비밀번호를 넣으세요');
-		//document.location.href="addrbook_control.jsp?action=edit&ab_id="+ab_id+"&upasswd="+pwd;
-		document.location.href="editview.do?ab_id="+ab_id+"&upasswd="+pwd; */
+		
 	}
 </script>
 </head>
