@@ -13,7 +13,8 @@
 	<!-- VO 클래스 DI 자동주입 클래스(여기다가 등록하세요) -->
 	<bean class="com.fleamarket.addrbook.vo.AddrBookVO" id="addrBookVO"></bean>
 	<bean class="com.fleamarket.vo.PageVO" id="pageVO"></bean>
-	<bean class="com.fleamarket.vo.BoardVO" id="BoardVO"></bean>
+	<bean class="com.fleamarket.vo.BoardVO" id="boardVO"></bean>
+	<bean class="com.fleamarket.vo.MemberVO" id="memberVO"></bean>
 	
 	<!-- DAO 클래스 DI 자동주입 클래스(여기다가 등록하세요) -->
 	<bean class="com.fleamarket.service.ServiceImpl" id="service"></bean>
