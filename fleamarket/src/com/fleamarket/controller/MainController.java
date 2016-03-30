@@ -47,12 +47,12 @@ public class MainController {
 	@RequestMapping("/login")
 	public String goLogin() throws Exception {
 		
-		return "/WEB-INF/view/login/login.jsp";
+		return "/WEB-INF/view/member/login.jsp";
 	}
 	
 	@RequestMapping("/join")
 	public String goJoin() throws Exception {
 		
-		return "/WEB-INF/view/login/join.jsp";
+		return "/WEB-INF/view/member/join.jsp";
 	}
 }
