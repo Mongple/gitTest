@@ -13,11 +13,13 @@ table, tr, td, th
 	width: 800px;
 }
 
-input
+#form_table input
 {
 	width: 500px;
 	height: 42px;
 	padding-left: 20px;
+	border: 1px solid #e1e1e1;
+	margin-bottom: 5px;
 }
 
 #join
@@ -67,7 +69,6 @@ input
 	text-align: center;
 	display: inline-block;
 	margin-top: 5%;
-	padding-top: 10px;
 	background-color: #222;
 	font-family: Roboto, Nanum Gothic;
 	font-size: 18px;

@@ -39,4 +39,17 @@ public class MemberController {
 			return "SUCCESS";
 		}
 	}
+	
+	/*
+	 * 회원가입
+	*/
+	@RequestMapping("/member/insertMember")
+	public String insertMember(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		if(service.insert("member.insertMember", vo) != 0) {
+			logger.debug("가입완료");
+			return "redirect:/main";
+		}
+		return "";
+	}
+	
 }

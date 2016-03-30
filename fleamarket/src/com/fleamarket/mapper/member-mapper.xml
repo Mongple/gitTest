@@ -23,4 +23,16 @@
 		WHERE MEM_ID= #{memId}
 		AND CRYPTPACK.DECRYPT(MEM_PWD, #{memId}) = #{memPwd}
 	</select>
+	
+	<select id="insertMember" parameterType="com.fleamarket.vo.MemberVO" resultMap="memberMap">
+		INSERT INTO MEMBER(MEM_NO, MEM_ID, MEM_PWD, MEM_NAME, MEM_BIRTH, MEM_DATE
+            				, MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK)
+		VALUES((SELECT NVL(MAX(MEM_NO),0)+1 FROM MEMBER)
+				,'abc', CRYPTPACK.ENCRYPT('123','abc'), '슈퍼맨', '99/05/27', sysdate
+				, '010-7777-7777', 'babo@hunch.com', 'U', 0);	
+		
+	</select>
+	
+	
+	
 </mapper>
