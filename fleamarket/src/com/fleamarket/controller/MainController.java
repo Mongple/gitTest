@@ -1,14 +1,18 @@
 package com.fleamarket.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fleamarket.service.Service;
+import com.fleamarket.vo.BoardVO;
 
 @Controller
 public class MainController {
@@ -35,7 +39,10 @@ public class MainController {
 	}
 	
 	@RequestMapping("/fleamarket")
-	public String goFleaMarket() throws Exception {
+	public String goFleaMarket(Model model) throws Exception {
+		
+		List<BoardVO> list = service.selectList("board.selectBoardList",null);
+		model.addAttribute("list",list);
 		
 		return "/WEB-INF/view/fleamarket/fleamarketlist.jsp";
 	}
