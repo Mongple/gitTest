@@ -21,7 +21,7 @@
 		</div>
 		
 		<div id="content">
-		<form action="/member/insertMember" method="post">
+		<form action="/fleamarket/member/insertMember" method="post">
 			<table id="form_table">
 				<tr>
 					<td><input type="text" name="memId" id="memId" value="" placeholder="아이디"/></td>
