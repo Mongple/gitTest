@@ -1,33 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 
-<title>플리 보드입력</title>
+<title>플리보드</title>
 </head>
 <body>
-	<div id="fleamarketlist" align="center">
-		<h1>fleamarketlist Contents</h1>
+	<div align="center">
+		<h1>fleamarket board Contents</h1>
 
-		<form name=form1 method=post action="insertAddrBook.do">
-			<input type=hidden name="action" value="insert">
+		<form name=form1 method=post action="/fleamarket_board">
+			<input type=hidden id="baNo" name="baNo" value="${vo.baNo}">
+
+
 			<table border="1">
 				<tr>
 					<th>제목</th>
-					<td><input type="text" name="baTitle" maxlength="50"></td>
+<%-- 					<td><input type="text" name="baTitle" 
+					     value="${vo.baTitle}"></td> --%>
+					<td>${vo.baTitle}</td>					     
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><input type="email" name="baContent" maxlength="5000"></td>
+					<td>${vo.baContent}</td>
 				</tr>
-				
 				<tr>
-					<td colspan=2 align=center><input type=submit value="저장"><input
-						type=reset value="취소"></td>
+					<td><input type="hidden" name="batype" value="${vo.baType}"></td>
 				</tr>
 			</table>
 		</form>
