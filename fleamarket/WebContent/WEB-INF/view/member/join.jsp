@@ -19,6 +19,8 @@
 	$(document).ready(function() {
 		var memberJoin = MemberJoin();
 		memberJoin.idCheck();
+		memberJoin.pwdCheck();
+		memberJoin.submitCheck();
 	});
 </script>
 
@@ -30,7 +32,7 @@
 		</div>
 		
 		<div id="content">
-		<form action="/fleamarket/member/insertMember" method="post">
+		<form action="/fleamarket/member/insertMember" method="post" id="memberInsertForm">
 			<table id="form_table">
 				<tr>
 					<td>
@@ -51,24 +53,38 @@
 					</td>
 				</tr>
 				<tr>
-					<td><input type="text" name="memName" id="memName" value="" placeholder="이름"/></td>
+					<td>
+						<input type="text" name="memName" id="memName" value="" placeholder="이름"/><br />
+						<span id="namecheck"></span>
+					</td>
 				</tr>
 				<tr>
-					<td><input type="text" name="memBirth" id="memBirth" value="" placeholder="생년월일(ex:1991/03/20)"/></td>
+					<td>
+						<input type="text" name="memBirth" id="memBirth" value="" maxlength="10"
+							placeholder="생년월일(ex:1991/03/20)"/><br />
+						<span id="birthcheck"></span>
+					</td>
 				</tr>
 				<tr>
-					<td><input type="text" name="memPhone" id="memPhone" value="" placeholder="전화번호"/></td>
+					<td>
+						<input type="text" name="memPhone" id="memPhone" value="" maxlength="13"
+					 		placeholder="전화번호(ex:010-0000-0000)"/><br />
+					 	<span id="phonecheck"></span>
+					</td>
 				</tr>
 				<tr>
-					<td><input type="text" name="memEmail" id="memEmail" value="" placeholder="이메일"/></td>
+					<td>
+						<input type="text" name="memEmail" id="memEmail" value="" placeholder="이메일"/><br />
+						<span id="emailcheck"></span>
+					</td>
 				</tr>
 			</table>
 			
 			<table>
 				<tr>
 					<td colspan="2" align="center">
-					<input type="submit" id="btn" value="가입" />
-					<input type="reset" id="btn" value="다시작성" />
+					<input type="button" id="btn" class="joinBtn" value="가입" />
+					<input type="reset" id="btn" class="cancleBtn" value="다시작성" />
 				</tr>
 			</table>
 		</form>
