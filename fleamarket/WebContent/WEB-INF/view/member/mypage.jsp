@@ -11,8 +11,17 @@
 </head>
 <body>
 <div>
-	<a href="#">활동내역</a>
-	<a href="#">나의정보</a>
+	<ul>
+		<li>
+			<a href="#">가전제품 게시판 활동내역</a>
+		</li>
+		<li>
+			<a href="#">의류 게시판 활동내역</a>
+		</li>
+		<li>
+			<a href="#">나의정보</a>
+		</li>
+	</ul>
 	<br><br>
 </div>
 <div>
