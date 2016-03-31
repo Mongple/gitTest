@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,9 +10,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>:: MEMBER JOIN ::</title>
 
+<script src="/fleamarket/js/join.js" type="text/javascript" charset="utf-8"></script>
+
+<!-- 비밀번호 확인 -->
+<script src="http://code.jquery.com/jquery-1.7.2.js"></script>
+
 <script type="text/javascript">
-
-
+	$(document).ready(function() {
+		var memberJoin = MemberJoin();
+		memberJoin.idCheck();
+	});
 </script>
 
 </head>
@@ -24,13 +33,22 @@
 		<form action="/fleamarket/member/insertMember" method="post">
 			<table id="form_table">
 				<tr>
-					<td><input type="text" name="memId" id="memId" value="" placeholder="아이디"/></td>
+					<td>
+						<input type="text" name="memId" id="memId" value="" placeholder="아이디"/><br />
+						<span id="idresult"></span>
+					</td>
 				</tr>
 				<tr>
-					<td><input type="password" name="memPwd" id="memPwd" value="" placeholder="비밀번호"/></td>
+					<td>
+						<input type="password" name="memPwd" id="memPwd" value="" placeholder="비밀번호"/><br />
+						<span id="pwdcheck1"></span>
+					</td>
 				</tr>
 				<tr>
-					<td><input type="password" name="memPwd2" id="memPwd2" value="" placeholder="비밀번호확인"/></td>
+					<td>
+						<input type="password" name="memPwd2" id="memPwd2" value="" placeholder="비밀번호확인"/><br />
+						<span id="pwdcheck2"></span>
+					</td>
 				</tr>
 				<tr>
 					<td><input type="text" name="memName" id="memName" value="" placeholder="이름"/></td>
