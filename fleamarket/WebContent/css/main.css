@@ -1,5 +1,23 @@
+
 .content {
+	
 	margin: auto;
-	width: auto;
+	width: 1020px;
+	min-height: 755px;
+	position:relative; 
 	background-color: rgba(255, 255, 255, 0.8);
+}
+
+
+#footer{
+	
+	color: white;
+	font-weight :900;
+	background-color: #222;
+	display:table;
+	width: 100%;
+	overflow: hidden;
+	bottom 0;
+	position:relative; 
+	height:80px;
 }

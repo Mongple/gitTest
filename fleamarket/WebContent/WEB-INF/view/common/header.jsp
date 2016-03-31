@@ -3,18 +3,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE HTML>
 <html>
-<script type="text/javascript" src="js/jquery-1.12.1.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/fleamarket/js/jquery-1.12.1.min.js"></script>
+<script src="/fleamarket/js/bootstrap.min.js"></script>
 <head>
+<link href="/fleamarket/css/main.css" rel="stylesheet">
+<!-- Bootstrap Core CSS -->
+<link href="/fleamarket/css/bootstrap.min.css" rel="stylesheet">
+<!-- Custom CSS -->
+<link href="/fleamarket/css/shop-homepage.css" rel="stylesheet">
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="">
 <meta name="author" content="">
-<!-- Bootstrap Core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<!-- Custom CSS -->
-<link href="css/shop-homepage.css" rel="stylesheet">
 
 <title>Insert title here</title>
 </head>
@@ -44,8 +45,8 @@
 					</ul>
 					<div id="loginbtn" align="right" style="margin-top: 15px">
 						<c:if test="${sessionId == null }">
-							<a href="/fleamarket/login" style="text-decoration: none;cursor: pointer;color: white;">login</a>
-							<a href="/fleamarket/join" style="text-decoration: none;cursor: pointer;color: white;">join</a>
+							<a href="/fleamarket/member/login" style="text-decoration: none;cursor: pointer;color: white;">login</a>
+							<a href="/fleamarket/member/join" style="text-decoration: none;cursor: pointer;color: white;">join</a>
 						</c:if>
 						<c:if test="${sessionId != null }">
 							<c:if test="${sessionGrant == 'A' }">
@@ -56,7 +57,7 @@
 							<c:if test="${sessionGrant == 'U' }">
 								<a style="text-decoration: none;color: white;">${sessionId}님 환영합니다.</a>&nbsp&nbsp
 								<a href="/fleamarket/member/logout" style="text-decoration: none;cursor: pointer;color: white;">logout</a>&nbsp&nbsp
-								<a href="/fleamarket/mypage" style="text-decoration: none;cursor: pointer;color: white;">MyPage</a>
+								<a href="/fleamarket/member/mypage" style="text-decoration: none;cursor: pointer;color: white;">MyPage</a>
 							</c:if>
 						</c:if>
 					</div>

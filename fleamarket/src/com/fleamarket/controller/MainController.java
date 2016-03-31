@@ -29,13 +29,13 @@ public class MainController {
 	@RequestMapping("/main")
 	public String goMain2() throws Exception {
 		
-		return "/WEB-INF/view/main/main.jsp";
+		return "/main/main";
 	}
 	
 	@RequestMapping("/info")
 	public String goInfo() throws Exception {
 		
-		return "/WEB-INF/view/main/info.jsp";
+		return "/main/info";
 	}
 	
 	@RequestMapping("/fleamarket")
@@ -44,37 +44,37 @@ public class MainController {
 		List<BoardVO> list = service.selectList("board.selectBoardList",null);
 		model.addAttribute("list",list);
 		
-		return "/WEB-INF/view/fleamarket/fleamarketlist.jsp";
+		return "/fleamarket/fleamarketlist";
 	}
 	
 	@RequestMapping("/notice")
 	public String goNotice() throws Exception {
 		
-		return "/WEB-INF/view/notice/noticelist.jsp";
+		return "/notice/noticelist";
 	}
 	
-	@RequestMapping("/login")
+	@RequestMapping("/member/login")
 	public String goLogin(HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") != null) {
 			return "redirect:/main";
 		}
-		return "/WEB-INF/view/member/login.jsp";
+		return "/member/login";
 	}
 	
-	@RequestMapping("/join")
+	@RequestMapping("/member/join")
 	public String goJoin(HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") != null) {
 			return "redirect:/main";
 		}
-		return "/WEB-INF/view/member/join.jsp";
+		return "/member/join";
 	}
 	
-	@RequestMapping("/mypage")
+	@RequestMapping("/member/mypage")
 	public String goMyPage(HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null) {
 			return "redirect:/main";
 		}
 		
-		return "/WEB-INF/view/member/mypage.jsp";
+		return "/member/mypage";
 	}
 }

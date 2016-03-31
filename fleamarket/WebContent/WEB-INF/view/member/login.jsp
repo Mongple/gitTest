@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="css/login.css">
+<link rel="stylesheet" href="/fleamarket/css/login.css">
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
@@ -57,7 +57,7 @@
 </head>
 <body>
 	<div id="div_login">
-		<div id="title">
+		<div id="title">	
 			<span id="title_name">MEMBER LOGIN</span>
 		</div>
 		
@@ -84,8 +84,6 @@
 				<a id="idSearch" href="#" class="a" style="text-decoration: none;">아이디를 찾으시겠습니까?</a><br>
 				<a id="passSearch" href="#" class="a" style="text-decoration: none;">비밀번호를 찾으시겠습니까?</a>
 			</div>
-			
-		
 		</div>
 	</div>
 	

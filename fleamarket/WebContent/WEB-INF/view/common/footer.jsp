@@ -2,13 +2,16 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE HTML>
 <html>
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 </head>
 <body>
-<hr>
 	<div id="footer" align="center">
-		<h1>여기는 푸터!!</h1>
+		<br>
+		Copyright © 2000-2015 The Apache Software Foundation . All Rights Reserved. <br>
+		Apache Struts, Struts, Apache, the Apache feather logo, and the Apache Struts project logos are trademarks of The Apache Software Foundation.<br> 
+		Logo and website design donated by SoftwareMill.<br><br>
 	</div>
 </body>
 </html>

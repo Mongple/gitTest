@@ -23,7 +23,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<div id="main" align="center">
+	<div  class="content" id="main" align="center">
 		<h1>main Contents</h1>
 	</div>
 </body>
