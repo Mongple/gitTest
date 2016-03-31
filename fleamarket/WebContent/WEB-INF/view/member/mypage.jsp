@@ -18,23 +18,27 @@
 <div>
 	<table border="1">
 		<tr>
-			<td>No.</td>
-			<td>유형</td>
-			<td>작성자</td>
-			<td>제목</td>
-			<td>작성날짜</td>
+			<td>활동유형</td>
+			<td>게시물번호</td>
+			<td>게시글제목</td>
+			<td>게시글작성날짜</td>
 			<td>조회수</td>
 		</tr>
 		<c:forEach items="${list }" var="vo">
 			<tr>
-				<c:if test="${baNo == null }">
-					<td>${vo.rpNo}</td>		
+				<c:if test="${vo.baNo == 0 }">
+					<td>댓글작성</td>
+					<td></td>
 				</c:if>
-				<c:if test="${baNo != null }">
-					<td>${vo.No}</td>		
+				<c:if test="${vo.baNo != 0 }">
+					<td>게시글작성</td>
+					<td>${vo.baNo }</td>	
 				</c:if>
+										
+				<td>${vo.baTitle}</td>
+				<td>${vo.baDate}</td>
+				<td>${vo.baCount}</td>
 			</tr>
-			
 		</c:forEach>
 	</table>
 </div>

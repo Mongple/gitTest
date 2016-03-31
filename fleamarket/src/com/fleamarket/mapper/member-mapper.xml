@@ -40,12 +40,12 @@
 	
 	<select id="selectMyActive" parameterType="com.fleamarket.vo.BoardVO" resultType="com.fleamarket.vo.BoardVO">
 		select 
-		      b.BA_NO baNo,
+		      b.BA_NO as baNo,
 					r.RP_NO rpNo,
 		      		(select MEM_NAME FROM MEMBER WHERE MEM_ID = #{memId}) memName, 
 					b.BA_TYPE baType,
 					b.BA_TITLE baTitle,
-					b.BA_DATE baDate,
+					TO_CHAR(b.BA_DATE, 'yyyy-mm-dd hh24:mi') baDate,
 					b.BA_COUNT baCount,
 					r.RP_CONTENT rpContent,
 					r.RP_DATE rpDate
@@ -53,7 +53,7 @@
 		on r.MEM_NO = b.MEM_NO
 		and r.ba_no=b.ba_no
 		where r.MEM_NO = (select mem_no from member where mem_id = #{memId})
-		and (b.BA_TYPE='WEAR' OR b.BA_TYPE IS NULL)
+		and (b.BA_TYPE='PRODUCT' OR b.BA_TYPE IS NULL)
 		<!--<if test='#{baType} == "WEAR"'>
 		</if>
 		 <if test='#{baType} == "PRODUCT"'>
