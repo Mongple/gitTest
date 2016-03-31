@@ -53,4 +53,23 @@ public class MemberController {
 		return "";
 	}
 	
+	/*
+	 * ID Check
+	*/
+	@RequestMapping("/member/idCheck")
+	@ResponseBody
+	public String idCheck(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		
+		vo = (MemberVO) service.selectOne("member.idCheck", vo);
+		
+		if(vo == null) {
+			logger.debug("중복없음");
+			return "c";
+		}
+		else {
+			logger.debug("중복");
+			return "cc";
+		}
+	}
+	
 }
