@@ -32,6 +32,10 @@
 				, sysdate, #{memPhone}, #{memEmail}, 'U', 0)
 	</insert>
 	
-	
+	<select id="idCheck" parameterType="com.fleamarket.vo.MemberVO" resultMap="memberMap">
+		SELECT MEM_NO, MEM_ID, MEM_NAME, MEM_BIRTH, MEM_DATE, MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK
+		FROM MEMBER
+		WHERE MEM_ID= #{memId}
+	</select>
 	
 </mapper>
