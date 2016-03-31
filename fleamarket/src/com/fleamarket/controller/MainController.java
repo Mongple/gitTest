@@ -71,14 +71,10 @@ public class MainController {
 	
 	@RequestMapping("/member/mypage")
 	public String goMyPage(HttpServletRequest req) throws Exception {
+
 		if(req.getSession().getAttribute("sessionId") == null) {
 			return "redirect:/main";
 		}
-		BoardVO vo = new BoardVO();
-		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
-		vo.setBaType("PRODUCT");
-		List<BoardVO> list = service.selectList("member.selectMyActive", vo);
-		req.setAttribute("list", list);
-		return "/member/mypage";
+		return "redirect:/member/mypage/product";
 	}
 }

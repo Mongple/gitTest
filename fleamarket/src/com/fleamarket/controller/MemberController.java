@@ -1,5 +1,7 @@
 package com.fleamarket.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.logging.log4j.LogManager;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.fleamarket.service.Service;
+import com.fleamarket.vo.BoardVO;
 import com.fleamarket.vo.MemberVO;
 
 @Controller
@@ -70,6 +73,41 @@ public class MemberController {
 			logger.debug("중복");
 			return "cc";
 		}
+	}
+	
+
+	@RequestMapping("/member/mypage/product")
+	public String viewMyPageProduct(HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/main";
+		}
+		BoardVO vo = new BoardVO();
+		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
+		vo.setBaType("PRODUCT");
+		List<BoardVO> list = service.selectList("member.selectMyBoardList", vo);
+		req.setAttribute("list", list);
+		return "/member/board";
+	}
+	
+	@RequestMapping("/member/mypage/wear")
+	public String viewMyPageWear(HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/main";
+		}
+		BoardVO vo = new BoardVO();
+		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
+		vo.setBaType("WEAR");
+		List<BoardVO> list = service.selectList("member.selectMyBoardList", vo);
+		req.setAttribute("list", list);
+		return "/member/board";
+	}
+	
+	@RequestMapping("/member/mypage/memberinfo")
+	public String viewMemberInfo(HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/main";
+		}
+		return "redirect:/main";
 	}
 	
 }
