@@ -74,7 +74,13 @@ public class MainController {
 		if(req.getSession().getAttribute("sessionId") == null) {
 			return "redirect:/main";
 		}
-		
+		BoardVO vo = new BoardVO();
+		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
+		vo.setBaType("WEAR");
+		System.out.println("야" + vo.getMemId());
+		System.out.println("야" + vo.getBaType());
+		List<BoardVO> list = service.selectList("member.selectMyActive", vo);
+		req.setAttribute("list", list);
 		return "/member/mypage";
 	}
 }

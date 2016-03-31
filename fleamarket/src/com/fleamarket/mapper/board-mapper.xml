@@ -16,6 +16,10 @@
 		<result column="MEM_ID" property="memId"/>
 		<result column="MEM_NAME" property="memName"/>
 		
+		<result column="RP_NO" property="rpNo"/>
+		<result column="RP_CONTENT" property="rpContent"/>
+		<result column="RP_DATE" property="rpDate"/>
+		
 	</resultMap>
 	
 	

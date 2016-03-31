@@ -25,8 +25,17 @@
 			<td>작성날짜</td>
 			<td>조회수</td>
 		</tr>
-		<tr>
-		</tr>
+		<c:forEach items="${list }" var="vo">
+			<tr>
+				<c:if test="${baNo == null }">
+					<td>${vo.rpNo}</td>		
+				</c:if>
+				<c:if test="${baNo != null }">
+					<td>${vo.No}</td>		
+				</c:if>
+			</tr>
+			
+		</c:forEach>
 	</table>
 </div>
 
