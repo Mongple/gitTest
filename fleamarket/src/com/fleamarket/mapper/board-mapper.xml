@@ -40,6 +40,14 @@
 		WHERE m.MEM_ID LIKE '% #{memId} %'
 		ORDER BY BA_DATE
 	</select>
+	 <select id="selectBoardByNo" parameterType="int" resultMap="boardMap">
+		SELECT BA_NO, b.MEM_NO, BA_TYPE, BA_TITLE, BA_CONTENT, BA_COUNT, BA_DATE 
+		     , m.MEM_ID, m.MEM_NAME, m.MEM_BLACK
+		FROM BOARD b
+		LEFT OUTER JOIN MEMBER m
+		   ON b.MEM_NO = m.MEM_NO
+		WHERE BA_NO = #{baNo}
+	</select>
 	 <select id="selectBoardByName" parameterType="int" resultMap="boardMap">
 		SELECT BA_NO, b.MEM_NO, BA_TYPE, BA_TITLE, BA_CONTENT, BA_COUNT, BA_DATE 
 		     , m.MEM_ID, m.MEM_NAME, m.MEM_BLACK
@@ -55,7 +63,7 @@
 		FROM BOARD b
 		LEFT OUTER JOIN MEMBER m
 		   ON b.MEM_NO = m.MEM_NO
-		WHERE BA_TITLE LIKE '% #{baTitle} %'
+		WHERE BA_TITLE = #{baTitle} 
 		ORDER BY BA_DATE
 	</select>
 	<update id="updateBoard" parameterType="com.fleamarket.vo.BoardVO">
@@ -94,8 +102,8 @@
 				#{baType},
 				#{baTitle},
 				#{baContent},
-				#{baCount}, <!-- ///////////////////// -->
-				#{baDate} <!-- ///////////////////// -->
+				0, <!-- #{baCount}, --> <!-- ///////////////////// -->
+				sysdate<!-- #{baDate} --> <!-- ///////////////////// -->
 			)
 	</insert> 
 </mapper>
