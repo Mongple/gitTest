@@ -1,0 +1,63 @@
+@CHARSET "UTF-8";
+
+body, h1, h2, h3, h4, h5, h6, table, input, select
+,textarea, a
+{
+	color: #333;
+	font-family: Nanum Gothic, Verdana, AppleGothic, sans-serif;
+	font-size: 12px; 
+}
+
+#adminMain
+{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 3%;
+	margin-bottom: 8%;
+}
+	
+#title
+{
+	width: 250px;
+	height: 42px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 10px;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#title_name, #admin_type
+{
+	color: #333;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-family: Roboto, Nanum Gothic;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 10%;
+	margin-bottom: 10%;	
+}
+
+#content
+{
+	margin-top: 2%;
+	display: inline-block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
