@@ -5,18 +5,20 @@
 
 <mapper namespace="addrbook">
 	<resultMap type="com.fleamarket.addrbook.vo.AddrBookVO" id="addrbookMap">
-		<id column="AB_ID" property="abId"/>
-		<result column="AB_NAME" property="abName"/>
-		<result column="AB_BIRTH" property="abBirth"/>
-		<result column="AB_EMAIL" property="abEmail"/>
-		<result column="AB_TEL" property="abTel"/>
-		<result column="AB_COMDEPT" property="abComdept"/>
-		<result column="AB_MEMO" property="abMemo"/>
+		<id column="AB_ID" property="abId" />
+		<result column="AB_NAME" property="abName" />
+		<result column="AB_BIRTH" property="abBirth" />
+		<result column="AB_EMAIL" property="abEmail" />
+		<result column="AB_TEL" property="abTel" />
+		<result column="AB_COMDEPT" property="abComdept" />
+		<result column="AB_MEMO" property="abMemo" />
 	</resultMap>
 	<select id="selectAddrBookList" resultMap="addrbookMap">
-		SELECT AB_ID, AB_NAME, AB_BIRTH, AB_EMAIL, AB_TEL, AB_COMDEPT, AB_MEMO
+		SELECT AB_ID, AB_NAME,
+		AB_BIRTH, AB_EMAIL, AB_TEL, AB_COMDEPT, AB_MEMO
 		FROM ADDRBOOK
-		ORDER BY AB_ID DESC
+		ORDER BY
+		AB_ID DESC
 	</select>
 	<select id="selectAddrBookById" parameterType="int" resultMap="addrbookMap">
 		SELECT AB_ID, AB_NAME, AB_BIRTH, AB_EMAIL, AB_TEL, AB_COMDEPT, AB_MEMO
@@ -24,7 +26,7 @@
 		WHERE AB_ID = #{abId}
 	</select>
 	<update id="updateAddrBook" parameterType="com.fleamarket.addrbook.vo.AddrBookVO">
-		UPDATE ADDRBOOK 
+		UPDATE ADDRBOOK
 		<set>
 			<if test="abName != null">AB_NAME = #{abName},</if>
 			<if test="abEmail != null">AB_EMAIL = #{abEmail},</if>
@@ -35,31 +37,31 @@
 		</set>
 		WHERE AB_ID = #{abId}
 	</update>
-	<delete id="deleteAddrBook" parameterType="int" >
+	<delete id="deleteAddrBook" parameterType="int">
 		DELETE ADDRBOOK
 		WHERE AB_ID=#{adId}
 	</delete>
-	<insert id="insertAddrBook" parameterType="com.fleamarket.addrbook.vo.AddrBookVO">
-		INSERT 
-			INTO ADDRBOOK 
-			(	
-				AB_ID,
-				AB_NAME,
-				AB_EMAIL,
-				AB_COMDEPT,
-				AB_BIRTH,
-				AB_TEL,
-				AB_MEMO
-			) 
-		VALUES 
-			(
-				AB_SEQ.NEXTVAL,
-				#{abName},
-				#{abEmail},
-				#{abComdept},
-				#{abBirth},
-				#{abTel},
-				#{abMemo}
-			)
+	<insert id="insertBoard" parameterType="com.fleamarket.vo.BoardVO">
+		INSERT
+		INTO BOARD
+		(
+		BA_NO,
+		MEM_NO,
+		BA_TYPE,
+		BA_TITLE,
+		BA_CONTENT,
+		BA_COUNT,
+		BA_DATE
+		)
+		VALUES
+		(
+		(SELECT NVL(MAX(BA_NO),0)+1 FROM BOARD),
+		#{memNo},
+		#{baType},
+		#{baTitle},
+		#{baContent},
+		0, <!-- #{baCount}, --> <!-- ///////////////////// -->
+		sysdate<!-- #{baDate} --> <!-- ///////////////////// -->
+		)
 	</insert>
 </mapper>

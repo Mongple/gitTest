@@ -72,8 +72,6 @@
 			<if test="baType != null">BA_TYPE = #{baType},</if>
 			<if test="baTitle != null">BA_TITLE = #{baTitle},</if>
 			<if test="baContent != null">BA_CONTENT = #{baContent},</if>
-			<if test="baCount != null">BA_COUNT = #{baCount},</if> <!-- ///////////////////// -->
-			<if test="baDate != null">BA_DATE = #{baDate}</if> <!-- ///////////////////// -->
 		</set>
 		WHERE BA_NO =#{baNo}
 		  AND MEM_NO=#{memNo}
@@ -81,7 +79,6 @@
 	<delete id="deleteBoard" parameterType="int" >
 		DELETE BOARD
 		 WHERE BA_NO=#{baNo}
-		   AND MEM_NO=#{memNo}
 	</delete>
 	<insert id="insertBoard" parameterType="com.fleamarket.vo.BoardVO">
 		INSERT 
@@ -102,8 +99,8 @@
 				#{baType},
 				#{baTitle},
 				#{baContent},
-				0, <!-- #{baCount}, --> <!-- ///////////////////// -->
-				sysdate<!-- #{baDate} --> <!-- ///////////////////// -->
+				0, 
+				sysdate
 			)
 	</insert> 
 </mapper>
