@@ -5,15 +5,13 @@
 <head>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script type="text/javascript" src="/fleamarket/chartjs/jquery.jqplot.js"></script>
-<script type="text/javascript" src="/fleamarket/jqplot.barRenderer.js"></script>
-<script type="text/javascript" src="/fleamarket/jqplot.pieRenderer.js"></script>
-<script type="text/javascript" src="/fleamarket/jqplot.categoryAxisRenderer.js"></script>
-<script type="text/javascript" src="/fleamarket/jqplot.pointLabels.js"></script>
-
 <link rel="stylesheet" type="text/css" href="/fleamarket/css/adminMain.css">
 <link rel="stylesheet" type="text/css" href="/fleamarket/css/jquery.jqplot.css" />
+ 
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/fleamarket/chartjs/jquery.jqplot.js"></script>
+<script type="text/javascript" src="/fleamarket/chartjs/jqplot.pieRenderer.js"></script>
+
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>:: ADMIN MAIN ::</title>
@@ -21,33 +19,24 @@
 <script type="text/javascript">
 
 $(document).ready(function(){
-    $.jqplot.config.enablePlugins = true;
-    var s1 = [2, 6, 7, 10];
-    var ticks = ['a', 'b', 'c', 'd'];
-     
-    plot1 = $.jqplot('chart1', [s1], {
-        // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
-        animate: !$.jqplot.use_excanvas,
+    var plot1 = $.jqplot('pie1', [[['a',25],['b',14],['c',7]]], {
+        gridPadding: {top:0, bottom:38, left:0, right:0},
         seriesDefaults:{
-            renderer:$.jqplot.BarRenderer,
-            pointLabels: { show: true }
+            renderer:$.jqplot.PieRenderer, 
+            trendline:{ show:false }, 
+            rendererOptions: { padding: 8, showDataLabels: true }
         },
-        axes: {
-            xaxis: {
-                renderer: $.jqplot.CategoryAxisRenderer,
-                ticks: ticks
-            }
-        },
-        highlighter: { show: false }
+        legend:{
+            show:true, 
+            placement: 'outside', 
+            rendererOptions: {
+                numberRows: 1
+            }, 
+            location:'s',
+            marginTop: '15px'
+        }       
     });
- 
-    $('#chart1').bind('jqplotDataClick', 
-        function (ev, seriesIndex, pointIndex, data) {
-            $('#info1').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
-        }
-    );
 });
-
 </script>
 
 </head>
@@ -62,7 +51,7 @@ $(document).ready(function(){
 			&nbsp / &nbsp
 			<a href=""><span id="admin_type">유저 관리</span></a>
 			<br />
-			<div id="chart1" style="height:400px;width:300px;"></div>
+			<div id="pie1" style="height:800px;width:800px;"></div>
 		</div>
 	</div>
 </body>
