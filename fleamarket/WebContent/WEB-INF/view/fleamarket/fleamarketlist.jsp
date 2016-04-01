@@ -9,16 +9,11 @@
 
 <script type="text/javascript">
 	$(document).ready(init);
-
 	function init() {
 		$('td a').click(clickA);
 	}
 	function clickA() {
-
 		$(location).attr('href', '/fleamarket/fleamarket_board?baNo=' + this.innerHTML);
-		/* pwd = prompt('수정/삭제 하려면 비밀번호를 넣으세요');
-		//document.location.href="addrbook_control.jsp?action=edit&ab_id="+ab_id+"&upasswd="+pwd;
-		document.location.href="editview.do?ab_id="+ab_id+"&upasswd="+pwd; */
 	}
 </script>
 
@@ -29,20 +24,36 @@
 		<h1>fleamarketlist Contents</h1>
  
 		<form>
+			<tr>
+				<td>
+					<select name="searchKey">
+							<option value="">전체</option>
+							<option value="baTitle">제목</option>
+							<option value="baContent">내용</option>
+							<option value="memName">이름</option>
+							<option value="memid">아이디</option>
+					</select> 
+					<input type="text" name="searchVal"  value="">
+					<input type="button" id="searchbtn" value="조회"> 
+				</td>
+			</tr>
+
+
+
+
 			<table border="1">
 				<tr>
-					<th>글번호</th>
-					<th>제목</th>
-					<th>id</th>
-					<th>이름</th>
-					<th>게시날짜</th>				
-					<th>조회수</th>
-					
+					<th width="5%">No.</th>
+					<th width="40%">Title</th>
+					<th width="10%">Id</th>
+					<th width="10%">Name</th>
+					<th width="15%">Date</th>				
+					<th width="5%">hits</th>
 				</tr>
 				<!-- jstl -->
 				<c:forEach items="${list}" var="vo">
 					<tr>
-						<td><a>${vo.baNo}</a></td>
+						<td align="center"><a>${vo.baNo}</a></td>
 						<td>${vo.baTitle}</td>
 						<td>${vo.memId}</td>
 						<td>${vo.memName}</td>
@@ -56,7 +67,7 @@
 					<td colspan=2 align=center><input type="button" value="새글등록"></td>
 				</tr> -->
 			</table>
-		 	<a href="fleamarket_board_edit">새글등록</a>
+		 	<a href="fleamarket_board_write">새글등록</a>
 			<P>
 		</form> 
 	</div>

@@ -7,6 +7,29 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<script type="text/javascript">
+	$(document).ready(init);
+
+	function init() {
+		$("#editbtn").click(edit);
+	}
+	function edit() {
+		var baNo = $("#baNo").val();
+		$(location).attr('href', 'fleamarket_board_edit?baNo=' + baNo);
+	}
+	
+	function delcheck() {
+		result = confirm("정말로 삭제하시겠습니까 ?");
+		var baNo = $("#baNo").val();
+			
+		if(result == true){
+			$(location).attr('href','deleteBoard?baNo='+baNo);
+		}
+		else
+			return;
+	}
+	
+</script>
 
 <title>플리보드</title>
 </head>
@@ -21,9 +44,7 @@
 			<table border="1">
 				<tr>
 					<th>제목</th>
-<%-- 					<td><input type="text" name="baTitle" 
-					     value="${vo.baTitle}"></td> --%>
-					<td>${vo.baTitle}</td>					     
+					<td>${vo.baTitle}</td>
 				</tr>
 				<tr>
 					<th>내용</th>
@@ -31,6 +52,15 @@
 				</tr>
 				<tr>
 					<td><input type="hidden" name="batype" value="${vo.baType}"></td>
+				</tr>
+				<tr>
+					<c:if test="${sessionId == vo.memId || sessionGrant == 'A'}">					
+						<td colspan=2 align=center>
+							<input type="button" value="수정" id="editbtn" onclick="edit">
+							<input type="button" value="삭제" onclick="delcheck()" >
+						</td>
+					</c:if>
+					<td><input type=reset value="취소"></td>
 				</tr>
 			</table>
 		</form>
