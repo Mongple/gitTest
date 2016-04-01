@@ -42,7 +42,7 @@
 				}
 			});
 		}else if(type == 'join'){
-			$(location).attr('href', '/fleamarket/join');
+			$(location).attr('href', '/fleamarket/member/join');
 		}
 	}
 	function clickA() {
