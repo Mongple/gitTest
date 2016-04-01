@@ -77,4 +77,13 @@ public class MainController {
 		}
 		return "redirect:/member/mypage/product";
 	}
+	
+	@RequestMapping("/admin/adminMain")
+	public String goAdminMain(HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/main";
+		}
+		return "/admin/adminMain";
+	}
+	
 }
