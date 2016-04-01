@@ -52,7 +52,7 @@
 							<c:if test="${sessionGrant == 'A' }">
 								<a style="text-decoration: none; color: white;">${sessionId}님 환영합니다.</a>&nbsp&nbsp
 								<a href="/fleamarket/member/logout" style="text-decoration: none;cursor: pointer;color: white;">logout</a>&nbsp&nbsp
-								<a href="#" style="text-decoration: none;cursor: pointer;color: white;">AdminPage</a>
+								<a href="/fleamarket/admin/adminMain" style="text-decoration: none;cursor: pointer;color: white;">AdminPage</a>
 							</c:if>
 							<c:if test="${sessionGrant == 'U' }">
 								<a style="text-decoration: none;color: white;">${sessionId}님 환영합니다.</a>&nbsp&nbsp

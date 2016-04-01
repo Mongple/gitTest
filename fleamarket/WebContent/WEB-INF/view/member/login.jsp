@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="/fleamarket/css/login.css">
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+<link rel="stylesheet" href="/fleamarket/css/login.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
