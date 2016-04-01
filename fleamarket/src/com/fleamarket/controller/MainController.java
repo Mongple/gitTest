@@ -85,6 +85,6 @@ public class MainController {
 		if(req.getSession().getAttribute("sessionId") == null) {
 			return "redirect:/main";
 		}
-		return "/admin/adminMain";
+		return "redirect:/admin/adminMain/rate";
 	}
 }
