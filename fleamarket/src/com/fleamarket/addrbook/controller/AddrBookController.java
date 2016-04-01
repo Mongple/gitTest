@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +28,7 @@ public class AddrBookController {
 	public String listAddrBook(HttpServletRequest req) throws Exception {
 		
 		logger.debug("listaddrbook.do");
-		List<AddrBookVO> list = service.selectList("addrbook.selectAddrBookList", null);
+		List<AddrBookVO> list = service.selectList("addrbook.selectAddrBookList", null,new RowBounds(1, 10));
 		logger.debug(list.size());
 		req.setAttribute("list", list);
 		return "/WEB-INF/view/addrbook/addrbook_list.jsp";
