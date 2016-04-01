@@ -52,7 +52,7 @@ function boardCountChart() {
 			, [ 'Wear Board', parseInt('${wear.baNo}')]
 			, [ 'Product Board', parseInt('${product.baNo}')] ];
 	var plot2 = jQuery.jqplot('chart2', [ data ], {
-		title:'Board Type Rate',
+		title:'Board Type Data Rate',
 		seriesDefaults : {
 			renderer : jQuery.jqplot.PieRenderer,
 			rendererOptions : {
