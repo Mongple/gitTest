@@ -72,4 +72,16 @@
 	     	</otherwise>
 		</choose>
 	</select>
+	
+	<select id="selectUserCount" resultMap="memberMap">
+		select nvl(count(MEM_NO), 0) as MEM_NO
+		from MEMBER
+		where MEM_GRANT = 'U'
+	</select>
+	
+	<select id="selectAdminCount" resultMap="memberMap">
+		select nvl(count(MEM_NO), 0) as MEM_NO
+		from MEMBER
+		where MEM_GRANT = 'A'
+	</select>
 </mapper>
