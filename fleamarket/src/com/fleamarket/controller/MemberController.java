@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,8 +85,10 @@ public class MemberController {
 		BoardVO vo = new BoardVO();
 		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
 		vo.setBaType("PRODUCT");
-		List<BoardVO> list = service.selectList("member.selectMyBoardList", vo);
+		vo.setTotalRowCnt((int) service.selectOne("member.selectMyBoardCnt",vo));
+		List<BoardVO> list = service.selectList("member.selectMyBoardList", vo, new RowBounds(vo.getOffset(), vo.getLimit()));
 		req.setAttribute("list", list);
+		req.setAttribute("vo", vo);
 		return "/member/board";
 	}
 	
@@ -97,9 +100,27 @@ public class MemberController {
 		BoardVO vo = new BoardVO();
 		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
 		vo.setBaType("WEAR");
-		List<BoardVO> list = service.selectList("member.selectMyBoardList", vo);
+		List<BoardVO> list = service.selectList("member.selectMyBoardList", vo,null);
 		req.setAttribute("list", list);
 		return "/member/board";
+	}
+	
+	@RequestMapping("/member/mypage/board")
+	public String viewMyPageBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/main";
+		}
+		if(vo.getBaType().equals("WEAR"))
+			vo.setBaType("WEAR");
+		else
+			vo.setBaType("PRODUCT");
+		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
+		vo.setTotalRowCnt((int) service.selectOne("member.selectMyBoardCnt",vo));
+		System.out.println("야야야야"+vo.getPage()+"/"+vo.getPageCnt()+"/"+vo.getBlockCnt()+"/"+vo.getBlock()+"/"+vo.getOffset()+"/"+vo.getLimit());
+		List<BoardVO> list = service.selectList("member.selectMyBoardList", vo, new RowBounds(vo.getOffset(), vo.getLimit()));
+		req.setAttribute("list", list);
+		req.setAttribute("vo", vo);
+		return "/member/resultboard";
 	}
 	
 	@RequestMapping("/member/mypage/memberinfo")

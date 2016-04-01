@@ -39,32 +39,37 @@
 	</select>
 	
 	<select id="selectMyBoardList" parameterType="com.fleamarket.vo.BoardVO" resultType="com.fleamarket.vo.BoardVO">
-
 		SELECT 
-		    DISTINCT(baNo), baType, memId, baTitle, baDate, baCount
-		FROM 
-		    (
-		      SELECT 
-		            NVL(b.ba_no, (SELECT b2.ba_no FROM board b2 WHERE r.ba_no = b2.ba_no)) baNo,
-		            NVL(b.ba_type,(SELECT b2.ba_type FROM board b2 WHERE r.ba_no = b2.ba_no)) baType,
-		            NVL((SELECT mem_id FROM MEMBER WHERE mem_no = 4), (SELECT m2.mem_id FROM MEMBER m2, board b2 WHERE m2.mem_no = b2.mem_no AND b2.ba_no = (SELECT b2.ba_no FROM board b2 WHERE r.ba_no = b2.ba_no))) memId,
-				    NVL(b.ba_title, (SELECT b2.ba_title FROM board b2 WHERE r.ba_no = b2.ba_no)) baTitle,
-				    NVL(b.ba_date,TO_DATE((SELECT b2.ba_date FROM board b2 WHERE r.ba_no = b2.ba_no), 'yyyy-mm-dd hh24:mi')) baDate,
-		            NVL(b.ba_count,(SELECT b2.ba_count FROM board b2 WHERE r.ba_no = b2.ba_no)) baCount
-		      FROM REPLY R FULL OUTER JOIN BOARD B
-		      ON R.MEM_NO = B.MEM_NO
-		      WHERE R.MEM_NO = (SELECT MEM_NO FROM MEMBER WHERE MEM_ID =#{memId})
-		      <choose>
-		      	<when test='#{memId} == "PRODUCT"'>
-		      		AND (b.ba_type='PRODUCT' OR b.ba_type IS NULL)
-		      	</when>
-		      	<otherwise>
-		      		AND (b.ba_type='WEAR' OR b.ba_type IS NULL)
-		      	</otherwise>
-		      </choose>
-		      OR R.BA_NO=B.BA_NO
-		      ORDER BY B.BA_NO
-		    )
-		    ORDER BY baNo DESC
+		  b.BA_NO baNo,
+		  (select mem_id from member where mem_no = b.mem_no) memId,
+		  b.BA_TYPE baType,
+		  b.BA_TITLE baTitle,
+		  b.BA_DATE baDate
+		FROM board b
+		WHERE MEM_NO = (select mem_no from member where MEM_ID = #{memId})
+		<choose>
+	     	<when test="baType.equals('PRODUCT')">
+	     		AND (b.ba_type='PRODUCT' OR b.ba_type IS NULL)
+	     	</when>
+	     	<otherwise>
+	     		AND (b.ba_type='WEAR' OR b.ba_type IS NULL)
+	     	</otherwise>
+		</choose>
+		ORDER BY baNo DESC
+	</select>
+	
+	<select id="selectMyBoardCnt" parameterType="com.fleamarket.vo.BoardVO" resultType="int">
+		SELECT 
+		  COUNT(1)
+		FROM board b
+		WHERE MEM_NO = (select mem_no from member where MEM_ID = #{memId})
+		<choose>
+	     	<when test="baType.equals('PRODUCT')">
+	     		AND (b.ba_type='PRODUCT' OR b.ba_type IS NULL)
+	     	</when>
+	     	<otherwise>
+	     		AND (b.ba_type='WEAR' OR b.ba_type IS NULL)
+	     	</otherwise>
+		</choose>
 	</select>
 </mapper>

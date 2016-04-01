@@ -2,6 +2,7 @@ package com.fleamarket.service;
 
 import java.util.List;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -13,9 +14,10 @@ public class ServiceImpl implements Service{
 	SqlSessionTemplate template;
 
 	@Override
-	public List selectList(String statement, Object parameter) throws Exception {
+	public List selectList(String statement, Object parameter, RowBounds rowBounds) throws Exception {
 		// TODO Auto-generated method stub
-		return template.selectList(statement, parameter);
+		
+		return template.selectList(statement, parameter, rowBounds);
 	}
 
 	@Override

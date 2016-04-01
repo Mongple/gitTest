@@ -4,11 +4,13 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.session.RowBounds;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.fleamarket.service.Service;
@@ -39,9 +41,9 @@ public class MainController {
 	}
 	
 	@RequestMapping("/fleamarket")
-	public String goFleaMarket(Model model) throws Exception {
+	public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, Model model) throws Exception {
 		
-		List<BoardVO> list = service.selectList("board.selectBoardList",null);
+		List<BoardVO> list = service.selectList("board.selectBoardList",null,new RowBounds(vo.getOffset(), vo.getLimit()));
 		model.addAttribute("list",list);
 		
 		return "/fleamarket/fleamarketlist";
@@ -85,5 +87,4 @@ public class MainController {
 		}
 		return "/admin/adminMain";
 	}
-	
 }
