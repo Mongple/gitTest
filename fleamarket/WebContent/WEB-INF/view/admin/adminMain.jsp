@@ -26,8 +26,8 @@ $(document).ready(function() {
 
 function memberCountChart() {
 	$(document).ready(function(){
-	    var line1 = [['Nissan', 4],['Porche', 6],['Acura', 2],['Aston Martin', 5],['Rolls Royce', 6]];
-	 
+	    var line1 = [['Member', parseInt('${user.memNo}')],['Admin', parseInt('${admin.memNo}')]];
+
 	    $('#chart1').jqplot([line1], {
 	        title:'Total Member Count',
 	        seriesDefaults:{
@@ -48,7 +48,9 @@ function memberCountChart() {
 }
 
 function boardCountChart() {
-	var data = [ [ '의류게시판', 12 ], [ '가전제품게시판', 9 ] ];
+	var data = [ [ 'Notice Board', parseInt('${notice.baNo}')]
+			, [ 'Wear Board', parseInt('${wear.baNo}')]
+			, [ 'Product Board', parseInt('${product.baNo}')] ];
 	var plot2 = jQuery.jqplot('chart2', [ data ], {
 		title:'Board Type Rate',
 		seriesDefaults : {
@@ -69,7 +71,6 @@ function boardCountChart() {
 		}
 	});
 }
-
 </script>
 
 </head>
@@ -78,13 +79,16 @@ function boardCountChart() {
 		<div id="title">
 			<span id="title_name">ADMIN MAIN</span>
 		</div>
-
+		
+		<div id="top_bar">
+			<a href="/fleamarket/admin/adminMain"><span id="admin_type">Chart Check</span></a>
+			&nbsp / &nbsp
+			<a href=""><span id="admin_type">User Manage</span></a>
+		</div>
+		<br/>
 		<div id="content">
-			<a href="/fleamarket/admin/adminMain"><span id="admin_type">통계
-					확인</span></a> &nbsp / &nbsp <a href=""><span id="admin_type">유저 관리</span></a>
-			<br />
-			<div id="chart1" style="height: 300px; width: 500px;"></div>
-			<div id="chart2" style="height: 300px; width: 500px;"></div>
+			<div id="chart1" style="height: 300px; width: 450px;"></div>
+			<div id="chart2" style="height: 300px; width: 450px;"></div>
 		</div>
 	</div>
 </body>

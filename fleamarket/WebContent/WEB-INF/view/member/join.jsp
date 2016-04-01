@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/fleamarket/css/adminMain.css">
+<link rel="stylesheet" type="text/css" href="/fleamarket/css/join.css">
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>:: MEMBER JOIN ::</title>
