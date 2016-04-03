@@ -20,7 +20,18 @@ public class BoardController {
 	Service service;
 	
 	Logger logger = LogManager.getLogger(this.getClass());
-
+	
+/*	maincontroller
+ * @RequestMapping("/fleamarket")
+	public String goFleaMarket(Model model) throws Exception {
+		
+		List<BoardVO> list = service.selectList("board.selectBoardList",null);
+		model.addAttribute("list",list);
+		
+		return "/fleamarket/fleamarketlist";
+	}
+*/
+	
 	@RequestMapping("/fleamarket_board")
 	public String boardForm(@ModelAttribute("BoardVO") BoardVO vo, Model model) throws Exception{
 		vo = (BoardVO) service.selectOne("board.selectBoardByNo", vo);
@@ -34,12 +45,12 @@ public class BoardController {
 		return "/fleamarket/fleamarket_board_write";
 	}
 
-	@RequestMapping("/fleamarket_board_edit_action")
+	@RequestMapping("/fleamarket_board_write_action")
 	public String insertBoardAction(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
 		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
 		if(service.insert("board.insertBoard",vo) != 0){
 			logger.debug("등록성공");
-			return "redirect:/fleamarketlist";
+			return "redirect:/fleamarket";
 		}
 		return "";
 	}

@@ -94,8 +94,8 @@
 			) 
 		VALUES 
 			(
-				BA_SEQ.NEXTVAL,
-				#{memNo},
+				(SELECT NVL(MAX(BA_NO),0)+1 FROM BOARD),
+				(SELECT MEM_NO FROM MEMBER WHERE MEM_ID=#{memId}),
 				#{baType},
 				#{baTitle},
 				#{baContent},

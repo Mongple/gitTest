@@ -15,13 +15,7 @@
 	<div align="center">
 		<h1>fleamarket board write</h1>
 		<form name="forminsertboard" method="post" action="fleamarket_board_write_action">
-			<input type="hidden" name="action" value="insert">
- 			<input type=hidden id="baNo" name="baNo">
-			<input type=text id="memId" name="memId" value="${sessionId}">
-
 			<table border="1">
-
-
 				<tr>
 					<th>게시판종류</th>
 					<td><input type="text" name="baType"></td>
@@ -36,8 +30,10 @@
 				</tr>
 
 				<tr>
-					<td colspan=2 align=center><input type=submit value="저장">
-						<input type=reset value="취소"></td>
+					<td colspan=2 align=center>
+						<input type=submit value="저장">
+						<input type=reset value="취소">
+					</td>
 				</tr>
 			</table>
 		</form>
