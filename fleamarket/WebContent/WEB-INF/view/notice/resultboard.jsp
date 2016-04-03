@@ -12,7 +12,7 @@
 	</tr>
 	<c:forEach items="${list }" var="vo">
 		<tr>
-			<td>${vo.baNo }</td>
+			<td>${vo.baNo }</td>	
 			<td>${vo.memId}</td>	
 			<td>${vo.baTitle}</td>
 			<td>${vo.baDate}</td>

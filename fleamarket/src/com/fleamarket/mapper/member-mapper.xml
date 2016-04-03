@@ -51,9 +51,20 @@
 	     	<when test="baType.equals('PRODUCT')">
 	     		AND (b.ba_type='PRODUCT' OR b.ba_type IS NULL)
 	     	</when>
-	     	<otherwise>
+	     	<when test="baType.equals('WEAR')">
 	     		AND (b.ba_type='WEAR' OR b.ba_type IS NULL)
-	     	</otherwise>
+	     	</when>
+		</choose>
+		<choose>
+			<when test="searchType!=null and searchType.equals('SEARCHALL')">
+	     		 AND (b.BA_TITLE LIKE '%${searchData}%' OR b.BA_CONTENT LIKE '%${searchData}%')
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHTITLE')">
+	     		 AND b.BA_TITLE LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHCONTENT')">
+	     		 AND b.BA_CONTENT LIKE '%${searchData}%'
+	     	</when>
 		</choose>
 		ORDER BY baNo DESC
 	</select>
@@ -67,9 +78,20 @@
 	     	<when test="baType.equals('PRODUCT')">
 	     		AND (b.ba_type='PRODUCT' OR b.ba_type IS NULL)
 	     	</when>
-	     	<otherwise>
+	     	<when test="baType.equals('WEAR')">
 	     		AND (b.ba_type='WEAR' OR b.ba_type IS NULL)
-	     	</otherwise>
+	     	</when>
+		</choose>
+		<choose>
+			<when test="searchType!=null and searchType.equals('SEARCHALL')">
+	     		 AND (b.BA_TITLE LIKE '%${searchData}%' OR b.BA_CONTENT LIKE '%${searchData}%')
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHTITLE')">
+	     		 AND b.BA_TITLE LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHCONTENT')">
+	     		 AND b.BA_CONTENT LIKE '%${searchData}%'
+	     	</when>
 		</choose>
 	</select>
 	

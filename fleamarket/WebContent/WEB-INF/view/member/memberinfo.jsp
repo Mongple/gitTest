@@ -9,13 +9,20 @@
 
 <title>Insert title here</title>
 </head>
-<body>
-
-<div align="center">
-	<a href="/fleamarket/member/mypage/product">가전제품 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
-	<a href="/fleamarket/member/mypage/wear">의류 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
-	<a href="/fleamarket/member/mypage/memberinfo">나의정보</a>
-</div>
+<body>	
+	<div align="center">
+		<a href="/fleamarket/member/mypage/board?baType=PRODUCT">가전제품 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
+		<a href="/fleamarket/member/mypage/board?baType=WEAR">의류 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
+		<a href="/fleamarket/member/mypage/memberinfo">나의정보</a>
+		
+	</div>
+	<div align="center">
+		<table border="1">
+			<tr>
+				<td></td>
+			</tr>
+		</table>
+	</div>
 </body>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 </html>

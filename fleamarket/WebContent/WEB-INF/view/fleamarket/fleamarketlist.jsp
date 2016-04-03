@@ -38,9 +38,6 @@
 				</td>
 			</tr>
 
-
-
-
 			<table border="1">
 				<tr>
 					<th width="5%">No.</th>
@@ -61,13 +58,10 @@
 						<td>${vo.baCount}</td>
 					</tr>
 				</c:forEach>
-				<!-- jstl -->
-				
-<!-- 				<tr>
-					<td colspan=2 align=center><input type="button" value="새글등록"></td>
-				</tr> -->
 			</table>
-		 	<a href="fleamarket_board_write">새글등록</a>
+			<c:if test="${sessionId != null}">		
+			 	<a href="fleamarket_board_write">새글등록</a>
+			</c:if>
 			<P>
 		</form> 
 	</div>

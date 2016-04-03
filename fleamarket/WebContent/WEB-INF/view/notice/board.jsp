@@ -19,13 +19,13 @@
 	    $('#searchbtn').click(function () {
 	    	$.ajax({
 				type:"post",
-				url:'/fleamarket/member/mypage/resultboard',
-				data: 'baType=${vo.baType}&searchType='+searchType+'&searchData='+$('#searchData').val(),
+				url:'/fleamarket/notice/resultboard',
+				data: 'searchType='+searchType+'&searchData='+$('#searchData').val(),
 				success : function(html){
 					$('#inner').html(html);
 				    if($('#totalRowCnt').val() == 0){
 				    	alert("검색결과가 없습니다.");
-				    	$(location).attr('href','/fleamarket/member/mypage/board?baType=${vo.baType}');
+				    	$(location).attr('href','/fleamarket/notice/board');
 				    }
 				},
 				error : function(){
@@ -33,12 +33,16 @@
 				}
 			});
 	    })
+	    
+	    $('#insertBtn').click(function () {
+	    	$(location).attr('href','/fleamarket/notice/write');
+	    })
 	}); 
 	function clickA(p) {
 		$.ajax({
 			type:"post",
-			url:'/fleamarket/member/mypage/resultboard',
-			data: 'page='+p+'&baType=${vo.baType}&searchType='+searchType+'&searchData='+$('#searchData').val(),
+			url:'/fleamarket/notice/resultboard',
+			data: 'page='+p+'&searchType='+searchType+'&searchData='+$('#searchData').val(),
 			success : function(html){
 				$('#inner').html(html);
 			},
@@ -48,26 +52,26 @@
 		});
 	}
 	function clickWarp(warp) {
-		var url = '/fleamarket/member/mypage/resultboard';
+		var url = '/fleamarket/notice/resultboard';
 		var param;
 		page = parseInt($('#page').val());
 		pageCnt = parseInt($('#pageCnt').val());
 		if(warp == 'doubleLeft'){
-			param = 'page=1&baType=${vo.baType}';
+			param = 'page=1';
 		}else if(warp == 'singleLeft') {
 			if(page == 1)
 				return;
 			else
 				page = page-1;
-			param = 'page='+page+'&baType=${vo.baType}';
+			param = 'page='+page;
 		}else if(warp == 'singleRight') {
 			if(page == pageCnt)
 				return;
 			else
 				page = page+1;
-			param = 'page='+page+'&baType=${vo.baType}';
+			param = 'page='+page;
 		}else if(warp == 'doubleRight'){
-			param = 'page='+pageCnt+'&baType=${vo.baType}';
+			param = 'page='+pageCnt;
 		}
 		
 		$.ajax({
@@ -87,10 +91,6 @@
 </head>
 <body>
 <div align="center">
-	<a href="/fleamarket/member/mypage/board?baType=PRODUCT">가전제품 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
-	<a href="/fleamarket/member/mypage/board?baType=WEAR">의류 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
-	<a href="/fleamarket/member/mypage/memberinfo">나의정보</a>
-	<br><br>
 	<div id="search">
 		<table>
 			<tr>
@@ -126,20 +126,15 @@
 				</tr>
 			</c:forEach>
 		</table>
-		
+		<c:if test="${sessionGrant == 'A'}">
+			<input id="insertBtn" type="button" value="글등록">
+		</c:if>
 		<div id="paging" align="center">
 			<jsp:include page="/WEB-INF/view/common/paging.jsp"></jsp:include>
 		</div>
 	</div>
 </div>
-<!-- 	<div id="mypage" align="center"style="width: 500px">
-		<ul class="nav nav-pills">
-		  <li class="active"><a href="#">Home</a></li>
-		  <li><a href="#">Menu 1</a></li>
-		  <li><a href="#">Menu 2</a></li>
-		  <li><a href="#">Menu 3</a></li>
-		</ul>
-	</div> -->
+
 </body>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 </html>

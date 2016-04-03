@@ -76,15 +76,14 @@ public class MemberController {
 		}
 	}
 	
-
-	@RequestMapping("/member/mypage/product")
-	public String viewMyPageProduct(HttpServletRequest req) throws Exception {
+	@RequestMapping("/member/mypage/board")
+	public String viewMyPageBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null) {
 			return "redirect:/main";
 		}
-		BoardVO vo = new BoardVO();
+		if(vo.getBaType() == null)
+			vo.setBaType("PRODUCT");
 		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
-		vo.setBaType("PRODUCT");
 		vo.setTotalRowCnt((int) service.selectOne("member.selectMyBoardCnt",vo));
 		List<BoardVO> list = service.selectList("member.selectMyBoardList", vo, new RowBounds(vo.getOffset(), vo.getLimit()));
 		req.setAttribute("list", list);
@@ -92,31 +91,15 @@ public class MemberController {
 		return "/member/board";
 	}
 	
-	@RequestMapping("/member/mypage/wear")
-	public String viewMyPageWear(HttpServletRequest req) throws Exception {
+	@RequestMapping("/member/mypage/resultboard")
+	public String viewMyPageResultBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null) {
 			return "redirect:/main";
 		}
-		BoardVO vo = new BoardVO();
-		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
-		vo.setBaType("WEAR");
-		List<BoardVO> list = service.selectList("member.selectMyBoardList", vo,null);
-		req.setAttribute("list", list);
-		return "/member/board";
-	}
-	
-	@RequestMapping("/member/mypage/board")
-	public String viewMyPageBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
-		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
-		}
-		if(vo.getBaType().equals("WEAR"))
-			vo.setBaType("WEAR");
-		else
+		if(vo.getBaType() == null)
 			vo.setBaType("PRODUCT");
 		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
 		vo.setTotalRowCnt((int) service.selectOne("member.selectMyBoardCnt",vo));
-		System.out.println("야야야야"+vo.getPage()+"/"+vo.getPageCnt()+"/"+vo.getBlockCnt()+"/"+vo.getBlock()+"/"+vo.getOffset()+"/"+vo.getLimit());
 		List<BoardVO> list = service.selectList("member.selectMyBoardList", vo, new RowBounds(vo.getOffset(), vo.getLimit()));
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
@@ -128,7 +111,7 @@ public class MemberController {
 		if(req.getSession().getAttribute("sessionId") == null) {
 			return "redirect:/main";
 		}
-		return "redirect:/main";
+		return "/member/memberinfo";
 	}
 	
 }

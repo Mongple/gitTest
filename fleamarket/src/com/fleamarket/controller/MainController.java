@@ -52,7 +52,7 @@ public class MainController {
 	@RequestMapping("/notice")
 	public String goNotice() throws Exception {
 		
-		return "/notice/noticelist";
+		return "redirect:/notice/board";
 	}
 	
 	@RequestMapping("/member/login")
@@ -77,7 +77,7 @@ public class MainController {
 		if(req.getSession().getAttribute("sessionId") == null) {
 			return "redirect:/main";
 		}
-		return "redirect:/member/mypage/product";
+		return "redirect:/member/mypage/board";
 	}
 	
 	@RequestMapping("/admin/adminMain")

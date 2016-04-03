@@ -16,11 +16,17 @@ public class BoardVO extends PageVO{
 	private int rpNo;
 	private String rpContent;
 	private String rpDate;
+	
+	private String searchType;
+	private String searchData;
+	
 	public BoardVO() {
 		// TODO Auto-generated constructor stub
 	}
+	
 	public BoardVO(int baNo, int memNo, String baType, String baTitle, String baContent, int baCount, String baDate,
-			String memId, String memName, int rpNo, String rpContent, String rpDate) {
+			String memId, String memName, int rpNo, String rpContent, String rpDate, String searchType,
+			String searchData) {
 		super();
 		this.baNo = baNo;
 		this.memNo = memNo;
@@ -34,7 +40,10 @@ public class BoardVO extends PageVO{
 		this.rpNo = rpNo;
 		this.rpContent = rpContent;
 		this.rpDate = rpDate;
+		this.searchType = searchType;
+		this.searchData = searchData;
 	}
+
 	public int getBaNo() {
 		return baNo;
 	}
@@ -106,6 +115,20 @@ public class BoardVO extends PageVO{
 	}
 	public void setRpDate(String rpDate) {
 		this.rpDate = rpDate;
+	}
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getSearchData() {
+		return searchData;
+	}
+
+	public void setSearchData(String searchData) {
+		this.searchData = searchData;
 	}
 	
 	

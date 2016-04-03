@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC  
+ "-//mybatis.org//DTD Mapper 3.0//EN"  
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+	<select id="selectList" parameterType="com.fleamarket.vo.BoardVO" resultType="com.fleamarket.vo.BoardVO">
+		SELECT 
+		  b.BA_NO baNo,
+		  (select mem_id from member where mem_no = b.mem_no) memId,
+		  b.BA_TYPE baType,
+		  b.BA_TITLE baTitle,
+		  b.BA_DATE baDate
+		FROM board b
+		WHERE b.ba_type='NOTICE'
+		<choose>
+			<when test="searchType!=null and searchType.equals('SEARCHALL')">
+	     		 AND (b.BA_TITLE LIKE '%${searchData}%' OR b.BA_CONTENT LIKE '%${searchData}%')
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHTITLE')">
+	     		 AND b.BA_TITLE LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHCONTENT')">
+	     		 AND b.BA_CONTENT LIKE '%${searchData}%'
+	     	</when>
+		</choose>
+		ORDER BY baNo DESC
+	</select>
+	
+	<select id="selectCnt" parameterType="com.fleamarket.vo.BoardVO" resultType="int">
+		SELECT 
+		  COUNT(1)
+		FROM board b
+		WHERE b.ba_type='NOTICE'
+		<choose>
+			<when test="searchType!=null and searchType.equals('SEARCHALL')">
+	     		 AND (b.BA_TITLE LIKE '%${searchData}%' OR b.BA_CONTENT LIKE '%${searchData}%')
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHTITLE')">
+	     		 AND b.BA_TITLE LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHCONTENT')">
+	     		 AND b.BA_CONTENT LIKE '%${searchData}%'
+	     	</when>
+		</choose>
+	</select>
+</mapper>
