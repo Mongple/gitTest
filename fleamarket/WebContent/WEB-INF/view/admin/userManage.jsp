@@ -20,6 +20,7 @@ $(document).ready(function() {
 	
 	
 });
+ 
 </script>
 
 </head>
@@ -40,8 +41,22 @@ $(document).ready(function() {
 		<div id="content">
 			<table id="memberlist" class="memberlist">
 				<tr>
+					<th align="right">
+					<select id="searchType">
+							<option value="SEARCHALL">전체</option>
+							<option value="SEARCHID">아이디</option>
+							<option value="SEARCHNAME">이름</option>
+							<option value="SEARCHPHONE">전화번호</option>
+							<option value="SEARCHEMAIL">이메일</option>
+							<option value="SEARCHGRANT">권한</option>
+							<option value="SEARCHBLACK">경고횟수</option>
+					</select> 
+					<input type="text" id="searchData"  value="${vo.searchData }" >
+					<input type="button" id="searchbtn" value="조회" onclick="search()"> 
+					</th>
+				</tr>
+				<tr>
 					<th>전체 요청수 :</th>
-					<th>검색</th>
 				</tr>
 				<tr>
 					<th>번호</th>
@@ -76,6 +91,10 @@ $(document).ready(function() {
 					</tr>
 				</c:forEach>
 			</table>
+		</div>
+		
+		<div id="paging" align="center">
+			<jsp:include page="/WEB-INF/view/common/paging.jsp"></jsp:include>
 		</div>
 	</div>
 </body>
