@@ -27,7 +27,14 @@
 	<select id="selectMemberInfo" parameterType="com.fleamarket.vo.MemberVO" resultMap="memberMap">
 		SELECT MEM_NO, MEM_ID, MEM_NAME, MEM_BIRTH, MEM_DATE, MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK
 		FROM MEMBER
-		WHERE MEM_ID= #{memId}
+		<choose>
+			<when test="memId == null">
+				WHERE MEM_EMAIL= #{memEmail}
+			</when>
+			<otherwise>
+				WHERE MEM_ID= #{memId}
+			</otherwise>
+		</choose>
 	</select>
 	
 	<insert id="insertMember" parameterType="com.fleamarket.vo.MemberVO">
@@ -153,6 +160,13 @@
 			MEM_EMAIL = NULL,
 			MEM_PHONE = NULL,
 			MEM_BIRTH = NULL
+		WHERE MEM_ID = #{memId}
+	</update>
+	
+	<update id="updatePwd" parameterType="com.fleamarket.vo.MemberVO">
+		UPDATE MEMBER
+		SET
+			MEM_PWD = CRYPTPACK.ENCRYPT(#{memPwd},#{memId})
 		WHERE MEM_ID = #{memId}
 	</update>
 </mapper>

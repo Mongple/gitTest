@@ -9,29 +9,29 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-	$('#memPwd').keypress(clickEnter);
-	$('#chkPwdBtn').click(chkPwdBtn);
+	$('#memEmail').keypress(clickEnter);
+	$('#chkEmailBtn').click(chkEmailBtn);
 }); 
 
 function clickEnter(event){
 	if(event.keyCode == 13){
-		chkPwdBtn();
+		chkEmailBtn();
 	}
 }
 
-function chkPwdBtn() {
-	var memPwd = $("#memPwd").val();
+function chkEmailBtn() {
+	var memEmail = $("#memEmail").val();
 	$.ajax({
 		type:"post",
-		url:'/fleamarket/member/mypage/chkPwdAction',
-		data: 'memPwd='+memPwd,
+		url:'/fleamarket/member/chkEmail',
+		data: 'memEmail='+memEmail,
 		success : function(data){
-		    if(data == "SUCCESS"){
-		    	$(location).attr('href','/fleamarket/member/mypage/memberinfo');
+		    if(data == "-1"){
+		    	alert("이메일을 다시 확인해주세요.");
+		    	$('#memEmail').val('');		    			
+    			$('#memEmail').focus();
 		    }else {
-		    	alert("비밀번호를 다시 확인해주세요.");
-		    	$('#memPwd').val('');		    			
-    			$('#memPwd').focus();
+		    	$(location).attr('href','/fleamarket/member/viewFindId?memId='+data);
 		    }
 		},
 		error : function(){
@@ -46,11 +46,10 @@ function chkPwdBtn() {
 </head>
 <body>
 <div align="center">
-	<table border="1">
+	<table>
 		<tr>
-			<td>비밀번호</td>
-			<td><input id="memPwd" type="password" value=""></td>
-			<td><input id="chkPwdBtn" type="button" value="확인"></td>
+			<td><input id="memEmail" type="text" placeholder="가입하신 이메일 계정을 입력해주세요" size="30px" value=""></td>
+			<td><input id="chkEmailBtn" type="button" value="확인"></td>
 		</tr>
 	</table>
 </div>

@@ -14,6 +14,7 @@
 		<param-value>
 			classpath:config/mybatis-config.xml
 			classpath:config/spring-config.xml	
+			classpath:config/email-config.xml	
 		</param-value>
 	</context-param>
 
@@ -42,6 +43,7 @@
 			<param-value>
 				classpath:config/mybatis-config.xml
 				classpath:config/spring-config.xml
+				classpath:config/email-config.xml
 			</param-value>
 		</init-param>
 	</servlet>

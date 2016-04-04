@@ -33,9 +33,10 @@
 		    			$(location).attr('href', '/fleamarket/');
 		    		else if(data == 'FAIL') {
 		    			alert("아이디 또는 비밀번호가 올바르지 않습니다.");
-		    			$('#memId').val('');	
-		    			$('#memPwd').val('');		    			
-		    			$('#memId').focus();	
+		    			var memId = '${param.memId}';
+		    			$('#memId').val(memId);
+			    		$('#memPwd').val('');		    			
+		    			$('#memId').focus();
 		    		}
 				},
 				error : function(){
@@ -65,7 +66,7 @@
 		
 			<table id="form_table">
 				<tr>
-					<td><input type="text" name="memId" id="memId" value="" placeholder="아이디"/></td>
+					<td><input type="text" name="memId" id="memId" value="${param.memId}" placeholder="아이디"/></td>
 				</tr>
 				<tr>
 					<td><input type="password" name="memPwd" id="memPwd" value="" placeholder="비밀번호"/></td>
@@ -81,8 +82,8 @@
 				</tr>
 			</table>
 			<div align="left">
-				<a id="idSearch" href="#" class="a" style="text-decoration: none;">아이디를 찾으시겠습니까?</a><br>
-				<a id="passSearch" href="#" class="a" style="text-decoration: none;">비밀번호를 찾으시겠습니까?</a>
+				<a id="idSearch" href="/fleamarket//member/findId" class="a" style="text-decoration: none;">아이디를 찾으시겠습니까?</a><br>
+				<a id="passSearch" href="/fleamarket//member/findPwd" class="a" style="text-decoration: none;">비밀번호를 찾으시겠습니까?</a>
 			</div>
 		</div>
 	</div>

@@ -21,6 +21,9 @@
 		memberJoin.idCheck();
 		memberJoin.pwdCheck();
 		memberJoin.submitCheck();
+		$('.cancleBtn').click(function(){
+			$(location).attr('href','/fleamarket/member/mypage/memberinfo');
+		});
 	});
 </script>
 
@@ -66,7 +69,7 @@
 				</tr>
 				<tr>
 					<td>
-						<input type="text" name="memBirth" id="memBirth" value="${vo.memBirth}"  maxlength="10"
+						<input type="text" name="memBirth" id="memBirth" value="${vo.memBirth}" readonly="readonly" maxlength="10"
 							placeholder="생년월일(ex:1991/03/20)"/><br />
 						<span id="birthcheck"></span>
 					</td>
@@ -90,7 +93,7 @@
 				<tr>
 					<td colspan="2" align="center">
 						<input type="button" id="btn" class="joinBtn" value="수정" />
-						<input type="button" id="btn" class="cancleBtn" value="다시작성" />
+						<input type="button" id="btn" class="cancleBtn" value="취소" />
 					</td>
 				</tr>	
 			</table>

@@ -111,7 +111,7 @@ public class MemberController {
 		if(req.getSession().getAttribute("sessionId") == null) {
 			return "redirect:/main";
 		}
-		return "/member/chk_password";
+		return "/member/chkpwd";
 	}
 	
 	@RequestMapping("/member/mypage/chkPwdAction")
@@ -171,5 +171,45 @@ public class MemberController {
 		}
 				
 		return "redirect:/main";
+	}
+	
+	@RequestMapping("/member/findId")
+	public String findId(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		
+		return "/member/findid";
+	}
+	
+	@RequestMapping("/member/viewFindId")
+	public String viewFindId(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		req.setAttribute("vo", vo);
+		return "/member/viewfindid";
+	}
+	
+	@RequestMapping("/member/findPwd")
+	public String findPwd(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		return "/member/findpwd";
+	}
+	
+	@RequestMapping("/member/chkEmail")
+	@ResponseBody
+	public String chkEmail(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		MemberVO vo2 = (MemberVO) service.selectOne("member.selectMemberInfo", vo);
+		
+		if(vo2 == null)
+			return "-1";
+		else {
+			return vo2.getMemId();
+		}
+	}
+	@RequestMapping("/member/chkIdAndEmail")
+	@ResponseBody
+	public String chkIdAndEmail(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		MemberVO vo2 = (MemberVO) service.selectOne("member.selectMemberInfo", vo);
+		
+		if(vo2 == null)
+			return "-1";
+		else {
+			return vo2.getMemId();
+		}
 	}
 }
