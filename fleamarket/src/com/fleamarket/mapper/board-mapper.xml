@@ -31,6 +31,15 @@
 		   ON b.MEM_NO = m.MEM_NO
 		ORDER BY BA_DATE 
 	</select>
+	<select id="selectBoardByType" parameterType="com.fleamarket.vo.BoardVO" resultMap="boardMap">
+		SELECT BA_NO, b.MEM_NO, BA_TYPE, BA_TITLE, BA_CONTENT, BA_COUNT, BA_DATE 
+		     , m.MEM_ID, m.MEM_NAME, m.MEM_BLACK
+		FROM BOARD b
+		LEFT OUTER JOIN MEMBER m
+		   ON b.MEM_NO = m.MEM_NO
+		WHERE BA_TYPE = #{baType} 
+		ORDER BY BA_DATE
+	</select>
  	<select id="selectBoardById" parameterType="int" resultMap="boardMap">
 		SELECT BA_NO, b.MEM_NO, BA_TYPE, BA_TITLE, BA_CONTENT, BA_COUNT, BA_DATE 
 		     , m.MEM_ID, m.MEM_NAME, m.MEM_BLACK
@@ -76,9 +85,13 @@
 		WHERE BA_NO =#{baNo}
 		  AND MEM_NO=#{memNo}
 	</update>
+	<update id="updateBaCount" parameterType="com.fleamarket.vo.BoardVO">
+	    UPDATE BOARD SET BA_COUNT = BA_COUNT + 1 
+    	WHERE BA_NO =#{baNo}
+	</update>
 	<delete id="deleteBoard" parameterType="int" >
 		DELETE BOARD
-		 WHERE BA_NO=#{baNo}
+		WHERE BA_NO=#{baNo}
 	</delete>
 	<insert id="insertBoard" parameterType="com.fleamarket.vo.BoardVO">
 		INSERT 
@@ -104,4 +117,21 @@
 			)
 	</insert>
 	
+	<select id="selectNoticeCount" resultMap="boardMap">
+		select nvl(count(BA_NO), 0) as BA_NO
+		from BOARD
+		where BA_TYPE = 'NOTICE'
+	</select>
+	
+	<select id="selectWearCount" resultMap="boardMap">
+		select nvl(count(BA_NO), 0) as BA_NO
+		from BOARD
+		where BA_TYPE = 'WEAR'
+	</select>
+	
+	<select id="selectProductCount" resultMap="boardMap">
+		select nvl(count(BA_NO), 0) as BA_NO
+		from BOARD
+		where BA_TYPE = 'PRODUCT'
+	</select>
 </mapper>
