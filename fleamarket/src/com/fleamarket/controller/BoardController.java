@@ -45,14 +45,14 @@ public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletReq
 		return "/fleamarket/fleamarketlist_prod";
 	}
 	@RequestMapping("/fleamarket_board")
-	public String boardForm(@ModelAttribute("BoardVO") BoardVO vo, Model model) throws Exception{
+	public String boardForm(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception{
 		vo = (BoardVO) service.selectOne("board.selectBoardByNo", vo);
-		model.addAttribute("vo", vo);
+		req.setAttribute("vo", vo);
 		return "/fleamarket/fleamarket_board";
 	}
 
 	@RequestMapping("/fleamarket_board_write")
-	public String insertBoard(@ModelAttribute("BoardVO") BoardVO vo,HttpServletRequest req) throws Exception{
+	public String insertBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception{
 		if((String)req.getSession().getAttribute("sessionId") == null )
 			return "redirect:/main";
 		req.setAttribute("vo", vo);
@@ -103,12 +103,11 @@ public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletReq
 	}
 	@RequestMapping("/deleteBoard")
 	public String deleteAddrBook(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {	
-
+		req.setAttribute("vo", vo);
 		if(service.delete("board.deleteBoard",vo.getBaNo()) != 0){
 			logger.debug("삭제 성공");
-			System.out.println("확인"+vo.getBaType());
 
-				return "redirect:/fleamarket";
+			return "redirect:/fleamarket";
 
 		}
 		return "";
