@@ -17,12 +17,13 @@
 		<form name="editform" method="post" action="updateBoard">
 		<input type=hidden id="baNo" name="baNo" value="${vo.baNo}">
 		<input type=hidden id="memNo" name="memNo" value="${vo.memNo}">
+		<input type=hidden id="baType" name="baType" value="${vo.baType}">
 			<table >
 
-				<tr>
+<%-- 				<tr>
 					<th>게시판종류</th>
 					<td><input type="text" name="baType" value="${vo.baType}"></td>
-				</tr>
+				</tr> --%>
 				<tr>
 					<th>제목</th>
 					<td><input type="text" name="baTitle" value="${vo.baTitle}"></td>

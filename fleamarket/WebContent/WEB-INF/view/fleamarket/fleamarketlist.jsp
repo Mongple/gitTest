@@ -24,14 +24,11 @@
 <body>
 	<div id="fleamarketlist" align="center">
 		<h1>fleamarketlist_wear Contents</h1>
- 
  		<tr>
  			<td><a href="fleamarket">WEAR</a></td>
  			<td><a href="fleamarket_prod">PRODUCT</a></td>
  		</tr>
- 		
 		<form>
-
 			<tr>
 				<td>
 					<select name="searchKey">
