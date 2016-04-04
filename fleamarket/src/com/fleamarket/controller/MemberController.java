@@ -28,7 +28,7 @@ public class MemberController {
 	@ResponseBody
 	public String loginSign(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
 
-		MemberVO vo2 = (MemberVO) service.selectOne("member.selectMemberInfo", vo);
+		MemberVO vo2 = (MemberVO) service.selectOne("member.selectMemberChk", vo);
 		if(vo2 == null)
 			return "FAIL";
 		else {
@@ -106,12 +106,64 @@ public class MemberController {
 		return "/member/resultboard";
 	}
 	
-	@RequestMapping("/member/mypage/memberinfo")
-	public String viewMemberInfo(HttpServletRequest req) throws Exception {
+	@RequestMapping("/member/mypage/chkPwd")
+	public String chkPwd(HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null) {
 			return "redirect:/main";
 		}
+		return "/member/chk_password";
+	}
+	
+	@RequestMapping("/member/mypage/chkPwdAction")
+	@ResponseBody
+	public String chkPwdAction(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		vo.setMemId((String)req.getSession().getAttribute("sessionId"));
+		System.out.println("야야"+vo.getMemId()+"//"+vo.getMemPwd());
+		MemberVO vo2 = (MemberVO) service.selectOne("member.selectMemberChk", vo);
+		if(vo2 == null)
+			return "FAIL";
+		else {
+			return "SUCCESS";
+		}
+		//return "/member/memberinfo";
+	}
+	
+	@RequestMapping("/member/mypage/memberinfo")
+	public String viewMemberInfo(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/main";
+		}
+		vo.setMemId((String)req.getSession().getAttribute("sessionId"));
+		MemberVO vo2 = (MemberVO) service.selectOne("member.selectMemberInfo", vo);
+		req.setAttribute("vo", vo2);
 		return "/member/memberinfo";
 	}
 	
+	@RequestMapping("/member/mypage/update")
+	public String update(HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/main";
+		}
+		MemberVO vo = new MemberVO();
+		vo.setMemId((String)req.getSession().getAttribute("sessionId"));
+		System.out.println("야야" + vo.getMemId());
+		MemberVO vo2 = (MemberVO) service.selectOne("member.selectMemberInfo", vo);
+		req.setAttribute("vo", vo2);
+		return "/member/edit";
+	}
+	
+	@RequestMapping("/member/mypage/updateAction")
+	public String updateAction(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/main";
+		}
+		service.update("member.updateMember", vo);
+		return "/member/mypage/memberinfo";
+	}
+	
+	@RequestMapping("/member/mypage/delete")
+	public String delete(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		
+		return "redirect:/main";
+	}
 }

@@ -89,7 +89,7 @@
 <div align="center">
 	<a href="/fleamarket/member/mypage/board?baType=PRODUCT">가전제품 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
 	<a href="/fleamarket/member/mypage/board?baType=WEAR">의류 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
-	<a href="/fleamarket/member/mypage/memberinfo">나의정보</a>
+	<a href="/fleamarket/member/mypage/chkPwd">나의정보</a>
 	<br><br>
 	<div id="search">
 		<table>
