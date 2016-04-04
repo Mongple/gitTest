@@ -24,7 +24,7 @@
 		AND CRYPTPACK.DECRYPT(MEM_PWD, #{memId}) = #{memPwd}
 	</select>
 	<select id="selectMemberInfo" parameterType="com.fleamarket.vo.MemberVO" resultMap="memberMap">
-		SELECT MEM_NO, MEM_ID, MEM_NAME, MEM_BIRTH, MEM_DATE, MEM_PHONE, MEM_EMAIL, MEM_BLACK
+		SELECT MEM_NO, MEM_ID, MEM_NAME, MEM_BIRTH, MEM_DATE, MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK
 		FROM MEMBER
 		WHERE MEM_ID= #{memId}
 	</select>
@@ -119,4 +119,39 @@
 		WHERE MEM_ID = #{memId}
 	</update>
 	
+	<insert id="insertB_Member" parameterType="com.fleamarket.vo.MemberVO">
+		INSERT INTO 
+		BMEMBER
+			(
+				BMEM_NO, 
+				BMEM_ID, 
+				BMEM_PWD, 
+				BMEM_NAME, 
+				BMEM_BIRTH, 
+				BMEM_PHONE, 
+				BMEM_EMAIL, 
+				BMEM_OUT)
+		VALUES
+			(
+				(SELECT NVL(MAX(BMEM_NO),0)+1 FROM BMEMBER),
+				#{memId}, 
+				CRYPTPACK.ENCRYPT(123,#{memId}), 
+				#{memName}, 
+				#{memBirth},
+				#{memPhone}, 
+				#{memEmail}, 
+				SYSDATE
+			)
+	</insert>
+	
+	<update id="deleteMember" parameterType="com.fleamarket.vo.MemberVO">
+		UPDATE MEMBER
+		SET
+			MEM_NAME = NULL,
+			MEM_PWD = NULL,
+			MEM_EMAIL = NULL,
+			MEM_PHONE = NULL,
+			MEM_BIRTH = NULL
+		WHERE MEM_ID = #{memId}
+	</update>
 </mapper>

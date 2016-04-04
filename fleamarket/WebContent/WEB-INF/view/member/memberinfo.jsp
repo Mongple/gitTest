@@ -15,7 +15,7 @@
 		$('#delete').click(function (){
 			result = confirm("정말로 삭제하시겠습니까 ?");
 			if(result == true){
-				$(location).attr('href','/fleamarket/member/mypage/delete');
+				$(location).attr('href','/fleamarket/member/mypage/delete?memId=${vo.memId}');
 			} else
 				return;
 		});

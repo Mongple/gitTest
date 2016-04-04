@@ -146,7 +146,6 @@ public class MemberController {
 		}
 		MemberVO vo = new MemberVO();
 		vo.setMemId((String)req.getSession().getAttribute("sessionId"));
-		System.out.println("야야" + vo.getMemId());
 		MemberVO vo2 = (MemberVO) service.selectOne("member.selectMemberInfo", vo);
 		req.setAttribute("vo", vo2);
 		return "/member/edit";
@@ -165,7 +164,9 @@ public class MemberController {
 	
 	@RequestMapping("/member/mypage/delete")
 	public String delete(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
-		
+		vo = (MemberVO) service.selectOne("member.selectMemberInfo", vo);
+		if(service.insert("member.insertB_Member", vo) != 0)
+			service.update("member.deleteMember", vo);
 		return "redirect:/main";
 	}
 }
