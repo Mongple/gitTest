@@ -28,7 +28,7 @@ table, tr, td, th
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 10%;
-	min-height: 595px;
+	margin-bottom: 17.9%;
 }
 	
 #title
@@ -58,13 +58,13 @@ table, tr, td, th
 
 #content
 {
-	margin-top: 2%;
+	margin-top: 2%;    
 	display: inline-block;
 }
 
 .btn
 {
-	width: 248px;
+	width: 150px;
 	height: 50px;
 	text-align: center;
 	display: inline-block;
