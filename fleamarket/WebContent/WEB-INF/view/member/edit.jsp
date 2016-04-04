@@ -8,7 +8,7 @@
 <link rel="stylesheet" type="text/css" href="/fleamarket/css/join.css">
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>:: MEMBER JOIN ::</title>
+<title>:: MEMBER EDIT ::</title>
 
 <script src="/fleamarket/js/join.js" type="text/javascript" charset="utf-8"></script>
 
@@ -38,7 +38,7 @@
 		</div>
 		
 		<div id="content">
-		<form action="/fleamarket/member/mypage/updateAction" method="post">
+		<form action="/fleamarket/member/mypage/updateAction" method="post" id="memberInsertForm">
 			<table id="form_table">
 				<tr>
 					<td>
@@ -89,7 +89,7 @@
 			<table>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="submit" id="btn" class="joinBtn" value="수정" />
+						<input type="button" id="btn" class="joinBtn" value="수정" />
 						<input type="button" id="btn" class="cancleBtn" value="다시작성" />
 					</td>
 				</tr>	

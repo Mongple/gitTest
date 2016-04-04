@@ -157,8 +157,10 @@ public class MemberController {
 		if(req.getSession().getAttribute("sessionId") == null) {
 			return "redirect:/main";
 		}
-		service.update("member.updateMember", vo);
-		return "/member/mypage/memberinfo";
+		if(service.update("member.updateMember", vo) != 0)
+			return "redirect:/member/mypage/memberinfo";
+		return "";
+		
 	}
 	
 	@RequestMapping("/member/mypage/delete")
