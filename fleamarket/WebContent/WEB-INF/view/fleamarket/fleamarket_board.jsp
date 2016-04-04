@@ -21,6 +21,7 @@
 	function delcheck() {
 		result = confirm("정말로 삭제하시겠습니까 ?");
 		var baNo = $("#baNo").val();
+		
 			
 		if(result == true){
 			$(location).attr('href','deleteBoard?baNo='+baNo);
@@ -45,6 +46,19 @@
 				<tr>
 					<th>제목</th>
 					<td>${vo.baTitle}</td>
+				</tr>
+				<tr>
+					<th>게시날짜</th>
+					<td>${vo.baDate}</td>
+				</tr>
+				<tr>
+					<th>조회수</th>
+					<td>${vo.baCount}</td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td>${vo.memId}</td>
+					<td>${vo.memName}</td>
 				</tr>
 				<tr>
 					<th>내용</th>

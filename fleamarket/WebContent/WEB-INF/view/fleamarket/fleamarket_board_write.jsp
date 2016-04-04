@@ -13,13 +13,11 @@
 </head>
 <body>
 	<div align="center">
-		<h1>fleamarket board write</h1>
+		<h1>fleamarket board write${vo.baType }</h1>
 		<form name="forminsertboard" method="post" action="fleamarket_board_write_action">
+			<input type="hidden" name="baType" value="${vo.baType }">
 			<table border="1">
-				<tr>
-					<th>게시판종류</th>
-					<td><input type="text" name="baType"></td>
-				</tr>
+				
 				<tr>
 					<th>제목</th>
 					<td><input type="text" name="baTitle"></td>

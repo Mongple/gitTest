@@ -14,8 +14,10 @@
 	<div align="center">
 		<h1>fleamarket board edit</h1>
 
-		<form name="form1" method="post" action="fleamarket_board_edit_action">
-			<table border="1">
+		<form name="editform" method="post" action="updateBoard">
+		<input type=hidden id="baNo" name="baNo" value="${vo.baNo}">
+		<input type=hidden id="memNo" name="memNo" value="${vo.memNo}">
+			<table >
 
 				<tr>
 					<th>게시판종류</th>
@@ -27,7 +29,8 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td><input type="text" name="baContent" value="${vo.baContent}"></td>
+					<td><input type="text" name="baContent" value="${vo.baContent}">
+					<%-- <td><textarea name=baContent rows ="10" cols="100" value="${vo.baContent}"></textarea></td> --%>
 				</tr>
 
 				<tr>
