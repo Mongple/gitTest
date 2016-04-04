@@ -104,21 +104,4 @@
 			)
 	</insert>
 	
-	<select id="selectNoticeCount" resultMap="boardMap">
-		select nvl(count(BA_NO), 0) as BA_NO
-		from BOARD
-		where BA_TYPE = 'NOTICE'
-	</select>
-	
-	<select id="selectWearCount" resultMap="boardMap">
-		select nvl(count(BA_NO), 0) as BA_NO
-		from BOARD
-		where BA_TYPE = 'WEAR'
-	</select>
-	
-	<select id="selectProductCount" resultMap="boardMap">
-		select nvl(count(BA_NO), 0) as BA_NO
-		from BOARD
-		where BA_TYPE = 'PRODUCT'
-	</select>
 </mapper>

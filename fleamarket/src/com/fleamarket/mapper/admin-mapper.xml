@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC  
+ "-//mybatis.org//DTD Mapper 3.0//EN"  
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="admin">
+	<resultMap type="com.fleamarket.vo.MemberVO" id="memberMap">
+		<id column="MEM_NO" property="memNo"/>
+		<result column="MEM_ID" property="memId"/>
+		<result column="MEM_PWD" property="memPwd"/>
+		<result column="MEM_NAME" property="memName"/>
+		<result column="MEM_BIRTH" property="memBirth"/>
+		<result column="MEM_DATE" property="memDate"/>
+		<result column="MEM_PHONE" property="memPhone"/>
+		<result column="MEM_EMAIL" property="memEmail"/>
+		<result column="MEM_GRANT" property="memGrant"/>
+		<result column="MEM_BLACK" property="memBlack"/>
+	</resultMap>
+	
+	<resultMap type="com.fleamarket.vo.BoardVO" id="boardMap">
+		<id column="BA_NO" property="baNo"/>
+		<result column="MEM_NO" property="memNo"/>
+		<result column="BA_TYPE" property="baType"/>
+		<result column="BA_TITLE" property="baTitle"/>
+		<result column="BA_CONTENT" property="baContent"/>
+		<result column="BA_COUNT" property="baCount"/>
+		<result column="BA_DATE" property="baDate"/>
+		<result column="MEM_ID" property="memId"/>
+		<result column="MEM_NAME" property="memName"/>
+		<result column="RP_NO" property="rpNo"/>
+		<result column="RP_CONTENT" property="rpContent"/>
+		<result column="RP_DATE" property="rpDate"/>
+	</resultMap>
+		
+	<select id="selectUserCount" resultMap="memberMap">
+		select nvl(count(MEM_NO), 0) as MEM_NO
+		from MEMBER
+		where MEM_GRANT = 'U'
+	</select>
+	
+	<select id="selectAdminCount" resultMap="memberMap">
+		select nvl(count(MEM_NO), 0) as MEM_NO
+		from MEMBER
+		where MEM_GRANT = 'A'
+	</select>
+	
+	<select id="selectNoticeCount" resultMap="boardMap">
+		select nvl(count(BA_NO), 0) as BA_NO
+		from BOARD
+		where BA_TYPE = 'NOTICE'
+	</select>
+	
+	<select id="selectWearCount" resultMap="boardMap">
+		select nvl(count(BA_NO), 0) as BA_NO
+		from BOARD
+		where BA_TYPE = 'WEAR'
+	</select>
+	
+	<select id="selectProductCount" resultMap="boardMap">
+		select nvl(count(BA_NO), 0) as BA_NO
+		from BOARD
+		where BA_TYPE = 'PRODUCT'
+	</select>
+	
+	<select id="selectUserList" parameterType="com.fleamarket.vo.MemberVO" resultMap="memberMap">
+		SELECT MEM_NO, MEM_ID, MEM_NAME, MEM_BIRTH, MEM_DATE, MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK
+		FROM MEMBER
+		<choose>
+			<when test="searchType!=null and searchType.equals('SEARCHALL')">
+	     		where (MEM_ID LIKE '%${searchData}%' OR MEM_NAME LIKE '%${searchData}%'
+	     		OR MEM_PHONE LIKE '%${searchData}%' OR MEM_EMAIL LIKE '%${searchData}%'
+	     		OR MEM_GRANT LIKE '%${searchData}%' OR MEM_BLACK LIKE '%${searchData}%')
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHID')">
+	     		 where MEM_ID LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHNAME')">
+	     		 where MEM_NAME LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHPHONE')">
+	     		 where MEM_PHONE LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHEMAIL')">
+	     		 where MEM_EMAIL LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHGRANT')">
+	     		 where MEM_GRANT LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHBLACK')">
+	     		 where MEM_BLACK LIKE '%${searchData}%'
+	     	</when>
+		</choose>
+		ORDER BY MEM_NO DESC
+	</select>
+	 
+	<select id="selectUserListCnt" parameterType="com.fleamarket.vo.MemberVO" resultType="int">
+		SELECT COUNT(1)
+		FROM MEMBER
+		<choose>
+			<when test="searchType!=null and searchType.equals('SEARCHALL')">
+	     		WHERE (MEM_ID LIKE '%${searchData}%' OR MEM_NAME LIKE '%${searchData}%'
+	     		OR MEM_PHONE LIKE '%${searchData}%' OR MEM_EMAIL LIKE '%${searchData}%'
+	     		OR MEM_GRANT LIKE '%${searchData}%' OR MEM_BLACK LIKE '%${searchData}%')
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHID')">
+	     		 WHERE MEM_ID LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHNAME')">
+	     		 WHERE MEM_NAME LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHPHONE')">
+	     		 WHERE MEM_PHONE LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHEMAIL')">
+	     		 WHERE MEM_EMAIL LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHGRANT')">
+	     		 WHERE MEM_GRANT LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHBLACK')">
+	     		 WHERE MEM_BLACK LIKE '%${searchData}%'
+	     	</when>
+		</choose>
+	</select>
+</mapper>
