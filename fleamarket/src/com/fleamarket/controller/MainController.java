@@ -87,4 +87,5 @@ public class MainController {
 		}
 		return "redirect:/admin/adminMain/rate";
 	}
+	
 }

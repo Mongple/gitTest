@@ -16,7 +16,6 @@ public class ServiceImpl implements Service{
 	@Override
 	public List selectList(String statement, Object parameter, RowBounds rowBounds) throws Exception {
 		// TODO Auto-generated method stub
-		
 		return template.selectList(statement, parameter, rowBounds);
 	}
 

@@ -12,12 +12,15 @@ public class MemberVO extends PageVO{
 	private String memGrant;
 	private int memBlack;
 	
+	private String searchType;
+	private String searchData;
+	
 	public MemberVO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public MemberVO(int memNo, String memId, String memPwd, String memName, String memBirth, String memDate,
-			String memPhone, String memEmail, String memGrant, int memBlack) {
+			String memPhone, String memEmail, String memGrant, int memBlack, String searchType, String searchData) {
 		super();
 		this.memNo = memNo;
 		this.memId = memId;
@@ -29,6 +32,24 @@ public class MemberVO extends PageVO{
 		this.memEmail = memEmail;
 		this.memGrant = memGrant;
 		this.memBlack = memBlack;
+		this.searchType = searchType;
+		this.searchData = searchData;
+	}
+
+	public String getSearchType() {
+		return searchType;
+	}
+
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+
+	public String getSearchData() {
+		return searchData;
+	}
+
+	public void setSearchData(String searchData) {
+		this.searchData = searchData;
 	}
 
 	public int getMemNo() {
