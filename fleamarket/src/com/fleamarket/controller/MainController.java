@@ -41,11 +41,11 @@ public class MainController {
 	}
 	
 	@RequestMapping("/fleamarket")
-	public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, Model model) throws Exception {
-		
-		List<BoardVO> list = service.selectList("board.selectBoardList",null,new RowBounds(vo.getOffset(), vo.getLimit()));
-		model.addAttribute("list",list);
-		
+	public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
+		vo.setBaType("WEAR");
+		List<BoardVO> list = service.selectList("board.selectBoardByType",vo,new RowBounds(vo.getOffset(), vo.getLimit()));
+		req.setAttribute("list",list);
+		req.setAttribute("vo", vo);
 		return "/fleamarket/fleamarketlist";
 	}
 	
@@ -87,5 +87,4 @@ public class MainController {
 		}
 		return "redirect:/admin/adminMain/rate";
 	}
-	
 }
