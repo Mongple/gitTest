@@ -62,9 +62,17 @@ public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletReq
 	@RequestMapping("/fleamarket_board_write_action")
 	public String insertBoardAction(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
 		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
+		req.setAttribute("vo", vo);
 		if(service.insert("board.insertBoard",vo) != 0){
 			logger.debug("등록성공");
-			return "redirect:/fleamarket";
+/*			return "redirect:/fleamarket";*/
+			System.out.println("확인"+vo.getBaType());
+			if(vo.getBaType().equals("WEAR")){
+				return "redirect:/fleamarket";
+			}
+			else{
+				return "redirect:/fleamarket_prod";
+			}
 		}
 		return "";
 	}
@@ -94,10 +102,14 @@ public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletReq
 		return "";
 	}
 	@RequestMapping("/deleteBoard")
-	public String deleteAddrBook(@ModelAttribute("BoardVO") BoardVO vo) throws Exception {	
+	public String deleteAddrBook(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {	
+
 		if(service.delete("board.deleteBoard",vo.getBaNo()) != 0){
 			logger.debug("삭제 성공");
-			return "redirect:/fleamarket";
+			System.out.println("확인"+vo.getBaType());
+
+				return "redirect:/fleamarket";
+
 		}
 		return "";
 	}

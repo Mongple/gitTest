@@ -65,7 +65,7 @@
 					<td>${vo.baContent}</td>
 				</tr>
 				<tr>
-					<td><input type="hidden" name="batype" value="${vo.baType}"></td>
+					<td><input type="hidden" name="batype" id="batype" value="${vo.baType}"></td>
 				</tr>
 				<tr>
 					<c:if test="${sessionId == vo.memId || sessionGrant == 'A'}">					
