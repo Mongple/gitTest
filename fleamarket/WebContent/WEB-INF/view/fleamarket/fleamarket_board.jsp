@@ -17,17 +17,24 @@
 		var baNo = $("#baNo").val();
 		$(location).attr('href', 'fleamarket_board_edit?baNo=' + baNo);
 	}
-	
 	function delcheck() {
 		result = confirm("정말로 삭제하시겠습니까 ?");
 		var baNo = $("#baNo").val();
-		
+		var baType = $("#baType").val();
 			
 		if(result == true){
 			$(location).attr('href','deleteBoard?baNo='+baNo);
 		}
 		else
 			return;
+	}
+	function cancel() {
+		var baType = $("#baType").val();
+		if(baType=="WEAR"){
+			$(location).attr('href', 'fleamarket');
+		}else{
+			$(location).attr('href', 'fleamarket_prod');
+		}
 	}
 	
 </script>
@@ -40,6 +47,7 @@
 
 		<form name=form1 method=post action="/fleamarket_board">
 			<input type=hidden id="baNo" name="baNo" value="${vo.baNo}">
+			<input type="hidden" name="baType" id="baType" value="${vo.baType}">
 
 
 			<table border="1">
@@ -64,9 +72,7 @@
 					<th>내용</th>
 					<td>${vo.baContent}</td>
 				</tr>
-				<tr>
-					<td><input type="hidden" name="batype" id="batype" value="${vo.baType}"></td>
-				</tr>
+
 				<tr>
 					<c:if test="${sessionId == vo.memId || sessionGrant == 'A'}">					
 						<td colspan=2 align=center>
@@ -74,7 +80,7 @@
 							<input type="button" value="삭제" onclick="delcheck()" >
 						</td>
 					</c:if>
-					<td><input type=reset value="취소"></td>
+					<td><input type="button" value="뒤로" onclick="cancel()"></td>
 				</tr>
 			</table>
 		</form>

@@ -7,6 +7,26 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
+<script type="text/javascript">
+	/* 	$(document).ready(init);
+
+	 function init() {
+	 $("#editbtn").click(edit);
+	 } */
+	function cancel() {
+		var baType = $("#baType").val();
+		result = confirm("정말로 취소하시겠습니까 ?");
+
+		if (result == true) {
+			if (baType == "WEAR") {
+				$(location).attr('href', 'fleamarket');
+			} else {
+				$(location).attr('href', 'fleamarket_prod');
+			}
+		} else
+			return;
+	}
+</script>
 
 
 <title>게시글등록</title>
@@ -15,7 +35,7 @@
 	<div align="center">
 		<h1>fleamarket board write${vo.baType }</h1>
 		<form name="forminsertboard" method="post" action="fleamarket_board_write_action">
-			<input type="hidden" name="baType" value="${vo.baType }">
+			<input type="hidden" name="baType" id="baType" value="${vo.baType }">
 			<table border="1">
 				
 				<tr>
@@ -30,7 +50,7 @@
 				<tr>
 					<td colspan=2 align=center>
 						<input type=submit value="저장">
-						<input type=reset value="취소">
+						<input type="button" value="뒤로" onclick="cancel()">
 					</td>
 				</tr>
 			</table>
