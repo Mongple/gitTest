@@ -21,8 +21,9 @@
 		SELECT MEM_NO, MEM_ID, MEM_NAME, MEM_BIRTH, MEM_DATE, MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK
 		FROM MEMBER
 		WHERE MEM_ID= #{memId}
-		AND CRYPTPACK.DECRYPT(MEM_PWD, #{memId}) = #{memPwd}
+		AND DECODE(MEM_PWD, NULL, MEM_PWD ,CRYPTPACK.DECRYPT(MEM_PWD, #{memId})) = #{memPwd}
 	</select>
+	
 	<select id="selectMemberInfo" parameterType="com.fleamarket.vo.MemberVO" resultMap="memberMap">
 		SELECT MEM_NO, MEM_ID, MEM_NAME, MEM_BIRTH, MEM_DATE, MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK
 		FROM MEMBER

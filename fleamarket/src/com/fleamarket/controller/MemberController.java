@@ -29,9 +29,9 @@ public class MemberController {
 	public String loginSign(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
 
 		MemberVO vo2 = (MemberVO) service.selectOne("member.selectMemberChk", vo);
-		if(vo2 == null)
+		if(vo2 == null) {
 			return "FAIL";
-		else {
+		}else {
 			req.getSession().setAttribute("sessionId", vo2.getMemId());
 			req.getSession().setAttribute("sessionGrant", vo2.getMemGrant());
 			return "SUCCESS";
@@ -118,7 +118,6 @@ public class MemberController {
 	@ResponseBody
 	public String chkPwdAction(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
 		vo.setMemId((String)req.getSession().getAttribute("sessionId"));
-		System.out.println("야야"+vo.getMemId()+"//"+vo.getMemPwd());
 		MemberVO vo2 = (MemberVO) service.selectOne("member.selectMemberChk", vo);
 		if(vo2 == null)
 			return "FAIL";
@@ -165,8 +164,12 @@ public class MemberController {
 	@RequestMapping("/member/mypage/delete")
 	public String delete(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
 		vo = (MemberVO) service.selectOne("member.selectMemberInfo", vo);
-		if(service.insert("member.insertB_Member", vo) != 0)
-			service.update("member.deleteMember", vo);
+		if(service.insert("member.insertB_Member", vo) != 0) {
+			if(service.update("member.deleteMember", vo) != 0) {
+				req.getSession().invalidate();
+			}
+		}
+				
 		return "redirect:/main";
 	}
 }

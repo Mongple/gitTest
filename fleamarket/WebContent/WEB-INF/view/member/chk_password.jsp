@@ -9,25 +9,38 @@
 
 <script type="text/javascript">
 $(document).ready(function(){
-    $('#chkPwdBtn').click(function () {
-    	var memPwd = $("#memPwd").val();
-    	$.ajax({
-			type:"post",
-			url:'/fleamarket/member/mypage/chkPwdAction',
-			data: 'memPwd='+memPwd,
-			success : function(data){
-			    if(data == "SUCCESS"){
-			    	$(location).attr('href','/fleamarket/member/mypage/memberinfo');
-			    }else {
-			    	alert("비밀번호를 다시 확인해주세요.")
-			    }
-			},
-			error : function(){
-				alert("에러")
-			}
-		});
-    })
+	$('#memPwd').keypress(clickEnter);
+	$('#chkPwdBtn').click(chkPwdBtn);
 }); 
+
+function clickEnter(event){
+	if(event.keyCode == 13){
+		chkPwdBtn();
+	}
+}
+
+function chkPwdBtn() {
+	var memPwd = $("#memPwd").val();
+	$.ajax({
+		type:"post",
+		url:'/fleamarket/member/mypage/chkPwdAction',
+		data: 'memPwd='+memPwd,
+		success : function(data){
+		    if(data == "SUCCESS"){
+		    	$(location).attr('href','/fleamarket/member/mypage/memberinfo');
+		    }else {
+		    	alert("비밀번호를 다시 확인해주세요.");
+		    	$('#memPwd').val('');		    			
+    			$('#memPwd').focus();
+		    }
+		},
+		error : function(){
+			alert("에러")
+		}
+	});
+}
+
+
 </script>
 <title>Insert title here</title>
 </head>
