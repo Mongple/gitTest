@@ -100,17 +100,24 @@
 		</choose>
 	</select>
 	
-	<select id="selectUserCount" resultMap="memberMap">
-		select nvl(count(MEM_NO), 0) as MEM_NO
-		from MEMBER
-		where MEM_GRANT = 'U'
-	</select>
-	
-	<select id="selectAdminCount" resultMap="memberMap">
-		select nvl(count(MEM_NO), 0) as MEM_NO
-		from MEMBER
-		where MEM_GRANT = 'A'
-	</select>
+	<update id="updateMember" parameterType="com.fleamarket.vo.MemberVO">
+		UPDATE MEMBER
+		<set>
+			<if test="memName != null">
+				MEM_NAME = #{memName},
+			</if>
+			<if test="memPwd != null">
+				MEM_PWD = CRYPTPACK.ENCRYPT(#{memPwd},#{memId}),
+			</if>
+			<if test="memEmail != null">
+				MEM_EMAIL = #{memEmail},
+			</if>
+			<if test="memPhone != null">
+				MEM_PHONE = #{memPhone}
+			</if>
+		</set>
+		WHERE MEM_ID = #{memId}
+	</update>
 	<update id="updateMember" parameterType="com.fleamarket.vo.MemberVO">
 		UPDATE MEMBER
 		<set>
