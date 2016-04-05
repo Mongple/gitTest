@@ -22,6 +22,10 @@ table, tr, td, th
 	margin-bottom: 5px;
 }
 
+#form_table .inputThree {
+    width: 164px;
+}
+
 #join
 {
 	text-align: center;
