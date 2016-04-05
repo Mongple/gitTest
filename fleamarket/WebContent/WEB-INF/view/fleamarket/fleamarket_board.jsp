@@ -9,13 +9,20 @@
 
 <script type="text/javascript">
 	$(document).ready(init);
-
 	function init() {
 		$("#editbtn").click(edit);
 	}
 	function edit() {
 		var baNo = $("#baNo").val();
 		$(location).attr('href', 'fleamarket_board_edit?baNo=' + baNo);
+	}
+	function cancel() {
+		var baType = $("#baType").val();
+		if(baType=="WEAR"){
+			$(location).attr('href', 'fleamarket');
+		}else{
+			$(location).attr('href', 'fleamarket_prod');
+		}
 	}
 	function delcheck() {
 		result = confirm("정말로 삭제하시겠습니까 ?");
@@ -28,14 +35,17 @@
 		else
 			return;
 	}
-	function cancel() {
-		var baType = $("#baType").val();
-		if(baType=="WEAR"){
-			$(location).attr('href', 'fleamarket');
-		}else{
-			$(location).attr('href', 'fleamarket_prod');
+	function delcomment() {
+		result = confirm("댓글 정말로 삭제하시겠습니까 ?");
+		var rpNo = $("#rpNo").val();
+		alert(rpNo);
+		if(result == true){
+			$(location).attr('href','deleteComment?rpNo='+rpNo);
 		}
+		else
+			return;
 	}
+
 	
 </script>
 
@@ -45,11 +55,9 @@
 	<div align="center">
 		<h1>fleamarket board Contents</h1>
 
-		<form name=form1 method=post action="/fleamarket_board">
+		<form name=form1 action="/fleamarket_board">
 			<input type=hidden id="baNo" name="baNo" value="${vo.baNo}">
 			<input type="hidden" name="baType" id="baType" value="${vo.baType}">
-
-
 			<table border="1">
 				<tr>
 					<th>제목</th>
@@ -72,7 +80,6 @@
 					<th>내용</th>
 					<td>${vo.baContent}</td>
 				</tr>
-
 				<tr>
 					<c:if test="${sessionId == vo.memId || sessionGrant == 'A'}">					
 						<td colspan=2 align=center>
@@ -83,7 +90,49 @@
 					<td><input type="button" value="뒤로" onclick="cancel()"></td>
 				</tr>
 			</table>
-		</form>
+			</form>
+			
+			<!-- 댓글 -->
+			<form name=commentform method="post">
+				<input type="hidden" name="rpNo" id="rpNo" value="${vo.rpNo}">  
+				<table border="1">
+					<tr>
+						 <!-- <th width="10%">rpNo.</th>   -->
+						<th width="50%">comment</th>
+						<th width="10%">id</th>
+						<th width="20%">Date</th>				
+					</tr>
+					<c:forEach items="${rplist}" var="vo">
+						<tr>
+							 <td>${vo.rpNo}</td> 
+							<td>${vo.rpContent}</td>
+							<td>${vo.memId}</td>
+							<td>${vo.rpDate}</td>
+							<c:if test="${sessionId == vo.memId }">	
+		 						<td><input type="button" value="삭제" onclick="delcomment()"/> </td>
+							</c:if>
+						</tr>
+					</c:forEach>
+					</table>
+				</form>
+				
+				<form name=commentInsertform  method="post" action="insertComment">
+					<table border="1">
+					<tr>
+						<td>댓글 쓰기</td>
+						<td colspan="2">
+							<input type="hidden" id="baNo" name="baNo" value="${vo.baNo}" />
+							<input type="hidden" id="rpNo" name="rpNo" value="${vo.rpNo}" />
+							<input type="hidden" id="memId" name="memId" value="${vo.memId}" />
+							<input type="text" id="rpContent" name="rpContent"/>
+							<c:if test="${sessionId != null }">	
+	 							<input type="submit" value="확인" /> 
+							</c:if>
+
+						</td>
+					</tr>			
+					</table>	
+				</form>
 
 	</div>
 

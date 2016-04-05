@@ -134,4 +134,42 @@
 		from BOARD
 		where BA_TYPE = 'PRODUCT'
 	</select>
+	
+	
+	
+	<!-- 댓글 -->
+	
+	<select id="selectReplyByBaNo" parameterType="com.fleamarket.vo.BoardVO" resultMap="boardMap">
+
+		SELECT RP_NO ,BA_NO ,r.MEM_NO ,RP_CONTENT ,RP_DATE  
+             , m.MEM_ID, m.MEM_NAME, m.MEM_BLACK
+		FROM REPLY r
+    	LEFT OUTER JOIN MEMBER m ON r.MEM_NO = m.MEM_NO
+		WHERE BA_NO = #{baNo}
+		ORDER BY RP_DATE
+	</select>
+	<insert id="insertComment" parameterType="com.fleamarket.vo.BoardVO">
+    		INSERT INTO REPLY
+    		(	
+				RP_NO,
+				BA_NO,
+				MEM_NO,
+				RP_CONTENT,
+				RP_DATE
+			) 
+    		VALUES 
+			(
+				(SELECT NVL(MAX(RP_NO),0)+1 FROM REPLY),
+       			#{baNo},
+				(SELECT MEM_NO FROM MEMBER WHERE MEM_ID=#{memId}),
+				#{rpContent},
+				sysdate
+			)
+	</insert>
+	<delete id="deleteComment" parameterType="int" >
+		DELETE REPLY
+		WHERE RP_NO=#{rpNo}
+	</delete>
+	
+	
 </mapper>
