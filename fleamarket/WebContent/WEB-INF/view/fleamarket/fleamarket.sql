@@ -247,6 +247,53 @@ VALUES((SELECT NVL(MAX(MEM_NO),0)+1 FROM MEMBER)
 ,'bbb', CRYPTPACK.ENCRYPT('123','bbb'), '배트맨', '94/11/11', sysdate
 , '010-7777-7777', 'ggg@hunch.com', 'U', 2);
 
+INSERT INTO MEMBER(MEM_NO, MEM_ID, MEM_PWD, MEM_NAME, MEM_BIRTH, MEM_DATE
+            , MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK)
+VALUES((SELECT NVL(MAX(MEM_NO),0)+1 FROM MEMBER)
+,'1', CRYPTPACK.ENCRYPT('123','1'), '1', '99/05/27', sysdate
+, '010-7777-7777', 'babo@hunch.com', 'U', 1);
+
+INSERT INTO MEMBER(MEM_NO, MEM_ID, MEM_PWD, MEM_NAME, MEM_BIRTH, MEM_DATE
+            , MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK)
+VALUES((SELECT NVL(MAX(MEM_NO),0)+1 FROM MEMBER)
+,'2', CRYPTPACK.ENCRYPT('123','2'), '2', '94/11/11', sysdate
+, '010-7777-7777', 'ggg@hunch.com', 'U', 2);
+
+INSERT INTO MEMBER(MEM_NO, MEM_ID, MEM_PWD, MEM_NAME, MEM_BIRTH, MEM_DATE
+            , MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK)
+VALUES((SELECT NVL(MAX(MEM_NO),0)+1 FROM MEMBER)
+,'3', CRYPTPACK.ENCRYPT('123','3'), '3', '99/05/27', sysdate
+, '010-7777-7777', 'babo@hunch.com', 'U', 1);
+
+INSERT INTO MEMBER(MEM_NO, MEM_ID, MEM_PWD, MEM_NAME, MEM_BIRTH, MEM_DATE
+            , MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK)
+VALUES((SELECT NVL(MAX(MEM_NO),0)+1 FROM MEMBER)
+,'4', CRYPTPACK.ENCRYPT('123','4'), '4', '94/11/11', sysdate
+, '010-7777-7777', 'ggg@hunch.com', 'U', 2);
+
+INSERT INTO MEMBER(MEM_NO, MEM_ID, MEM_PWD, MEM_NAME, MEM_BIRTH, MEM_DATE
+            , MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK)
+VALUES((SELECT NVL(MAX(MEM_NO),0)+1 FROM MEMBER)
+,'5', CRYPTPACK.ENCRYPT('123','5'), '5', '99/05/27', sysdate
+, '010-7777-7777', 'babo@hunch.com', 'U', 1);
+
+INSERT INTO MEMBER(MEM_NO, MEM_ID, MEM_PWD, MEM_NAME, MEM_BIRTH, MEM_DATE
+            , MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK)
+VALUES((SELECT NVL(MAX(MEM_NO),0)+1 FROM MEMBER)
+,'6', CRYPTPACK.ENCRYPT('123','6'), '6', '94/11/11', sysdate
+, '010-7777-7777', 'ggg@hunch.com', 'U', 2);
+
+INSERT INTO MEMBER(MEM_NO, MEM_ID, MEM_PWD, MEM_NAME, MEM_BIRTH, MEM_DATE
+            , MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK)
+VALUES((SELECT NVL(MAX(MEM_NO),0)+1 FROM MEMBER)
+,'7', CRYPTPACK.ENCRYPT('123','7'), '7', '94/11/11', sysdate
+, '010-7777-7777', 'ggg@hunch.com', 'U', 2);
+
+INSERT INTO MEMBER(MEM_NO, MEM_ID, MEM_PWD, MEM_NAME, MEM_BIRTH, MEM_DATE
+            , MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK)
+VALUES((SELECT NVL(MAX(MEM_NO),0)+1 FROM MEMBER)
+,'8', CRYPTPACK.ENCRYPT('123','8'), '8', '94/11/11', sysdate
+, '010-7777-7777', 'ggg@hunch.com', 'U', 2);
 
 --○ 회원 테이블 데이터 전체조회 쿼리문 구성
 SELECT MEM_NO, MEM_ID, MEM_PWD, MEM_NAME, MEM_BIRTH, MEM_DATE, MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK
@@ -348,6 +395,56 @@ COMMIT;
 
 --○ 댓글 테이블 조건에 맞는 데이터 삭제
 --DELETE FROM REPLY WHERE RP_NO=1;
+
+
+SELECT MEM_NO, MEM_ID, MEM_NAME, MEM_BIRTH, MEM_DATE, MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK
+FROM MEMBER;
+
+
+
+
+
+-------------------------------------------------------------------------------
+--Test
+
+-- 회원수
+select nvl(count(MEM_NO), 0) as MEM_NO
+from MEMBER
+where MEM_GRANT = 'U';
+
+-- 관리자수
+select nvl(count(MEM_NO), 0) as MEM_NO
+from MEMBER
+where MEM_GRANT = 'A';
+
+-- 의류게시판
+select nvl(count(BA_NO), 0) as BA_NO
+from BOARD
+where BA_TYPE = 'WEAR';
+
+-- 가전제품 게시판
+select nvl(count(BA_NO), 0) as BA_NO
+from BOARD
+where BA_TYPE = 'PRODUCT';
+
+-- 공지사항 게시판
+select nvl(count(BA_NO), 0) as BA_NO
+from BOARD
+where BA_TYPE = 'NOTICE';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
