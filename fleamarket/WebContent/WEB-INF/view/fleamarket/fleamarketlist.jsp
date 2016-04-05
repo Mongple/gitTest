@@ -8,12 +8,89 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script type="text/javascript">
+	var searchType = "SEARCHALL";
 	$(document).ready(init);
 	function init() {
-		$('td a').click(clickA);
+		$('td a').click(clickAtag);
+		$('#searchType').change(function () {
+	      	$("#searchType option:selected").each(function () {
+	      		searchType = $(this).val();
+	       	});
+	    })
+	   
+	    $('#searchbtn').click(function () {
+	    	$.ajax({
+				type:"post",
+				url:'/fleamarket/market.ajax',
+				data: 'baType=${vo.baType}&searchType='+searchType+'&searchData='+$('#searchData').val(),
+				success : function(html){
+					$('#inner').html(html);
+				    if($('#totalRowCnt').val() == 0){
+				    	alert("검색결과가 없습니다.");
+				    	$(location).attr('href','/fleamarket/market?baType=${vo.baType}');
+				    }
+				},
+				error : function(){
+					alert("에러")
+				}
+			});
+	    })
 	}
-	function clickA() {
+	function clickAtag() {
 		$(location).attr('href','/fleamarket/market/updateBaCount?baNo='+ this.innerHTML);
+	}
+	
+	 
+	function clickA(p) {
+		var searchData = $('#searchData').val();
+		alert(p+"//${vo.baType}//"+searchType+"//"+searchData);
+		$.ajax({
+			type:"post",
+			url:'/fleamarket/market.ajax',
+			data: 'page='+p+'&baType=${vo.baType}&searchType='+searchType+'&searchData='+searchData,
+			success : function(html){
+				$('#inner').html(html);
+			},
+			error : function(){
+				alert("에러")
+			}
+		});
+	}
+	function clickWarp(warp) {
+		var url = '/fleamarket/market.ajax';
+		var param;
+		var searchData = $('#searchData').val();
+		page = parseInt($('#page').val());
+		pageCnt = parseInt($('#pageCnt').val());
+		if(warp == 'doubleLeft'){
+			param = 'page=1&baType=${vo.baType}';
+		}else if(warp == 'singleLeft') {
+			if(page == 1)
+				return;
+			else
+				page = page-1;
+			param = 'page='+page+'&baType=${vo.baType}';
+		}else if(warp == 'singleRight') {
+			if(page == pageCnt)
+				return;
+			else
+				page = page+1;
+			param = 'page='+page+'&baType=${vo.baType}';
+		}else if(warp == 'doubleRight'){
+			param = 'page='+pageCnt+'&baType=${vo.baType}';
+		}
+		
+		$.ajax({
+			type:"post",
+			url:url,
+			data: param+'&searchType='+searchType+'&searchData='+searchData,
+			success : function(html){
+				$('#inner').html(html);
+			},
+			error : function(){
+				alert("에러")
+			}
+		});
 	}
 </script>
 
@@ -22,25 +99,21 @@
 <body>
 	<div id="fleamarketlist" align="center">
 		<h1>fleamarketlist_wear Contents</h1>
- 		<tr>
- 			<td><a href="/fleamarket/market">WEAR</a></td>
- 			<td><a href="/fleamarket/market/prod">PRODUCT</a></td>
- 		</tr>
-		<form>
-			<tr>
-				<td>
-					<select name="searchKey">
-							<option value="">전체</option>
-							<option value="baTitle">제목</option>
-							<option value="baContent">내용</option>
-							<option value="memName">이름</option>
-							<option value="memid">아이디</option>
-					</select> 
-					<input type="text" name="searchVal"  value="">
-					<input type="button" id="searchbtn" value="조회"> 
-				</td>
-			</tr>
-
+ 		
+		<a href="/fleamarket/market">WEAR</a>
+		<a href="/fleamarket/market/prod">PRODUCT</a>
+		<div>
+			<select id="searchType">
+					<option value="SEARCHALL">전체</option>
+					<option value="SEARCHID">아이디</option>
+					<option value="SEARCHNAME">이름</option>
+					<option value="SEARCHTITLE">제목</option>
+					<option value="SEARCHCONTENT">내용</option>
+			</select> 
+			<input type="text" id="searchData"  value="${vo.searchData }" >
+			<a><span id="searchbtn" class="mgBtn" onclick="search()">조회</span></a> 
+		</div>
+		<div id="inner">
 			<table border="1">
 				<tr>
 					<th width="5%">No.</th>
@@ -62,11 +135,14 @@
 					</tr>
 				</c:forEach>
 			</table>
+			<div id="paging" align="center">
+				<jsp:include page="/WEB-INF/view/common/paging.jsp"></jsp:include>
+			</div>
+			
 			<c:if test="${sessionId != null}">		
 			 	<a href="/fleamarket/market/writeboard?baType=${vo.baType}">새글등록</a>
 			</c:if>
-			<P>
-		</form> 
+		</div>
 	</div>
 
 
