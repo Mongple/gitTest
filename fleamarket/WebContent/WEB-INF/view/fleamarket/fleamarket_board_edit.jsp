@@ -14,7 +14,7 @@
 	<div align="center">
 		<h1>fleamarket board edit</h1>
 
-		<form name="editform" method="post" action="updateBoard">
+		<form name="editform" method="post" action="/fleamarket/market/updateBoard">
 		<input type=hidden id="baNo" name="baNo" value="${vo.baNo}">
 		<input type=hidden id="memNo" name="memNo" value="${vo.memNo}">
 		<input type=hidden id="baType" name="baType" value="${vo.baType}">

@@ -15,9 +15,9 @@
 
 		if (result == true) {
 			if (baType == "WEAR") {
-				$(location).attr('href', 'fleamarket');
+				$(location).attr('href', '/fleamarket/market');
 			} else {
-				$(location).attr('href', 'fleamarket_prod');
+				$(location).attr('href', '/fleamarket/market/prod');
 			}
 		} else
 			return;
@@ -30,7 +30,7 @@
 <body>
 	<div align="center">
 		<h1>fleamarket board write${vo.baType}</h1>
-		<form name="forminsertboard" method="post" action="fleamarket_board_write_action">
+		<form name="forminsertboard" method="post" action="/fleamarket/market/writeboard/action">
 			<input type="hidden" name="baType" id="baType" value="${vo.baType }">
 			<table border="1">
 				

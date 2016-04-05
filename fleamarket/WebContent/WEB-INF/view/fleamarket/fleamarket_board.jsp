@@ -14,14 +14,14 @@
 	}
 	function edit() {
 		var baNo = $("#baNo").val();
-		$(location).attr('href', 'fleamarket_board_edit?baNo=' + baNo);
+		$(location).attr('href', '/fleamarket/market/editboard?baNo=' + baNo);
 	}
 	function cancel() {
 		var baType = $("#baType").val();
 		if(baType=="WEAR"){
-			$(location).attr('href', 'fleamarket');
+			$(location).attr('href', '/fleamarket/market');
 		}else{
-			$(location).attr('href', 'fleamarket_prod');
+			$(location).attr('href', '/fleamarket/market/prod');
 		}
 	}
 	function delcheck() {
@@ -29,7 +29,7 @@
 		var baNo = $("#baNo").val();
 			
 		if(result == true){
-			$(location).attr('href','deleteBoard?baNo='+baNo);
+			$(location).attr('href','/fleamarket/market/deleteBoard?baNo='+baNo);
 		}
 		else
 			return;
@@ -37,7 +37,7 @@
 	function delcomment(rpNo, baNo) {
 		result = confirm("댓글 정말로 삭제하시겠습니까 ?");
 		if(result == true){
-			$(location).attr('href','deleteComment?rpNo='+rpNo+'&baNo='+baNo);
+			$(location).attr('href','/fleamarket/market/deleteComment?rpNo='+rpNo+'&baNo='+baNo);
 		}
 		else
 			return;
@@ -50,7 +50,7 @@
 	<div align="center">
 		<h1>fleamarket board Contents</h1>
 
-		<form name=form1 action="/fleamarket_board">
+		<form name=form1 action="/fleamarket/market/board">
 			<input type=hidden id="baNo" name="baNo" value="${vo.baNo}">
 			<input type="hidden" name="baType" id="baType" value="${vo.baType}">
 			<table border="1">
@@ -112,7 +112,7 @@
 					</table>
 				</form>
 
-				<form name=commentInsertform  method="post" action="insertComment">
+				<form name=commentInsertform  method="post" action="/fleamarket/market/insertComment">
 					<table border="1">
 						<tr>
 							<td>댓글 쓰기</td>

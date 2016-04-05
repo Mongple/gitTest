@@ -13,8 +13,7 @@
 		$('td a').click(clickA);
 	}
 	function clickA() {
-		$(location).attr('href','updateBaCount?baNo='+ this.innerHTML);
-	/* 	$(location).attr('href', '/fleamarket/fleamarket_board?baNo=' + this.innerHTML); */
+		$(location).attr('href','/fleamarket/market/updateBaCount?baNo='+ this.innerHTML);
 	}
 </script>
 
@@ -23,14 +22,11 @@
 <body>
 	<div id="fleamarketlist" align="center">
 		<h1>fleamarketlist_prod Contents</h1>
- 
  		<tr>
- 			<td><a href="fleamarket">WEAR</a></td>
- 			<td><a href="fleamarket_prod">PRODUCT</a></td>
+ 			<td><a href="/fleamarket/market">WEAR</a></td>
+ 			<td><a href="/fleamarket/market/prod">PRODUCT</a></td>
  		</tr>
- 		
 		<form>
-
 			<tr>
 				<td>
 					<select name="searchKey">
@@ -67,7 +63,7 @@
 				</c:forEach>
 			</table>
 			<c:if test="${sessionId != null}">		
-			 	<a href="fleamarket_board_write?baType=${vo.baType}">새글등록</a>
+			 	<a href="/fleamarket/market/writeboard?baType=${vo.baType}">새글등록</a>
 			</c:if>
 			<P>
 		</form> 
