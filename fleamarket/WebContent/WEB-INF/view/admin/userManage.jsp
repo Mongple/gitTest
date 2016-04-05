@@ -6,8 +6,7 @@
 <head>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 
-<link rel="stylesheet" type="text/css"
-	href="/fleamarket/css/adminMain.css">
+<link rel="stylesheet" type="text/css" href="/fleamarket/css/adminMain.css">
 
 <script type="text/javascript" src="/fleamarket/js/adminMain.js"></script>
 

@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <link rel="stylesheet" href="/fleamarket/css/login.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
