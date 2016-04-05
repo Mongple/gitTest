@@ -20,7 +20,7 @@
 		document.location.href="editview.do?ab_id="+ab_id+"&upasswd="+pwd; */
 	}
 </script>
-<title>Insert title here</title>
+<title>:: FLEAMARKET ::</title>
 </head>
 <body>
 	<div  class="content" id="main" align="center">

@@ -4,6 +4,34 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="notice">
+	<resultMap type="com.fleamarket.vo.MemberVO" id="memberMap">
+		<id column="MEM_NO" property="memNo"/>
+		<result column="MEM_ID" property="memId"/>
+		<result column="MEM_PWD" property="memPwd"/>
+		<result column="MEM_NAME" property="memName"/>
+		<result column="MEM_BIRTH" property="memBirth"/>
+		<result column="MEM_DATE" property="memDate"/>
+		<result column="MEM_PHONE" property="memPhone"/>
+		<result column="MEM_EMAIL" property="memEmail"/>
+		<result column="MEM_GRANT" property="memGrant"/>
+		<result column="MEM_BLACK" property="memBlack"/>
+	</resultMap>
+	
+	<resultMap type="com.fleamarket.vo.BoardVO" id="boardMap">
+		<id column="BA_NO" property="baNo"/>
+		<result column="MEM_NO" property="memNo"/>
+		<result column="BA_TYPE" property="baType"/>
+		<result column="BA_TITLE" property="baTitle"/>
+		<result column="BA_CONTENT" property="baContent"/>
+		<result column="BA_COUNT" property="baCount"/>
+		<result column="BA_DATE" property="baDate"/>
+		<result column="MEM_ID" property="memId"/>
+		<result column="MEM_NAME" property="memName"/>
+		<result column="RP_NO" property="rpNo"/>
+		<result column="RP_CONTENT" property="rpContent"/>
+		<result column="RP_DATE" property="rpDate"/>
+	</resultMap>
+
 	<select id="selectList" parameterType="com.fleamarket.vo.BoardVO" resultType="com.fleamarket.vo.BoardVO">
 		SELECT 
 		  b.BA_NO baNo,

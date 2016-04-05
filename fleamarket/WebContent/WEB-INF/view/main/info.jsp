@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Insert title here</title>
+<title>:: FLEAMARKET ::</title>
 </head>
 <body>
 	<div id="info" align="center">

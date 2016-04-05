@@ -52,7 +52,7 @@ public class MainController {
 	@RequestMapping("/notice")
 	public String goNotice() throws Exception {
 		
-		return "redirect:/notice/board";
+		return "redirect:/notice/noticeList";
 	}
 	
 	@RequestMapping("/member/login")

@@ -9,7 +9,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -23,7 +22,7 @@ public class NoticeController {
 	
 	Logger logger = LogManager.getLogger(this.getClass());
 	
-	@RequestMapping("/notice/board")
+	@RequestMapping("/notice/noticeList")
 	public String viewNotice(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
 		
 		vo.setTotalRowCnt((int) service.selectOne("notice.selectCnt",vo));
@@ -31,7 +30,7 @@ public class NoticeController {
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
 		
-		return "/notice/board";
+		return "/notice/noticeBoard";
 	}
 	
 	@RequestMapping("/notice/resultboard")
@@ -43,10 +42,11 @@ public class NoticeController {
 		return "/member/resultboard";
 	}
 	
-	@RequestMapping("/notice/write")
-	public String goNoticeWrite(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
-		
-		
+	@RequestMapping("/notice/noticeList/write")
+	public String goNoticeWrite(HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/main";
+		}
 		return "/notice/write";
 	}
 	

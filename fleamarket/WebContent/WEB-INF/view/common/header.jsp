@@ -17,7 +17,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Insert title here</title>
+<title>:: FLEAMARKET ::</title>
 </head>
 <body>
 	<div id="gnb">
