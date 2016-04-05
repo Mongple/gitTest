@@ -29,13 +29,73 @@
 		   ON b.MEM_NO = m.MEM_NO
 		ORDER BY BA_DATE 
 	</select>
+	<select id="selectBoardCnt" parameterType="com.fleamarket.vo.BoardVO" resultType="int">
+		SELECT COUNT(1)
+		FROM BOARD b
+		LEFT OUTER JOIN MEMBER m
+		   ON b.MEM_NO = m.MEM_NO
+		<choose>
+	     	<when test="baType.equals('PRODUCT')">
+	     		WHERE (b.ba_type='PRODUCT' OR b.ba_type IS NULL)
+	     	</when>
+	     	<when test="baType.equals('WEAR')">
+	     		WHERE (b.ba_type='WEAR' OR b.ba_type IS NULL)
+	     	</when>
+		</choose>
+		<choose>
+			<when test="searchType!=null and searchType.equals('SEARCHID') ">
+	     		 AND m.MEM_ID LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHNAME')">
+	     		 AND m.MEM_NAME LIKE '%${searchData}%'
+	     	</when>
+			<when test="searchType!=null and searchType.equals('SEARCHALL') ">
+	     		 AND (b.BA_TITLE LIKE '%${searchData}%' OR b.BA_CONTENT LIKE '%${searchData}%')
+	     		 OR m.MEM_ID LIKE '%${searchData}%' OR m.MEM_NAME LIKE '%${searchData}%'
+	     		 OR b.BA_TITLE LIKE '%${searchData}%' OR b.BA_CONTENT LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHTITLE')">
+	     		 AND b.BA_TITLE LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHCONTENT')">
+	     		 AND b.BA_CONTENT LIKE '%${searchData}%'
+	     	</when>
+		</choose>
+	</select>
 	<select id="selectBoardByType" parameterType="com.fleamarket.vo.BoardVO" resultMap="boardMap">
 		SELECT BA_NO, b.MEM_NO, BA_TYPE, BA_TITLE, BA_CONTENT, BA_COUNT, BA_DATE 
 		     , m.MEM_ID, m.MEM_NAME, m.MEM_BLACK
 		FROM BOARD b
 		LEFT OUTER JOIN MEMBER m
 		   ON b.MEM_NO = m.MEM_NO
-		WHERE BA_TYPE = #{baType} 
+		 
+		<choose>
+	     	<when test="baType.equals('PRODUCT')">
+	     		WHERE (b.ba_type='PRODUCT' OR b.ba_type IS NULL)
+	     	</when>
+	     	<when test="baType.equals('WEAR')">
+	     		WHERE (b.ba_type='WEAR' OR b.ba_type IS NULL)
+	     	</when>
+		</choose>
+		<choose>
+			<when test="searchType!=null and searchType.equals('SEARCHID') ">
+	     		 AND m.MEM_ID LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHNAME')">
+	     		 AND m.MEM_NAME LIKE '%${searchData}%'
+	     	</when>
+			<when test="searchType!=null and searchType.equals('SEARCHALL') ">
+	     		 AND (b.BA_TITLE LIKE '%${searchData}%' OR b.BA_CONTENT LIKE '%${searchData}%')
+	     		 OR m.MEM_ID LIKE '%${searchData}%' OR m.MEM_NAME LIKE '%${searchData}%'
+	     		 OR b.BA_TITLE LIKE '%${searchData}%' OR b.BA_CONTENT LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHTITLE')">
+	     		 AND b.BA_TITLE LIKE '%${searchData}%'
+	     	</when>
+	     	<when test="searchType!=null and searchType.equals('SEARCHCONTENT')">
+	     		 AND b.BA_CONTENT LIKE '%${searchData}%'
+	     	</when>
+		</choose>
 		ORDER BY BA_DATE
 	</select>
  	<select id="selectBoardById" parameterType="int" resultMap="boardMap">
