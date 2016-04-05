@@ -44,6 +44,11 @@
 		where MEM_GRANT = 'A'
 	</select>
 	
+	<select id="selectMemberCount" resultMap="memberMap">
+		select nvl(count(MEM_NO), 0) as MEM_NO
+		from MEMBER
+	</select>
+	
 	<select id="selectNoticeCount" resultMap="boardMap">
 		select nvl(count(BA_NO), 0) as BA_NO
 		from BOARD
@@ -122,4 +127,25 @@
 	     	</when>
 		</choose>
 	</select>
+	
+	<update id="addBlack" parameterType="com.fleamarket.vo.MemberVO">
+		UPDATE MEMBER
+		<set>
+			<if test="memBlack != null">
+				MEM_BLACK = MEM_BLACK + 1
+			</if>
+		</set>
+		WHERE MEM_ID = #{memId}
+	</update>
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

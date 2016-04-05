@@ -56,8 +56,24 @@ public class AdminController {
 		}
 		vo.setTotalRowCnt((int) service.selectOne("admin.selectUserListCnt", vo));
 		List<MemberVO> list = service.selectList("admin.selectUserList", vo, new RowBounds(vo.getOffset(), vo.getLimit()));
+		
+		MemberVO total = new MemberVO();
+		total = (MemberVO) service.selectOne("admin.selectMemberCount", total);
+		
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
+		req.setAttribute("total", total);
+		
 		return "/admin/userManage";
 	}
+	
+	@RequestMapping("/admin/userManage/add")
+	public String addBlack(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/main";
+		}
+		service.update("admin.addBlack", vo);
+		return "redirect:/admin/userManage/manageList";
+	}
+	
 }

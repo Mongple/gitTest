@@ -52,11 +52,28 @@ body, h1, h2, h3, h4, h5, h6, table, input, select
 #content
 {
 	display: inline-flex;
+	font-family: Roboto, Nanum Gothic;
+	color: #e1e1e1;	
 }
 
+#memberList th
+{
+	text-align: center;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+}
 
+#memberList
+{
+	border-bottom: 1px solid #e1e1e1;
+	
+}
 
-
+.mgBtn
+{
+	font-family: Roboto, Nanum Gothic;
+	color: #e1e1e1;	
+}
 
 
 
