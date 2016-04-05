@@ -40,7 +40,7 @@
 				<div id="gnb2" class="collapse navbar-collapse">
 					<ul class="nav navbar-nav">
 						<li><a href="/fleamarket/info">info</a></li>
-						<li><a href="/fleamarket/fleamarket">fleamarket</a></li>
+						<li><a href="/fleamarket/market">fleamarket</a></li>
 						<li><a href="/fleamarket/notice">notice</a></li>
 					</ul>
 					<div id="loginbtn" align="right" style="margin-top: 15px">
