@@ -50,6 +50,12 @@ public class MemberController {
 	*/
 	@RequestMapping("/member/insertMember")
 	public String insertMember(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		System.out.println("////"+vo.getMemId());
+		//System.out.println("////"+vo.getMemPwd1());
+		System.out.println("////"+vo.getMemBirth());
+		System.out.println("////"+vo.getMemBirth());
+		System.out.println("////"+vo.getMemBirth());
+		System.out.println("////"+vo.getMemPhone());
 		if(service.insert("member.insertMember", vo) != 0) {
 			logger.debug("가입완료");
 			return "redirect:/main";
@@ -76,6 +82,22 @@ public class MemberController {
 		}
 	}
 	
+	@RequestMapping("/member/emailCheck")
+	@ResponseBody
+	public String emailCheck(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		
+		vo = (MemberVO) service.selectOne("member.emailCheck", vo);
+		
+		if(vo == null) {
+			logger.debug("중복없음");
+			return "c";
+		}
+		else {
+			logger.debug("중복");
+			return "cc";
+		}
+	}
+	
 	@RequestMapping("/member/mypage/board")
 	public String viewMyPageBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null) {
@@ -88,22 +110,9 @@ public class MemberController {
 		List<BoardVO> list = service.selectList("member.selectMyBoardList", vo, new RowBounds(vo.getOffset(), vo.getLimit()));
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
+		if(req.getRequestURI().contains(".ajax"))
+			return "/member/resultboard";
 		return "/member/board";
-	}
-	
-	@RequestMapping("/member/mypage/resultboard")
-	public String viewMyPageResultBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
-		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
-		}
-		if(vo.getBaType() == null)
-			vo.setBaType("PRODUCT");
-		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
-		vo.setTotalRowCnt((int) service.selectOne("member.selectMyBoardCnt",vo));
-		List<BoardVO> list = service.selectList("member.selectMyBoardList", vo, new RowBounds(vo.getOffset(), vo.getLimit()));
-		req.setAttribute("list", list);
-		req.setAttribute("vo", vo);
-		return "/member/resultboard";
 	}
 	
 	@RequestMapping("/member/mypage/chkPwd")

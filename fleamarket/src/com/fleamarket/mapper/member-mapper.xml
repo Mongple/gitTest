@@ -51,6 +51,12 @@
 		WHERE MEM_ID= #{memId}
 	</select>
 	
+	<select id="emailCheck" parameterType="com.fleamarket.vo.MemberVO" resultMap="memberMap">
+		SELECT MEM_NO, MEM_ID, MEM_NAME, MEM_BIRTH, MEM_DATE, MEM_PHONE, MEM_EMAIL, MEM_GRANT, MEM_BLACK
+		FROM MEMBER
+		WHERE MEM_EMAIL= #{memEmail}
+	</select>
+	
 	<select id="selectMyBoardList" parameterType="com.fleamarket.vo.BoardVO" resultType="com.fleamarket.vo.BoardVO">
 		SELECT 
 		  b.BA_NO baNo,

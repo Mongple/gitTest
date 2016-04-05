@@ -19,7 +19,7 @@
 	    $('#searchbtn').click(function () {
 	    	$.ajax({
 				type:"post",
-				url:'/fleamarket/member/mypage/resultboard',
+				url:'/fleamarket/member/mypage/board.ajax',
 				data: 'baType=${vo.baType}&searchType='+searchType+'&searchData='+$('#searchData').val(),
 				success : function(html){
 					$('#inner').html(html);
@@ -37,7 +37,7 @@
 	function clickA(p) {
 		$.ajax({
 			type:"post",
-			url:'/fleamarket/member/mypage/resultboard',
+			url:'/fleamarket/member/mypage/board.ajax',
 			data: 'page='+p+'&baType=${vo.baType}&searchType='+searchType+'&searchData='+$('#searchData').val(),
 			success : function(html){
 				$('#inner').html(html);
@@ -48,7 +48,7 @@
 		});
 	}
 	function clickWarp(warp) {
-		var url = '/fleamarket/member/mypage/resultboard';
+		var url = '/fleamarket/member/mypage/board.ajax';
 		var param;
 		page = parseInt($('#page').val());
 		pageCnt = parseInt($('#pageCnt').val());
@@ -132,14 +132,6 @@
 		</div>
 	</div>
 </div>
-<!-- 	<div id="mypage" align="center"style="width: 500px">
-		<ul class="nav nav-pills">
-		  <li class="active"><a href="#">Home</a></li>
-		  <li><a href="#">Menu 1</a></li>
-		  <li><a href="#">Menu 2</a></li>
-		  <li><a href="#">Menu 3</a></li>
-		</ul>
-	</div> -->
 </body>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 </html>
