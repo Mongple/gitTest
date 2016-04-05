@@ -31,6 +31,5 @@
 	</c:when>
 	
 </c:choose>&nbsp
-<a style="text-decoration: none;cursor: pointer;" onclick="clickWarp('singleRight')">></a>&nbsp
+<a style="text-decoration: none;cursor: pointer; color: red; font-weight: bold;" onclick="clickWarp('singleRight')">></a>&nbsp
 <a style="text-decoration: none;cursor: pointer;" onclick="clickWarp('doubleRight')">>></a>&nbsp&nbsp
-<a style="text-decoration: none;">#${vo.page }</a>
