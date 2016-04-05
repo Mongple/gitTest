@@ -54,6 +54,7 @@ public class AdminController {
 		if(req.getSession().getAttribute("sessionId") == null) {
 			return "redirect:/main";
 		}
+		
 		vo.setTotalRowCnt((int) service.selectOne("admin.selectUserListCnt", vo));
 		List<MemberVO> list = service.selectList("admin.selectUserList", vo, new RowBounds(vo.getOffset(), vo.getLimit()));
 		
@@ -64,6 +65,9 @@ public class AdminController {
 		req.setAttribute("vo", vo);
 		req.setAttribute("total", total);
 		
+		if(req.getRequestURI().contains(".ajax")){
+			return "/admin/resultUserManage";
+		}
 		return "/admin/userManage";
 	}
 	
@@ -75,5 +79,24 @@ public class AdminController {
 		service.update("admin.addBlack", vo);
 		return "redirect:/admin/userManage/manageList";
 	}
+	
+	@RequestMapping("/admin/userManage/udate")
+	public String adminUpdate(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/main";
+		}
+		service.update("admin.updateMember", vo);
+		return "redirect:/admin/userManage/manageList";
+	}
+	
+	@RequestMapping("/admin/userManage/delete")
+	public String adminDelete(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
+		vo = (MemberVO) service.selectOne("member.selectMemberInfo", vo);
+		if(service.insert("member.insertB_Member", vo) != 0) {
+			service.update("member.deleteMember", vo);
+		}
+		return "redirect:/admin/userManage/manageList";
+	}
+	
 	
 }

@@ -14,7 +14,7 @@ body, h1, h2, h3, h4, h5, h6, table, input, select
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 5%;
-	margin-bottom: 13.8%;
+	min-height: 73.7vh;
 }
 	
 #title
@@ -62,23 +62,36 @@ body, h1, h2, h3, h4, h5, h6, table, input, select
 	border-top: 1px solid #e1e1e1;
 	border-bottom: 1px solid #e1e1e1;
 }
-
 #memberList
 {
 	border-bottom: 1px solid #e1e1e1;
 	
 }
-
 .mgBtn
 {
 	font-family: Roboto, Nanum Gothic;
 	color: #e1e1e1;	
 }
+#memberList input
+{
+	border: 1px solid white;
+}
+#searchType
+{
+	font-family: Roboto, Nanum Gothic;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	margin-right: 10px;
+}
 
-
-
-
-
+#searchData
+{
+	border-top: 1px solid white;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	border-bottom: 1px solid #e1e1e1;
+	margin-right: 10px;
+}
 
 
 

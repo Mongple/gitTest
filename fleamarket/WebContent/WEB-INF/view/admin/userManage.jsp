@@ -15,12 +15,114 @@
 <title>:: USER MANAGE ::</title>
 
 <script type="text/javascript">
-$(document).ready(function() {
-	var adminMain = AdminMain();
-	
-	
-});
- 
+	// var adminMain = AdminMain();
+
+	var searchType = "SEARCHALL";
+	$(document).ready(function(){
+		$('#searchType').change(function () {
+	      	$("#searchType option:selected").each(function () {
+	      		searchType = $(this).val();
+	       	});
+	    })
+	   
+	    $('#searchbtn').click(function () {
+	    	$.ajax({
+				type:"post",
+				url:'/fleamarket/admin/userManage/manageList.ajax',
+				data: 'searchType='+searchType+'&searchData='+$('#searchData').val(),
+				success : function(html){
+					$('#inner').html(html);
+				    if($('#totalRowCnt').val() == 0){
+				    	alert("검색결과가 없습니다.");
+				    	$(location).attr('href','/fleamarket/admin/userManage/manageList');
+				    }
+				},
+				error : function(){
+					alert("에러")
+				}
+			});
+	    })
+	}); 
+	function clickA(p) {
+		$.ajax({
+			type:"post",
+			url:'/fleamarket/admin/userManage/manageList.ajax',
+			data: 'page='+p+'&searchType='+searchType+'&searchData='+$('#searchData').val(),
+			success : function(html){
+				$('#inner').html(html);
+			},
+			error : function(){
+				alert("에러")
+			}
+		});
+	}
+	function clickWarp(warp) {
+		var url = '/fleamarket/admin/userManage/manageList.ajax';
+		var param;
+		page = parseInt($('#page').val());
+		pageCnt = parseInt($('#pageCnt').val());
+		if(warp == 'doubleLeft'){
+			param = 'page=1';
+		}else if(warp == 'singleLeft') {
+			if(page == 1)
+				return;
+			else
+				page = page-1;
+			param = 'page='+page;
+		}else if(warp == 'singleRight') {
+			if(page == pageCnt)
+				return;
+			else
+				page = page+1;
+			param = 'page='+page;
+		}else if(warp == 'doubleRight'){
+			param = 'page='+pageCnt;
+		}
+		
+		$.ajax({
+			type:"post",
+			url:url,
+			data: param+'&searchType='+searchType+'&searchData='+$('#searchData').val(),
+			success : function(html){
+				$('#inner').html(html);
+			},
+			error : function(){
+				alert("에러")
+			}
+		});
+	}
+
+
+function waringMember(memId, memBlack) {
+	if(memBlack < 3)
+	{
+		result = confirm("경고를 추가하시겠습니까?");
+		if(result == true) {
+			$(location).attr('href', '/fleamarket/admin/userManage/add?memId='+memId);	
+		} else { return; }
+	}
+	else {
+		alert("경고 2회 이상입니다.");
+	}
+}
+
+function updateMember(memId) {
+	result = confirm("정보를 수정하시겠습니까?");
+	if(result == true) {
+		
+		/* 유효성 넣을 곳 */
+		
+		$("#adminUpdateForm").attr('action', '/fleamarket/admin/userManage/update?memId='+memId);
+	} else { return; }
+}
+
+function outMember(memId) {
+	result = confirm("정말로 퇴출하시겠습니까?");
+	if(result = true) {
+		$(location).attr('href', '/fleamarket/admin/userManage/delete?memId='+memId);
+	} else { return; }
+}
+
 </script>
 
 </head>
@@ -36,13 +138,11 @@ $(document).ready(function() {
 			&nbsp / &nbsp
 			<a href="/fleamarket/admin/userManage/manageList">
 					<span id="admin_type">User Manage</span></a>
+			<br />
 		</div>
 		<br />
-		<div id="content">
-			<table id="memberlist" class="memberlist">
-				<tr>
-					<th align="right">
-					<select id="searchType">
+		<div>
+			<select id="searchType">
 							<option value="SEARCHALL">전체</option>
 							<option value="SEARCHID">아이디</option>
 							<option value="SEARCHNAME">이름</option>
@@ -52,16 +152,18 @@ $(document).ready(function() {
 							<option value="SEARCHBLACK">경고횟수</option>
 					</select> 
 					<input type="text" id="searchData"  value="${vo.searchData }" >
-					<input type="button" id="searchbtn" value="조회" onclick="search()"> 
-					</th>
-				</tr>
+					<a><span id="searchbtn" class="mgBtn" onclick="search()">조회</span></a> 
+		</div>
+		<div id="inner">
+		<div id="content">
+		<form action="" method="post" id="adminUpdateForm">
+			<table id="memberList" class="memberList">
 				<tr>
-					<th>전체 요청수 :</th>
+					<td style="width: 80px;">Total ${vo.totalRowCnt }</td>
 				</tr>
 				<tr>
 					<th>번호</th>
 					<th>아이디</th>
-					<th>비밀번호</th>
 					<th>이름</th>
 					<th>생년월일</th>
 					<th>가입날짜</th>
@@ -73,29 +175,36 @@ $(document).ready(function() {
 				</tr>
 				<c:forEach var="vo" items="${list}">
 					<tr>
-						<td>${vo.memNo}</td>
-						<td>${vo.memId}</td>
-						<td>${vo.memPwd}</td>
-						<td>${vo.memName}</td>
-						<td>${vo.memBirth}</td>
-						<td>${vo.memDate}</td>
-						<td>${vo.memPhone}</td>
-						<td>${vo.memEmail}</td>
-						<td>${vo.memGrant}</td>
-						<td>${vo.memBlack}</td>
+						<td style="width: 30px;">${vo.memNo}</td>
+						<td style="width: 80px;">${vo.memId}</td>
 						<td>
-							<input type="button" id="warning" name="warning" value="경고" />
-							&nbsp;&nbsp;
-							<input type="button" id="out" name="out" value="퇴출" />
+							<input type="text" style="width: 60px;" value="${vo.memName}" /></td>
+						<td style="width: 80px;">${vo.memBirth}</td>
+						<td style="width: 100px;">${vo.memDate}</td>
+						<td>
+							<input type="text" style="width: 100px;" value="${vo.memPhone}" /></td>
+						<td>
+							<input type="text" style="width: 120px;" value="${vo.memEmail}" /></td>
+						<td>
+							<input type="text" style="width: 30px;" value="${vo.memGrant}" /></td>
+						<td>
+							<input type="text" style="width: 30px;" value="${vo.memBlack}" /></td>
+						<td style="width: 100px;">
+							<a><span id="updateMember" class="mgBtn" onclick="updateMember('${vo.memId}')">수정</span></a>
+							<a><span id="waringMember" class="mgBtn" onclick="waringMember('${vo.memId}','${vo.memBlack}')">경고</span></a>
+							<a><span id="outMember" class="mgBtn" onclick="outMember('${vo.memId}')">퇴출</span></a>
 						</td>
 					</tr>
 				</c:forEach>
 			</table>
+			</form>
+			
 		</div>
-		
 		<div id="paging" align="center">
 			<jsp:include page="/WEB-INF/view/common/paging.jsp"></jsp:include>
 		</div>
+		</div>
+		
 	</div>
 </body>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
