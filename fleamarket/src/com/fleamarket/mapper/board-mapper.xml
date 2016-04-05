@@ -21,8 +21,6 @@
 		<result column="RP_DATE" property="rpDate"/>
 		
 	</resultMap>
-	
-	
 	<select id="selectBoardList" resultMap="boardMap">
 		SELECT BA_NO, b.MEM_NO, BA_TYPE, BA_TITLE, BA_CONTENT, BA_COUNT, BA_DATE 
 		     , m.MEM_ID, m.MEM_NAME, m.MEM_BLACK
@@ -136,11 +134,9 @@
 	</select>
 	
 	
-	
 	<!-- 댓글 -->
 	
 	<select id="selectReplyByBaNo" parameterType="com.fleamarket.vo.BoardVO" resultMap="boardMap">
-
 		SELECT RP_NO ,BA_NO ,r.MEM_NO ,RP_CONTENT ,RP_DATE  
              , m.MEM_ID, m.MEM_NAME, m.MEM_BLACK
 		FROM REPLY r
@@ -166,10 +162,9 @@
 				sysdate
 			)
 	</insert>
-	<delete id="deleteComment" parameterType="int" >
+	<delete id="deleteComment" parameterType="com.fleamarket.vo.BoardVO" >
 		DELETE REPLY
 		WHERE RP_NO=#{rpNo}
 	</delete>
-	
 	
 </mapper>

@@ -27,7 +27,6 @@
 	function delcheck() {
 		result = confirm("정말로 삭제하시겠습니까 ?");
 		var baNo = $("#baNo").val();
-		var baType = $("#baType").val();
 			
 		if(result == true){
 			$(location).attr('href','deleteBoard?baNo='+baNo);
@@ -35,18 +34,14 @@
 		else
 			return;
 	}
-	function delcomment() {
+	function delcomment(rpNo, baNo) {
 		result = confirm("댓글 정말로 삭제하시겠습니까 ?");
-		var rpNo = $("#rpNo").val();
-		alert(rpNo);
 		if(result == true){
-			$(location).attr('href','deleteComment?rpNo='+rpNo);
+			$(location).attr('href','deleteComment?rpNo='+rpNo+'&baNo='+baNo);
 		}
 		else
 			return;
 	}
-
-	
 </script>
 
 <title>플리보드</title>
@@ -93,47 +88,46 @@
 			</form>
 			
 			<!-- 댓글 -->
+
 			<form name=commentform method="post">
 				<input type="hidden" name="rpNo" id="rpNo" value="${vo.rpNo}">  
 				<table border="1">
 					<tr>
-						 <!-- <th width="10%">rpNo.</th>   -->
-						<th width="50%">comment</th>
-						<th width="10%">id</th>
-						<th width="20%">Date</th>				
+						<th>id</th>
+						<th>comment</th>
+						<th>Date</th>				
 					</tr>
 					<c:forEach items="${rplist}" var="vo">
 						<tr>
-							 <td>${vo.rpNo}</td> 
-							<td>${vo.rpContent}</td>
 							<td>${vo.memId}</td>
+							<td>${vo.rpContent}</td>
 							<td>${vo.rpDate}</td>
-							<c:if test="${sessionId == vo.memId }">	
-		 						<td><input type="button" value="삭제" onclick="delcomment()"/> </td>
+							<c:if test="${sessionId == vo.memId || sessionGrant == 'A'}">	
+			 					<td colspan=2>
+			 						<input type="button" value="삭제" onclick="delcomment('${vo.rpNo}','${vo.baNo}')"/>
+			 					</td>	
 							</c:if>
 						</tr>
 					</c:forEach>
 					</table>
 				</form>
-				
+
 				<form name=commentInsertform  method="post" action="insertComment">
 					<table border="1">
-					<tr>
-						<td>댓글 쓰기</td>
-						<td colspan="2">
-							<input type="hidden" id="baNo" name="baNo" value="${vo.baNo}" />
-							<input type="hidden" id="rpNo" name="rpNo" value="${vo.rpNo}" />
-							<input type="hidden" id="memId" name="memId" value="${vo.memId}" />
-							<input type="text" id="rpContent" name="rpContent"/>
-							<c:if test="${sessionId != null }">	
-	 							<input type="submit" value="확인" /> 
-							</c:if>
-
-						</td>
-					</tr>			
+						<tr>
+							<td>댓글 쓰기</td>
+							<td colspan="2">
+								<input type="hidden" id="baNo" name="baNo" value="${vo.baNo}" />
+								<input type="hidden" id="rpNo" name="rpNo" value="${vo.rpNo}" />
+								<input type="hidden" id="memId" name="memId" value="${vo.memId}" />
+								<input type="text" id="rpContent" name="rpContent"/>
+								<c:if test="${sessionId != null }">	
+		 							<input type="submit" value="확인" /> 
+								</c:if>
+							</td>
+						</tr>			
 					</table>	
 				</form>
-
 	</div>
 
 </body>

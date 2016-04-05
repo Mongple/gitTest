@@ -26,7 +26,6 @@ public class BoardController {
 	
 
 /*mainController
-
 @RequestMapping("/fleamarket")
 public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
 	vo.setBaType("WEAR");
@@ -44,8 +43,6 @@ public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletReq
 		req.setAttribute("vo", vo);
 		return "/fleamarket/fleamarketlist_prod";
 	}
-
-
 	@RequestMapping("/fleamarket_board_write")
 	public String insertBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception{
 		if((String)req.getSession().getAttribute("sessionId") == null )
@@ -53,7 +50,6 @@ public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletReq
 		req.setAttribute("vo", vo);
 		return "/fleamarket/fleamarket_board_write";
 	}
-
 	@RequestMapping("/fleamarket_board_write_action")
 	public String insertBoardAction(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
 		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
@@ -133,16 +129,11 @@ public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletReq
 	}
 	@RequestMapping("/deleteComment")
 	public String deleteComment(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {	
-
-		req.setAttribute("vo", vo);
-		System.out.println("**deletec**"+vo.getRpNo());
-
-		if(service.delete("board.deleteComment",vo.getRpNo()) != 0){
+		if(service.delete("board.deleteComment",vo) != 0){
 			logger.debug("댓글삭제 성공");
-
 			return "redirect:/fleamarket_board?baNo="+vo.getBaNo();
-
 		}
+		req.setAttribute("vo", vo);
 		return "";
 	}
 	

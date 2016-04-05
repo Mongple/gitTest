@@ -8,11 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script type="text/javascript">
-	/* 	$(document).ready(init);
 
-	 function init() {
-	 $("#editbtn").click(edit);
-	 } */
 	function cancel() {
 		var baType = $("#baType").val();
 		result = confirm("정말로 취소하시겠습니까 ?");
@@ -33,7 +29,7 @@
 </head>
 <body>
 	<div align="center">
-		<h1>fleamarket board write${vo.baType }</h1>
+		<h1>fleamarket board write${vo.baType}</h1>
 		<form name="forminsertboard" method="post" action="fleamarket_board_write_action">
 			<input type="hidden" name="baType" id="baType" value="${vo.baType }">
 			<table border="1">
