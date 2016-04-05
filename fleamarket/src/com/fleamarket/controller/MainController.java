@@ -40,7 +40,7 @@ public class MainController {
 		return "/main/info";
 	}
 	
-	@RequestMapping("/fleamarket")
+	@RequestMapping("/market")
 	public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
 		vo.setBaType("WEAR");
 		List<BoardVO> list = service.selectList("board.selectBoardByType",vo,new RowBounds(vo.getOffset(), vo.getLimit()));
