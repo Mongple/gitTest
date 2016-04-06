@@ -24,25 +24,6 @@ public class BoardController {
 	
 	Logger logger = LogManager.getLogger(this.getClass());
 	
-
-/*mainController
-@RequestMapping("/market")
-public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
-	vo.setBaType("WEAR");
-	List<BoardVO> list = service.selectList("board.selectBoardByType",vo,new RowBounds(vo.getOffset(), vo.getLimit()));
-	req.setAttribute("list",list);
-	req.setAttribute("vo", vo);
-	return "/fleamarket/fleamarketlist";
-}*/
-
-	@RequestMapping("/market/prod")/*/fleamarket_prod*/
-	public String goFleaMarketProd(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
-		vo.setBaType("PRODUCT");
-		List<BoardVO> list = service.selectList("board.selectBoardByType", vo, new RowBounds(vo.getOffset(), vo.getLimit()));
-		req.setAttribute("list",list);
-		req.setAttribute("vo", vo);
-		return "/fleamarket/fleamarketlist_prod";
-	}
 	@RequestMapping("/market/writeboard")/*/fleamarket_board_write*/
 	public String insertBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception{
 		if((String)req.getSession().getAttribute("sessionId") == null )
@@ -52,7 +33,9 @@ public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletReq
 	}
 	@RequestMapping("/market/writeboard/action")/*/fleamarket_board_write_action*/
 	public String insertBoardAction(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
-		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
+		System.out.println("//////"+vo.getBaTitle());
+		System.out.println("//////"+vo.getBaContent());
+		/*vo.setMemId((String) req.getSession().getAttribute("sessionId"));
 		req.setAttribute("vo", vo);
 		if(service.insert("board.insertBoard",vo) != 0){
 			logger.debug("등록성공");
@@ -64,7 +47,7 @@ public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletReq
 			else{
 				return "redirect:/market/prod";
 			}
-		}
+		}*/
 		return "";
 	}
 	@RequestMapping("/market/editboard")/*fleamarket_board_edit*/

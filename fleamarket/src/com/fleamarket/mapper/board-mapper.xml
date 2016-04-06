@@ -43,16 +43,19 @@
 	     	</when>
 		</choose>
 		<choose>
+			<when test="searchType!=null and searchType.equals('SEARCHALL') ">
+	     		 AND (
+	     		 		m.MEM_ID LIKE '%${searchData}%' 
+	     		 		OR m.MEM_NAME LIKE '%${searchData}%'
+	     		 		OR b.BA_TITLE LIKE '%${searchData}%'
+	     		 		OR b.BA_CONTENT LIKE '%${searchData}%'
+	     		 	 )
+	     	</when>
 			<when test="searchType!=null and searchType.equals('SEARCHID') ">
 	     		 AND m.MEM_ID LIKE '%${searchData}%'
 	     	</when>
 	     	<when test="searchType!=null and searchType.equals('SEARCHNAME')">
 	     		 AND m.MEM_NAME LIKE '%${searchData}%'
-	     	</when>
-			<when test="searchType!=null and searchType.equals('SEARCHALL') ">
-	     		 AND (b.BA_TITLE LIKE '%${searchData}%' OR b.BA_CONTENT LIKE '%${searchData}%')
-	     		 OR m.MEM_ID LIKE '%${searchData}%' OR m.MEM_NAME LIKE '%${searchData}%'
-	     		 OR b.BA_TITLE LIKE '%${searchData}%' OR b.BA_CONTENT LIKE '%${searchData}%'
 	     	</when>
 	     	<when test="searchType!=null and searchType.equals('SEARCHTITLE')">
 	     		 AND b.BA_TITLE LIKE '%${searchData}%'
@@ -78,16 +81,19 @@
 	     	</when>
 		</choose>
 		<choose>
+			<when test="searchType!=null and searchType.equals('SEARCHALL') ">
+	     		 AND (
+	     		 		m.MEM_ID LIKE '%${searchData}%' 
+	     		 		OR m.MEM_NAME LIKE '%${searchData}%'
+	     		 		OR b.BA_TITLE LIKE '%${searchData}%'
+	     		 		OR b.BA_CONTENT LIKE '%${searchData}%'
+	     		 	 )
+	     	</when>
 			<when test="searchType!=null and searchType.equals('SEARCHID') ">
 	     		 AND m.MEM_ID LIKE '%${searchData}%'
 	     	</when>
 	     	<when test="searchType!=null and searchType.equals('SEARCHNAME')">
 	     		 AND m.MEM_NAME LIKE '%${searchData}%'
-	     	</when>
-			<when test="searchType!=null and searchType.equals('SEARCHALL') ">
-	     		 AND (b.BA_TITLE LIKE '%${searchData}%' OR b.BA_CONTENT LIKE '%${searchData}%')
-	     		 OR m.MEM_ID LIKE '%${searchData}%' OR m.MEM_NAME LIKE '%${searchData}%'
-	     		 OR b.BA_TITLE LIKE '%${searchData}%' OR b.BA_CONTENT LIKE '%${searchData}%'
 	     	</when>
 	     	<when test="searchType!=null and searchType.equals('SEARCHTITLE')">
 	     		 AND b.BA_TITLE LIKE '%${searchData}%'

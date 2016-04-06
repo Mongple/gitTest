@@ -42,20 +42,10 @@ public class MainController {
 	
 	@RequestMapping("/market")
 	public String goFleaMarket(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
-		//System.out.println("//////2222"+vo.getBaType());
-		System.out.println("///222"+vo.getSearchData()+"///");
-		System.out.println("///222"+vo.getSearchType()+"///");
 		if(vo.getBaType() == null)
 			vo.setBaType("WEAR");
-		System.out.println("//"+service.selectOne("board.selectBoardCnt", vo));
 		vo.setTotalRowCnt((int)service.selectOne("board.selectBoardCnt", vo));
 		List<BoardVO> list = service.selectList("board.selectBoardByType",vo,new RowBounds(vo.getOffset(), vo.getLimit()));
-		System.out.println("//////"+vo.getBaType());
-		System.out.println("//////"+vo.getPageCnt());
-		System.out.println("//////"+vo.getPage());
-		System.out.println("//////"+vo.getBlock());
-		System.out.println("//////"+vo.getBlockCnt());
-		System.out.println("//////"+vo.getTotalRowCnt());
 		req.setAttribute("list",list);
 		req.setAttribute("vo", vo);
 		if(req.getRequestURI().contains(".ajax"))

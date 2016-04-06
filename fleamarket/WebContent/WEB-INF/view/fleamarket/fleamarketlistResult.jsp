@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<h4>${vo.totalRowCnt }</h4>
 <table border="1">
 	<tr>
 		<th width="5%">No.</th>
@@ -30,6 +30,3 @@
 <c:if test="${sessionId != null}">		
  	<a href="/fleamarket/market/writeboard?baType=${vo.baType}">새글등록</a>
 </c:if>
-</body>
-<jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
-</html>

@@ -42,12 +42,10 @@
 	
 	 
 	function clickA(p) {
-		var searchData = $('#searchData').val();
-		alert(p+"//${vo.baType}//"+searchType+"//"+searchData);
 		$.ajax({
 			type:"post",
 			url:'/fleamarket/market.ajax',
-			data: 'page='+p+'&baType=${vo.baType}&searchType='+searchType+'&searchData='+searchData,
+			data: 'page='+p+'&baType=${vo.baType}&searchType='+searchType+'&searchData='+$('#searchData').val(),
 			success : function(html){
 				$('#inner').html(html);
 			},
@@ -59,7 +57,6 @@
 	function clickWarp(warp) {
 		var url = '/fleamarket/market.ajax';
 		var param;
-		var searchData = $('#searchData').val();
 		page = parseInt($('#page').val());
 		pageCnt = parseInt($('#pageCnt').val());
 		if(warp == 'doubleLeft'){
@@ -83,7 +80,7 @@
 		$.ajax({
 			type:"post",
 			url:url,
-			data: param+'&searchType='+searchType+'&searchData='+searchData,
+			data: param+'&searchType='+searchType+'&searchData='+$('#searchData').val(),
 			success : function(html){
 				$('#inner').html(html);
 			},
@@ -98,10 +95,10 @@
 </head>
 <body>
 	<div id="fleamarketlist" align="center">
-		<h1>fleamarketlist_wear Contents</h1>
+		<h1>fleamarketlist</h1>
  		
-		<a href="/fleamarket/market">WEAR</a>
-		<a href="/fleamarket/market/prod">PRODUCT</a>
+		<a href="/fleamarket/market?baType=WEAR">WEAR</a>
+		<a href="/fleamarket/market?baType=PRODUCT">PRODUCT</a>
 		<div>
 			<select id="searchType">
 					<option value="SEARCHALL">전체</option>
@@ -114,6 +111,7 @@
 			<a><span id="searchbtn" class="mgBtn" onclick="search()">조회</span></a> 
 		</div>
 		<div id="inner">
+			<h4>${vo.totalRowCnt }</h4>
 			<table border="1">
 				<tr>
 					<th width="5%">No.</th>
