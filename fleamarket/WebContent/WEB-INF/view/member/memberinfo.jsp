@@ -29,7 +29,7 @@
 <body>	
 	<div id="mypageMain">
 		<div id="title">
-			<span id="title_name">MYPAGE INFO</span>
+			<span id="title_name">Mypage Manage</span>
 		</div>
 
 		<div id="top_bar">

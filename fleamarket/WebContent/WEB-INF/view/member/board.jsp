@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,6 +35,7 @@
 				}
 			});
 	    })
+	    
 	}); 
 	function clickA(p) {
 		$.ajax({
@@ -89,9 +91,21 @@
 <body>
 	<div id="mypageMain">
 		<div id="title">
-			<span id="title_name">MYPAGE MAIN</span>
+			<span id="title_name">
+				<c:choose>
+					<c:when test="${vo.baType=='PRODUCT' }">
+						Product Board Active
+					</c:when>
+					<c:when test="${vo.baType=='WEAR' }">
+						Wear Board Active
+					</c:when>
+					<c:otherwise>
+						Mypage Manage
+					</c:otherwise>
+				</c:choose>
+			</span>
 		</div>
-
+		
 		<div id="top_bar">
 			<a href="/fleamarket/member/mypage/board?baType=PRODUCT"><span class="mypage_type">Product Board Active</span></a>
 			&nbsp / &nbsp
@@ -127,7 +141,15 @@
 				<c:forEach items="${list }" var="vo">
 					<tr id="mypageListTR">
 						<td style="width: 30px;">${vo.baNo }</td>	
-						<td style="width: 330px;">${vo.baTitle}</td>
+						<td style="width: 330px;">
+								<a href="/fleamarket/market/updateBaCount?baNo=${vo.baNo}&baType=${vo.baType}">
+								<c:set var="kk" value="${vo.baTitle}" />
+									<c:choose>
+										<c:when test="${fn:length(kk) > 25}">${fn:substring(kk, 0, 25)}...</c:when>
+										<c:otherwise>${kk}</c:otherwise>
+									</c:choose>
+								</a>
+							</td>
 						<td style="width: 70px;">${vo.memId}</td>
 						<td style="width: 150px;">${vo.baDate}</td>
 						<td style="width: 50px;">${vo.baCount}</td>

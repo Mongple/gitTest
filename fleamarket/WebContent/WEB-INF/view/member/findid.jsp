@@ -5,6 +5,7 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/fleamarket/css/mypage.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script type="text/javascript">
@@ -42,17 +43,27 @@ function chkEmailBtn() {
 
 
 </script>
-<title>Insert title here</title>
+<title>:: MYPAGE ::</title>
 </head>
 <body>
-<div align="center">
-	<table>
-		<tr>
-			<td><input id="memEmail" type="text" placeholder="가입하신 이메일 계정을 입력해주세요" size="30px" value=""></td>
-			<td><input id="chkEmailBtn" type="button" value="확인"></td>
-		</tr>
-	</table>
+<div id="mypageMain">
+	<div id="title">
+			<span id="title_name">MYPAGE MANAGE</span>
+	</div>
+	<br />
+	
+	<div id="inner">
+		<div id="content">
+			<table id="mypageList">
+				<tr>
+					<td><input id="memEmail" type="text" placeholder="가입하신 이메일 계정을 입력해주세요" size="50px" value=""></td>
+					<td><input id="chkEmailBtn" class="btn" type="button" value="확인"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
 </div>
+
 </body>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 </html>

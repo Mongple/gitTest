@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions"  prefix="fn" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -131,7 +132,13 @@ function writeBoard() {
 						<tr id="noticeListTR">
 							<td style="width: 30px;">${vo.baNo}</td>
 							<td style="width: 330px;">
-								<a href="/fleamarket/notice/updateBaCount?baNo=${vo.baNo}">${vo.baTitle}</a>
+								<a href="/fleamarket/notice/updateBaCount?baNo=${vo.baNo}">
+								<c:set var="kk" value="${vo.baTitle}" />
+									<c:choose>
+										<c:when test="${fn:length(kk) > 25}">${fn:substring(kk, 0, 25)}...</c:when>
+										<c:otherwise>${kk}</c:otherwise>
+									</c:choose>
+								</a>
 							</td>
 							<td style="width: 70px;">${vo.memId}</td>
 							<td style="width: 150px;">${vo.baDate}</td>

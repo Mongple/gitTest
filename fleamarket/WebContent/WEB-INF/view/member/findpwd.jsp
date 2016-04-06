@@ -6,7 +6,7 @@
 <head>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<link rel="stylesheet" type="text/css" href="/fleamarket/css/mypage.css">
 <script type="text/javascript">
 $(document).ready(function(){
 	$('#memEmail, #memId').keypress(clickEnter);
@@ -45,7 +45,7 @@ function chkEmailBtn() {
 
 
 </script>
-<title>Insert title here</title>
+<title>:: MYPAGE ::</title>
 </head>
 <body>
 <div align="center">
@@ -58,7 +58,7 @@ function chkEmailBtn() {
 			<td><input id="memEmail" type="text" placeholder="가입하신 이메일 계정을 입력해주세요" size="30px" value="">
 		</tr>
 		<tr>
-			<td align="right"><input id="chkEmailBtn" type="button" value="확인"></td>
+			<td align="right"><input id="chkEmailBtn"  class="btn"type="button" value="확인"></td>
 		</tr>
 	</table>
 </div>

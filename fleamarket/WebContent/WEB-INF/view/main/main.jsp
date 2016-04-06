@@ -50,15 +50,44 @@
                     </div>
 
                 </div>
-
+				 <h3>Recently Wear Board</h3>
                 <div class="row">
 
                     <c:forEach var="vo" items="${wearList}">
 						<div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                             <img src="${vo.baContent}" style="width: 360px;height: 200px"   alt="">
+                             <%-- <img src="${vo.baContent}" style="width: 360px;height: 200px"   alt=""> --%>
+                             ${vo.baContent}
                             <div class="caption">
-                                <h4><a href="#">${vo.baTitle}</a>
+                                <h4><a href="/fleamarket/market/board?baType=WEAR&baNo=${vo.baNo}" style="text-decoration: none;color: black;">${vo.baTitle}</a>
+                                </h4>
+            
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right">${vo.baDate }</p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+					</c:forEach>
+
+                </div>
+                <h3>Recently Product Board</h3>
+                <div class="row">
+
+                    <c:forEach var="vo" items="${proList}">
+						<div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                             <%-- <img src="${vo.baContent}" style="width: 360px;height: 200px"   alt=""> --%>
+                             ${vo.baContent}
+                            <div class="caption">
+                                <h4><a href="/fleamarket/market/board?baType=PRODUCT&baNo=${vo.baNo}" style="text-decoration: none;color: black;">${vo.baTitle}</a>
                                 </h4>
             
                             </div>

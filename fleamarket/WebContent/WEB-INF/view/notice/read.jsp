@@ -68,7 +68,7 @@
 						<td style="width: 30px;">${vo.baCount}</td>
 					</tr>
 					<tr>
-						<td colspan="8"><textarea id="contentBox" readonly="readonly">${vo.baContent}</textarea></td>
+						<td colspan="8">${vo.baContent}</td>
 					</tr>
 			</table>
 			</form>

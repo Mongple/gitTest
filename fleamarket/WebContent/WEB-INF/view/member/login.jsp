@@ -82,7 +82,9 @@
 					</td>
 				</tr>
 			</table>
-			<div align="left">
+			<br>
+			<br>
+			<div align="center">
 				<a id="idSearch" href="/fleamarket//member/findId" class="a" style="text-decoration: none;">아이디를 찾으시겠습니까?</a><br>
 				<a id="passSearch" href="/fleamarket//member/findPwd" class="a" style="text-decoration: none;">비밀번호를 찾으시겠습니까?</a>
 			</div>

@@ -98,7 +98,7 @@ body, h1, h2, h3, h4, h5, h6, table, select, a
 	border-bottom: 1px solid #e1e1e1;
 }
 
-#memPwd
+#memPwd, #memEmail, #memId
 {
 	font-family: Roboto, Nanum Gothic;
 	border-top: 1px solid white;

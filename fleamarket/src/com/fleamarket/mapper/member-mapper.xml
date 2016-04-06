@@ -63,7 +63,8 @@
 		  (select mem_id from member where mem_no = b.mem_no) memId,
 		  b.BA_TYPE baType,
 		  b.BA_TITLE baTitle,
-		  b.BA_DATE baDate
+		  b.BA_DATE baDate,
+		  b.BA_COUNT baCount
 		FROM board b
 		WHERE MEM_NO = (select mem_no from member where MEM_ID = #{memId})
 		<choose>
