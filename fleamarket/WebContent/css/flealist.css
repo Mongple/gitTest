@@ -1,0 +1,136 @@
+@CHARSET "UTF-8";
+
+body, h1, h2, h3, h4, h5, h6, table, input, select
+,textarea, a
+{
+	color: #333;
+	font-family: Nanum Gothic, Verdana, AppleGothic, sans-serif;
+	font-size: 12px; 
+}
+
+#fleamarketlist
+{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5%;
+	min-height: 73.7vh;
+}
+	
+#title
+{
+	width: 250px;
+	height: 42px;
+	margin-top: 0px;
+	margin-bottom: 1.2%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 10px;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#top_bar
+{
+	margin-top: 2%;
+	display: inline-block;
+	margin-bottom: 2%;
+}
+
+#title_name
+{
+	color: #333;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-family: Roboto, Nanum Gothic;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 10%;
+	margin-bottom: 8%;	
+}
+
+#content
+{
+	display: inline-flex;
+	font-family: Roboto, Nanum Gothic;
+	color: #e1e1e1;	
+}
+
+#noticeList th, #noticeWrite th
+{
+	font-family: Roboto, Nanum Gothic;
+	text-align: center;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+}
+
+#noticeListTR td
+{
+	font-family: Roboto, Nanum Gothic;
+	text-align: center;
+	height: 25px;
+}
+
+#noticeList
+{
+	font-family: Roboto, Nanum Gothic;
+	border-bottom: 1px solid #e1e1e1;
+	
+}
+.btn
+{
+	width: 80px;
+	height: 25px;
+	text-align: center;
+	display: inline-block;
+	padding-top: 0px;
+	margin-top: 10px;
+	margin-bottom: 3px;
+	background-color: #222;
+	font-family: Roboto, Nanum Gothic;
+	font-size: 14px;
+	font-weight: bold;
+	color: white;
+	border-radius: 4px;
+}
+
+#searchType
+{
+	font-family: Roboto, Nanum Gothic;
+	border-top: 1px solid white;
+	border-bottom: 1px solid white;
+	margin-right: 10px;
+}
+
+#searchbtn
+{
+	font-family: Roboto, Nanum Gothic;
+	color: #e1e1e1;	
+}
+
+#searchData
+{
+	border-top: 1px solid white;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	border-bottom: 1px solid #e1e1e1;
+	margin-right: 10px;
+}
+
+.noticeWriteTR input
+{
+	font-family: Roboto, Nanum Gothic;
+	border: 1px solid white;
+	width: 300px;
+}
+
+.noticeWriteTR textarea
+{
+	width: 450px;
+	height: 250px;
+	font-family: Roboto, Nanum Gothic;
+	border: 1px solid white;
+	resize: none;
+}
+
+

@@ -1,13 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/fleamarket/css/flealist.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script type="text/javascript">
+
 	var searchType = "SEARCHALL";
 	$(document).ready(init);
 	function init() {
@@ -83,16 +84,25 @@
 			}
 		});
 	}
+	
+	function writeBoard() {
+		$(location).attr('href', '/fleamarket/market/writeboard?baType=${vo.baType}');
+		/* <a href="/fleamarket/market/writeboard?baType=${vo.baType}">새글등록</a> */
+	}		
+	
 </script>
-
-<title>플리 리스트1</title>
+<title>플리 마켓 리스트</title>
 </head>
 <body>
-	<div id="fleamarketlist" align="center">
-		<h1>fleamarketlist</h1>
- 		
-		<a href="/fleamarket/market?baType=WEAR">WEAR</a>
-		<a href="/fleamarket/market?baType=PRODUCT">PRODUCT</a>
+	<div id="fleamarketlist">
+		<div id="title">
+			<span id="title_name">물품 리스트</span>
+		</div>
+		<div id="top_bar">
+			<a href="/fleamarket/market?baType=WEAR"><span id="admin_type">WEAR</span></a>
+			&nbsp / &nbsp
+			<a href="/fleamarket/market?baType=PRODUCT"><span id="admin_type">PRODUCT</span></a>
+		</div>
 		<div>
 			<select id="searchType">
 					<option value="SEARCHALL">전체</option>
@@ -104,42 +114,45 @@
 			<input type="text" id="searchData"  value="${vo.searchData }" >
 			<a><span id="searchbtn" class="mgBtn" onclick="search()">조회</span></a> 
 		</div>
+		
 		<div id="inner">
-			<h4>${vo.totalRowCnt }</h4>
-			<table border="1">
-				<tr>
-					<th width="5%">No.</th>
-					<th width="40%">Title</th>
-					<th width="10%">Id</th>
-					<th width="10%">Name</th>
-					<th width="15%">Date</th>				
-					<th width="5%">hits</th>
-				</tr>
-				<!-- jstl -->
-				<c:forEach items="${list}" var="vo">
+			<div id="content">
+				<table id="noticeList" class="noticeList">
 					<tr>
-						<td align="center">${vo.baNo}</td>
-						<td><a href="/fleamarket/market/updateBaCount?baNo=${vo.baNo}">${vo.baTitle}</a></td>
-<%-- 						<td><a href="/fleamarket/market/board?baNo=${vo.baNo}">${vo.baTitle}</a></td> --%>
-						
-						<td>${vo.memId}</td>
-						<td>${vo.memName}</td>
-						<td>${vo.baDate}</td>
-						<td>${vo.baCount}</td>
-					</tr>
-				</c:forEach>
-			</table>
+						<td style="width: 80px;">Total ${vo.totalRowCnt }</td>
+						<td colspan="5" align="right">
+							<c:if test="${sessionId != null}">
+								<input class="btn" type="button" onclick="writeBoard()" value="글등록">
+							</c:if>
+						</td>
+						<tr>
+							<th>No.</th>
+							<th>Title</th>
+							<th>Id</th>
+							<th>Name</th>
+							<th>Date</th>				
+							<th>hits</th>
+						</tr>
+					<!-- jstl -->
+					<c:forEach items="${list}" var="vo">
+						<tr id="noticeListTR">
+							<td style="width: 30px;">${vo.baNo}</td>
+							<td style="width: 300px;"><a href="/fleamarket/market/updateBaCount?baNo=${vo.baNo}">${vo.baTitle}</a></td>
+							<td style="width: 50px;">${vo.memId}</td>
+							<td style="width: 50px;">${vo.memName}</td>
+							<td style="width: 150px;">${vo.baDate}</td>
+							<td style="width: 50px;">${vo.baCount}</td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+			<br />
+			
 			<div id="paging" align="center">
 				<jsp:include page="/WEB-INF/view/common/paging.jsp"></jsp:include>
 			</div>
-			
-			<c:if test="${sessionId != null}">		
-			 	<a href="/fleamarket/market/writeboard?baType=${vo.baType}">새글등록</a>
-			</c:if>
 		</div>
 	</div>
-
-
 </body>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
 </html>

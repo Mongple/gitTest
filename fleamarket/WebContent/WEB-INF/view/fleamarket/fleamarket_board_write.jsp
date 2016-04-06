@@ -78,7 +78,7 @@
 				<tr>
 					<td colspan="5" align="right">
 						<input type="button" value="등록" onclick="submitContents(this)">
-						<input type="button" value="취소" onclick="returnFeed()">
+						<input type="button" value="취소" onclick="cancel()">
 					</td>
 				</tr>
 			</table>
