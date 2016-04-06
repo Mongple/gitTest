@@ -5,6 +5,7 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/fleamarket/css/mypage.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript">
 	$(document).ready(function(){
@@ -23,48 +24,62 @@
 	
 	
 </script>
-<title>Insert title here</title>
+<title>:: MYPAGE INFO ::</title>
 </head>
 <body>	
-	<div align="center">
-		<a href="/fleamarket/member/mypage/board?baType=PRODUCT">가전제품 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
-		<a href="/fleamarket/member/mypage/board?baType=WEAR">의류 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
-		<a href="/fleamarket/member/mypage/chkPwd">나의정보</a>
+	<div id="mypageMain">
+		<div id="title">
+			<span id="title_name">MYPAGE INFO</span>
+		</div>
+
+		<div id="top_bar">
+			<a href="/fleamarket/member/mypage/board?baType=PRODUCT"><span class="mypage_type">Product Board Active</span></a>
+			&nbsp / &nbsp
+			<a href="/fleamarket/member/mypage/board?baType=WEAR"><span class="mypage_type">Wear Board Active</span></a>
+			&nbsp / &nbsp
+			<a href="/fleamarket/member/mypage/chkPwd"><span class="mypage_type">Mypage Manage</span></a>
+		</div>
+		<br />
 		
+		<div id="inner">
+			<div id="content">
+			<table id="mypageList" class="mypageList">
+				<tr>
+					<th>아이디</th>
+					<td width="300">${vo.memId }</td>
+				</tr>
+				<tr>
+					<th>이름</th>
+					<td width="300">${vo.memName }</td>
+				</tr>
+				<tr>
+					<th>전화번호</th>
+					<td width="300">${vo.memPhone }</td>
+				</tr>
+				<tr>
+					<th>E-mail</th>
+					<td width="300">${vo.memEmail }</td>
+				</tr>
+				<tr>
+					<th>가입일</th>
+					<td width="300">${vo.memDate}</td>
+				</tr>
+				<tr>
+					<th>경고횟수</th>
+					<td width="300">${vo.memBlack}</td>
+				</tr>
+			</table>
+			<br />
+			<table>
+				<tr>
+					<td colspan="2" align="center" width="300">
+						<input type="button" class="btn" id="update" value="회원수정">
+						<input type="button" class="btn" id="delete" value="회원탈퇴">
+					</td>
+				</tr>
+			</table>
+		</div>
 	</div>
-	<div align="center">
-		<table border="1">
-			<tr>
-				<td>ID</td>
-				<td>${vo.memId }</td>
-			</tr>
-			<tr>
-				<td>이름</td>
-				<td>${vo.memName }</td>
-			</tr>
-			<tr>
-				<td>Phone-Number</td>
-				<td>${vo.memPhone }</td>
-			</tr>
-			<tr>
-				<td>E-mail</td>
-				<td>${vo.memEmail }</td>
-			</tr>
-			<tr>
-				<td>가입날짜</td>
-				<td>${vo.memDate}</td>
-			</tr>
-			<tr>
-				<td>경고횟수</td>
-				<td>${vo.memBlack}</td>
-			</tr>
-			<tr>
-				<td colspan="2" align="right">
-					<input type="button" id="update" value="회원수정">
-					<input type="button" id="delete" value="회원탈퇴">
-				</td>
-			</tr>
-		</table>
 	</div>
 </body>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

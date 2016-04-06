@@ -5,6 +5,7 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/fleamarket/css/mypage.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script type="text/javascript">
@@ -83,50 +84,59 @@
 		});
 	}
 </script>
-<title>Insert title here</title>
+<title>:: MYPAGE MAIN ::</title>
 </head>
 <body>
-<div align="center">
-	<a href="/fleamarket/member/mypage/board?baType=PRODUCT">가전제품 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
-	<a href="/fleamarket/member/mypage/board?baType=WEAR">의류 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
-	<a href="/fleamarket/member/mypage/chkPwd">나의정보</a>
-	<br><br>
-	<div id="search">
-		<table>
-			<tr>
-				<td align="right">
-					<select id="searchType">
-							<option value="SEARCHALL">전체</option>
-							<option value="SEARCHTITLE">제목</option>
-							<option value="SEARCHCONTENT">내용</option>
-					</select> 
-					<input type="text" id="searchData"  value="${vo.searchData }" >
-					<input type="button" id="searchbtn" value="조회" onclick="search()"> 
-				</td>
-			</tr>
-		</table>
-	</div>
-	<div id="inner" align="center">
-		총 ${vo.totalRowCnt }개의 게시물</td>
-		<table border="1">
-			<tr>			
-				<td>게시물번호</td>
-				<td>게시글작성자</td>
-				<td>게시글제목</td>
-				<td>게시글작성날짜</td>
-				<td>조회수</td>
-			</tr>
-			<c:forEach items="${list }" var="vo">
-				<tr>
-					<td>${vo.baNo }</td>	
-					<td>${vo.memId}</td>	
-					<td>${vo.baTitle}</td>
-					<td>${vo.baDate}</td>
-					<td>${vo.baCount}</td>
-				</tr>
-			</c:forEach>
-		</table>
+	<div id="mypageMain">
+		<div id="title">
+			<span id="title_name">MYPAGE MAIN</span>
+		</div>
+
+		<div id="top_bar">
+			<a href="/fleamarket/member/mypage/board?baType=PRODUCT"><span class="mypage_type">Product Board Active</span></a>
+			&nbsp / &nbsp
+			<a href="/fleamarket/member/mypage/board?baType=WEAR"><span class="mypage_type">Wear Board Active</span></a>
+			&nbsp / &nbsp
+			<a href="/fleamarket/member/mypage/chkPwd"><span class="mypage_type">Mypage Manage</span></a>
+		</div>
+		<br />
 		
+		<div>
+			<select id="searchType">
+				<option value="SEARCHALL">전체</option>
+				<option value="SEARCHTITLE">제목</option>
+				<option value="SEARCHCONTENT">내용</option>
+			</select>
+			<input type="text" id="searchData" value="${vo.searchData }">
+			<a><span id="searchbtn" class="mgBtn" onclick="search()">조회</span></a>
+		</div>
+	
+		<div id="inner">
+			<div id="content">
+			<table id="mypageList" class="mypageList">
+				<tr>
+					<td style="width: 80px;">Total ${vo.totalRowCnt }</td>
+				</tr>
+				<tr>			
+					<th>번호</th>
+					<th>작성자</th>
+					<th>제목</th>
+					<th>작성일</th>
+					<th>조회수</th>
+				</tr>
+				<c:forEach items="${list }" var="vo">
+					<tr id="mypageListTR">
+						<td style="width: 30px;">${vo.baNo }</td>	
+						<td style="width: 330px;">${vo.baTitle}</td>
+						<td style="width: 70px;">${vo.memId}</td>
+						<td style="width: 150px;">${vo.baDate}</td>
+						<td style="width: 50px;">${vo.baCount}</td>
+					</tr>
+				</c:forEach>
+			</table>
+		</div>
+		<br />			
+			
 		<div id="paging" align="center">
 			<jsp:include page="/WEB-INF/view/common/paging.jsp"></jsp:include>
 		</div>
