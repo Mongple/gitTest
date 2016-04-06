@@ -199,4 +199,23 @@
 		WHERE RP_NO=#{rpNo}
 	</delete>
 	
+	<select id="selectRecentlyBoard" parameterType="com.fleamarket.vo.BoardVO" resultType="com.fleamarket.vo.BoardVO">
+		SELECT BA_NO baNo, 
+			   (SELECT MEM_ID FROM MEMBER WHERE MEM_NO = b.MEM_NO) memId, 
+			   BA_TYPE baType, 
+			   BA_TITLE baTitle, 
+			   BA_COUNT baCount,
+			   BA_CONTENT baContent,
+			   BA_DATE baDate
+		FROM BOARD b
+	    <choose>
+	     	<when test="baType.equals('PRODUCT')">
+	     		WHERE (b.BA_TYPE='PRODUCT' OR b.BA_TYPE IS NULL) 
+	     	</when>
+	     	<when test="baType.equals('WEAR')">
+	     		WHERE (b.BA_TYPE='WEAR' OR b.BA_TYPE IS NULL)
+	     	</when>
+		</choose>
+	    ORDER BY BA_DATE DESC
+	</select>
 </mapper>
