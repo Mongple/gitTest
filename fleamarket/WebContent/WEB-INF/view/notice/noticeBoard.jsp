@@ -130,7 +130,9 @@ function writeBoard() {
 					<c:forEach items="${list }" var="vo">
 						<tr id="noticeListTR">
 							<td style="width: 30px;">${vo.baNo}</td>
-							<td style="width: 330px;">${vo.baTitle}</td>
+							<td style="width: 330px;">
+								<a href="/fleamarket/notice/updateBaCount?baNo=${vo.baNo}">${vo.baTitle}</a>
+							</td>
 							<td style="width: 70px;">${vo.memId}</td>
 							<td style="width: 150px;">${vo.baDate}</td>
 							<td style="width: 50px;">${vo.baCount}</td>
