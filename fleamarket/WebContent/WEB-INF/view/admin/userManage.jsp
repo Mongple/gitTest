@@ -183,7 +183,7 @@ function outMember(memId) {
 						<td>
 							<input type="text" style="width: 100px;" value="${vo.memPhone}" /></td>
 						<td>
-							<input type="text" style="width: 120px;" value="${vo.memEmail}" /></td>
+							<input type="text" style="width: 180px;" value="${vo.memEmail}" /></td>
 						<td>
 							<input type="text" style="width: 30px;" value="${vo.memGrant}" /></td>
 						<td>

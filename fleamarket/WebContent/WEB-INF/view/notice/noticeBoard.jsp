@@ -8,10 +8,86 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <script type="text/javascript">
-
-	function writeBoard() {
-		$(location).attr('href', '/fleamarket/notice/noticeList/write');
+	
+var searchType = "SEARCHALL";
+$(document).ready(function(){
+	$('#searchType').change(function () {
+      	$("#searchType option:selected").each(function () {
+      		searchType = $(this).val();
+       	});
+    })
+   
+    $('#searchbtn').click(function () {
+    	$.ajax({
+			type:"post",
+			url:'/fleamarket/notice/noticeList.ajax',
+			data: 'searchType='+searchType+'&searchData='+$('#searchData').val(),
+			success : function(html){
+				$('#inner').html(html);
+			    if($('#totalRowCnt').val() == 0){
+			    	alert("검색결과가 없습니다.");
+			    	$(location).attr('href','/fleamarket/notice/noticeList');
+			    }
+			},
+			error : function(){
+				alert("에러")
+			}
+		});
+    })
+}); 
+function clickA(p) {
+	$.ajax({
+		type:"post",
+		url:'/fleamarket/notice/noticeList.ajax',
+		data: 'page='+p+'&searchType='+searchType+'&searchData='+$('#searchData').val(),
+		success : function(html){
+			$('#inner').html(html);
+		},
+		error : function(){
+			alert("에러")
+		}
+	});
+}
+function clickWarp(warp) {
+	var url = '/fleamarket/notice/noticeList.ajax';
+	var param;
+	page = parseInt($('#page').val());
+	pageCnt = parseInt($('#pageCnt').val());
+	if(warp == 'doubleLeft'){
+		param = 'page=1';
+	}else if(warp == 'singleLeft') {
+		if(page == 1)
+			return;
+		else
+			page = page-1;
+		param = 'page='+page;
+	}else if(warp == 'singleRight') {
+		if(page == pageCnt)
+			return;
+		else
+			page = page+1;
+		param = 'page='+page;
+	}else if(warp == 'doubleRight'){
+		param = 'page='+pageCnt;
 	}
+	
+	$.ajax({
+		type:"post",
+		url:url,
+		data: param+'&searchType='+searchType+'&searchData='+$('#searchData').val(),
+		success : function(html){
+			$('#inner').html(html);
+		},
+		error : function(){
+			alert("에러")
+		}
+	});
+}
+
+
+function writeBoard() {
+	$(location).attr('href', '/fleamarket/notice/noticeList/write');
+}
 	
 </script>
 <title>:: Notice Board ::</title>
