@@ -5,6 +5,7 @@
 <html>
 <head>
 <jsp:include page="/WEB-INF/view/common/header.jsp"></jsp:include>
+<link rel="stylesheet" type="text/css" href="/fleamarket/css/fleaboard.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="/fleamarket/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
@@ -33,7 +34,7 @@
 			
 			 if($('#baTitle').val().length==0)
 			{
-				alert("후기 게시글 제목을 입력해주세요.");
+				alert("게시글 제목을 입력해주세요.");
 				return;
 			}/* else if($('#baContent').val().length<20){
 				alert("20자 이상으로 내용을 입력해주세요.");
@@ -51,9 +52,12 @@
 <title>게시글등록</title>
 </head>
 <body>
-	<div align="center">
-		<h1>fleamarket board edit</h1>
-
+	<div id="fleaBoard">
+		<div id="title">
+			<span id="title_name">FLEAMARKET BOARD EDIT</span>
+		</div>
+		<br />
+		<div id="content">
 		<form name="editform" method="post" action="/fleamarket/market/updateBoard">
 			<input type=hidden id="baNo" name="baNo" value="${vo.baNo}">
 			<input type=hidden id="memNo" name="memNo" value="${vo.memNo}">
@@ -72,15 +76,14 @@
 				</tr>
 				<tr><td><br></td></tr>	
 				<tr>
-					<td colspan="5" align="right">
-						<!-- <input type=submit value="저장"> -->
-						<input type="button" value="수정" onclick="submitContents(this)">
-						<input type=reset value="취소" onclick="cancel()"> 
+					<td colspan="2" align="center">
+						<input type="button" class="btn"  value="수정" onclick="submitContents(this)">
+						<input type=reset  class="btn"  value="취소" onclick="cancel()"> 
 					</td>
 				</tr>
 			</table>
 		</form>
-
+		</div>
 	</div>
 
 </body>
