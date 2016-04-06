@@ -10,8 +10,8 @@
 </head>
 <body style="padding-top: 0px">
 
-    <div class="image-bg-fluid-height">
-        <img src="/fleamarket/img/market.png" style="max-width: 100%; height: auto;" >
+    <div align="center" class="image-bg-fluid-height">
+        <img src="/fleamarket/img/market.png" style="max-width: 100%; height: auto;">
     </div>
     
     <div>
@@ -20,7 +20,8 @@
                 <div class="col-lg-12">
                     <h1 class="section-heading">Site Information</h1>
                     <p class="lead section-lead">This site is a community of used goods transaction between the members</p>
-                    <p class="section-paragraph"></p>
+                    <p class="section-paragraph">오프라인 FleaMarket을 기다리지마시고 온라인 FleaMarket에서 더이상 나에게 필요없는 중고제품을 판매하고 나에게 꼭 필요한 중고물품을 구매해보세요!</p>
+                    <p class="section-paragraph">Fleamarket 탭에서 회원들간의 거래를 시작해보시고, 자세한 사항은 notice탭을 통해 확인 해 보세요.</p>
                 </div>
             </div>
         </div>
