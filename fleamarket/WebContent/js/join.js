@@ -3,122 +3,174 @@
  */
 
 var MemberJoin = function() {
-		
-	function idCheck() {
-		//아이디 중복체크를 위한 Ajax처리
-		var idcon = "ccc";
-		$('#memId').keyup(function() {
-			$('#idresult').html("");
-			var params = "memId=" + $("#memId").val();
-			$.ajax({
-				type : "POST",
-				url : "/fleamarket/member/idCheck",
-				data : params,
-				success : function(args) {
-					var a; // 사용자에게 보여줄 SPAN문자를 담기위해 선언한 변수
-					
-					if (args == "c") {
-						a = "사용 가능한 아이디 입니다";
-						idcon = args;
-						$('#idresult').html(a);
-					}
+	// 서브밋 가능여부 플래그
+	var flag = true;
+	// 키 업될때마다 실행
+	function init() {
+		$('#memberInsertForm input').keyup(
+				function() {
+					// 유효성 체크, 모든게 정상이면 true;
+					flag = validate();
 
-					else if (args == "cc") {
-						a = "* 이미 사용 중인 아이디 입니다";
-						idcon = args;
-						$('#idresult').html(a);
-					}
+					// 아이디중복체크
+					$.ajax({
+						type : "POST",
+						url : "/fleamarket/member/idCheck",
+						data : "memId=" + $('#memId').val(),
+						success : function(args) {
+							if (args == "cc") {
+								$('#idresult')
+										.html(
+												"<font color='red'>"
+														+ "이미 가입된 아이디 입니다."
+														+ "</font>");
+								flag = false;
+							}
+						},
+						error : function(e) {
+							alert(e.responseText);
+						}
+					});
+					// 이메일중복체크
+					$.ajax({
+						type : "POST",
+						url : "/fleamarket/member/emailCheck",
+						data : "memEmail=" + $('#memEmail').val(),
+						success : function(args) {
+							if (args == "cc") {
+								$('#emailcheck')
+										.html(
+												"<font color='red'>"
+														+ "이미 가입된 이메일 입니다."
+														+ "</font>");
+								flag = false;
+							}
+						},
+						error : function(e) {
+							alert(e.responseText);
+						}
+					});
+				});
+		// 서브밋
+		$(".joinBtn").click(function() {
 
-					else if (args == "ccc") {
-						a = "* 아이디를 입력하세요";
-						idcon = args;
-						$('#idresult').html(a);
-					}
-				},
-				error : function(e) {
-					alert(e.responseText);
-				}
-			});
-		});
-	}
-	
-	// 실시간 비밀번호 확인
-	function pwdCheck() {
-		$('#memPwd2').keyup(function() {
-			$('#pwdcheck2').html("");
-			if ($('#memPwd').val() == $('#memPwd2').val())
-			{
-				$('#pwdcheck2').html("* 비밀번호가 일치합니다");
-			}
+			if (flag == undefined || flag == false)
+				alert("유효하지 않은 데이터입니다.");
 			else
-			{
-				$('#pwdcheck2').html("* 비밀번호가 일치하지 않습니다");
-			}
+				$("#memberInsertForm").submit();
 		});
 	}
-	
-	// 회원가입 요청 버튼 클릭시 처리할 내용
-	// 작성공간을 작성하지 않을시 경고창
-	function submitCheck() {
-		$(".joinBtn").click(function()
-		{	
-			$('#idresult').html("");
-			$('#pwdcheck1').html("");
-			$('#pwdcheck2').html("");
-			$('#namecheck').html("");
-			$('#birthcheck').html("");
-			$('#phonecheck').html("");
-			$('#memEmail').html("");
-			
-	 		if($("#memId").val()=="")
-			{
-				$('#idresult').html("* 아이디를 입력하세요");
-				return;
+
+	// 정규식을 이용한 체크
+	function chk(re, e, msg, span, type) {
+		// alert(e.val().length);
+		if (e.val().length == 0) {
+			span.html('');
+		}
+		if (type == 'memBirth') {
+			if (e.val().length == 1 && 1 < parseInt(e.val())
+					&& parseInt(e.val()) < 10) {
+				e.val('0' + e.val());
 			}
-		
-			if($("#memPwd").val()=="")
-			{
-				$('#pwdcheck1').html("* 비밀번호를 입력하세요");
-				return;
-			} 
-			if($("#memPwd2").val()=="")
-			{
-				$('#pwdcheck2').html("* 비밀번호를 확인하세요");
-				return;
-			}
-			
-			if($("#memName").val()=="")
-			{
-				$('#namecheck').html("* 이름을 입력하세요");
-				return;
-			} 
-			
-			if($("#memBirth").val()=="")
-			{
-				$('#birthcheck').html("* 생년월일을 입력하세요");
-				return;
-			} 
-			
-			if($("#memPhone").val()=="" )
-			{
-				$('#phonecheck').html("* 전화번호를 입력하세요");
-				return;
-			} 
-			
-			if($("#memEmail").val()=="")
-			{
-				$('#emailcheck').html("* 이메일을 입력하세요");
-				return;
-			}
-			
-			$("#memberInsertForm").submit();
-		});
+		}
+
+		// 정규식통과
+		if (re.test(e.val())) {
+			span.html("<font color='green'>사용가능합니다.</font>");
+			return true;
+		}
+		span.html("<font color='red'>" + msg + "</font>");
+		return false;
 	}
-	
-	
+
+	// 비밀번호체크
+	function chkPwd(pwd1, pwd2, span, msg) {
+
+		span.html('');
+		if (pwd1.val().length < 3) {
+			span.html("<font color='red'>3자리 이상 입력해주세요.</font>");
+		} else if (pwd1.val() == pwd2.val()) {
+			span.html("<font color='green'>사용가능합니다.</font>");
+			return true;
+		} else
+			span.html("<font color='red'>" + msg + "</font>");
+		return false;
+
+	}
+
+	// 유효성검사!
+	function validate() {
+		// span객체
+		var idresult = $('#idresult');
+		var pwdcheck1 = $('#pwdcheck1');
+		var pwdcheck2 = $('#pwdcheck2');
+		var namecheck = $('#namecheck');
+		var birthcheck = $('#birthcheck');
+		var phonecheck = $('#phonecheck');
+		var emailcheck = $('#emailcheck');
+
+		// 정규식
+		var idReg = /^[A-Za-z0-9]{3,10}$/;
+		var emailReg = /^[\w]{2,}@[\w]+(\.[\w-]+){1,3}$/;
+		var nameReg = /^[가-힝]{2,10}$/;
+		var birthReg1 = /^(19|20)\d{2}$/;
+		var birthReg2 = /^(0[1-9]|1[012])$/;
+		var birthReg3 = /^(0[1-9]|[12][0-9]|3[0-1])$/;
+		var phoneReg1 = /^01([0|1|6|7|8|9]){1,3}$/;
+		var phoneReg2 = /^([0-9]{3,4})$/;
+		var phoneReg3 = /^([0-9]{4})$/;
+
+		// 반환값 체크
+		var submitFlag = true;
+
+		// 유효성체크 시작!
+		if (!chk(idReg, $('#memId'), "유효하지 않은 아이디 입니다.", idresult, 'memId')) {
+			submitFlag = false;
+			return;
+		} else if (!chkPwd($('#memPwd'), $('#memPwd2'), pwdcheck2,
+				"유효하지 않은 비밀번호 입니다.")) {
+			submitFlag = false;
+			return;
+		} else if (!chk(nameReg, $('#memName'),
+				"유효하지 않은 이름입니다. 한글로 2글자 이상 10자이하로 입력하세요", namecheck)) {
+			submitFlag = false;
+			return;
+		} else if (!chk(birthReg1, $('#memBirth1'),
+				"유효하지 않은 생일입니다.년도는 1900년대 이상으로 써주세요.", birthcheck)) {
+			submitFlag = false;
+			return;
+		} else if (!chk(birthReg2, $('#memBirth2'), "유효하지 않은 생일입니다.",
+				birthcheck, 'memBirth')) {
+			submitFlag = false;
+			return;
+		} else if (!chk(birthReg3, $('#memBirth3'), "유효하지 않은 생일입니다.",
+				birthcheck, 'memBirth')) {
+			submitFlag = false;
+			return;
+		} else if (!chk(phoneReg1, $('#memPhone1'), "유효하지 않은 휴대전화 번호입니다.",
+				phonecheck)) {
+			submitFlag = false;
+			return;
+		} else if (!chk(phoneReg2, $('#memPhone2'), "유효하지 않은 휴대전화 번호입니다.",
+				phonecheck)) {
+			submitFlag = false;
+			return;
+		} else if (!chk(phoneReg3, $('#memPhone3'), "유효하지 않은 휴대전화 번호입니다.",
+				phonecheck)) {
+			submitFlag = false;
+			return;
+
+		} else if (!chk(emailReg, $('#memEmail'), "유효하지 않은 이메일입니다.",
+				emailcheck, 'memEmail')) {
+			submitFlag = false;
+			return;
+
+		}
+		return submitFlag;
+	}
+
 	return {
-		idCheck : idCheck,
-		pwdCheck : pwdCheck,
-		submitCheck : submitCheck
+		init : init,
+		validate : validate
 	}
 }
