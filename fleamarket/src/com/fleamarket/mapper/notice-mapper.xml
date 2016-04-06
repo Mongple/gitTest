@@ -38,7 +38,8 @@
 		  (select mem_id from member where mem_no = b.mem_no) memId,
 		  b.BA_TYPE baType,
 		  b.BA_TITLE baTitle,
-		  b.BA_DATE baDate
+		  b.BA_DATE baDate,
+		  b.BA_COUNT baCount
 		FROM board b
 		WHERE b.ba_type='NOTICE'
 		<choose>
@@ -72,4 +73,61 @@
 	     	</when>
 		</choose>
 	</select>
+	
+	<update id="updateBaCount" parameterType="com.fleamarket.vo.BoardVO">
+	    UPDATE BOARD SET BA_COUNT = BA_COUNT + 1 
+    	WHERE BA_NO =#{baNo}
+	</update>
+	
+	<select id="selectBoardByNo" parameterType="int" resultMap="boardMap">
+		SELECT BA_NO, b.MEM_NO, BA_TYPE, BA_TITLE, BA_CONTENT, BA_COUNT, BA_DATE 
+		     , m.MEM_ID, m.MEM_NAME, m.MEM_BLACK
+		FROM BOARD b
+		LEFT OUTER JOIN MEMBER m
+		   ON b.MEM_NO = m.MEM_NO
+		WHERE BA_TYPE = 'NOTICE' and BA_NO = #{baNo}
+	</select>
+	
+	<delete id="deleteBoard" parameterType="com.fleamarket.vo.BoardVO">
+		DELETE BOARD
+		WHERE BA_NO=#{baNo}
+	</delete>
+	
+	
+	<!-- 댓글 -->
+	
+	<select id="selectReplyByBaNo" parameterType="com.fleamarket.vo.BoardVO" resultMap="boardMap">
+		SELECT RP_NO ,BA_NO ,r.MEM_NO ,RP_CONTENT ,RP_DATE  
+             , m.MEM_ID, m.MEM_NAME, m.MEM_BLACK
+		FROM REPLY r
+    	LEFT OUTER JOIN MEMBER m ON r.MEM_NO = m.MEM_NO
+		WHERE BA_NO = #{baNo}
+		ORDER BY RP_DATE DESC
+	</select>
+	
+	<insert id="insertComment" parameterType="com.fleamarket.vo.BoardVO">
+    		INSERT INTO REPLY
+    		(	
+				RP_NO,
+				BA_NO,
+				MEM_NO,
+				RP_CONTENT,
+				RP_DATE
+			) 
+    		VALUES 
+			(
+				(SELECT NVL(MAX(RP_NO),0)+1 FROM REPLY),
+       			#{baNo},
+				(SELECT MEM_NO FROM MEMBER WHERE MEM_ID=#{memId}),
+				#{rpContent},
+				sysdate
+			)
+	</insert>
+	
+	<delete id="deleteComment" parameterType="com.fleamarket.vo.BoardVO" >
+		DELETE REPLY
+		WHERE RP_NO=#{rpNo}
+	</delete>
+	
+	
 </mapper>
