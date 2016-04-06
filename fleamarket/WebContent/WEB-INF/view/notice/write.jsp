@@ -48,13 +48,12 @@
 	<div id="noticeBoard">
 		<div id="title">
 			<span id="title_name">NOTICE BOARD WRITE</span>
-		</div>
-		<br />
+	</div>
+	<br />
 
 		<div id="inner">
 			<div id="content">
 				<form name="frm" method="post" action="/fleamarket/notice/writeboard">
-					<input type="hidden" name="baType" id="baType" value="${vo.baType }">
 					<table id="noticeWrite" class="noticeWrite">
 						<tr class="noticeWriteTR">
 							<th width="120px;" style="border-right: 1px solid #e1e1e1;">Title</th>
@@ -67,7 +66,7 @@
 						</tr>
 						
 						<tr>
-							<td colspan=5 align=center>
+							<td colspan=2 align=center>
 								<input type="submit" class="btn" value="등록" onclick="submitContents(this)">
 								<input type="reset" class="btn" value="다시작성">
 								<input type="button" class="btn" value="뒤로" onclick="cancel()">

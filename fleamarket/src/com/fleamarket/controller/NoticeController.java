@@ -48,6 +48,13 @@ public class NoticeController {
 		return "";
 	}
 	
+	@RequestMapping("/notice/updateBoard")
+	public String updateBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
+		if(service.update("notice.updateBoard",vo) != 0){
+			return "redirect:/notice/board?baNo="+vo.getBaNo();
+		}
+		return "";
+	}
 	
 	@RequestMapping("/notice/noticeList/write")
 	public String goNoticeWrite(HttpServletRequest req) throws Exception {

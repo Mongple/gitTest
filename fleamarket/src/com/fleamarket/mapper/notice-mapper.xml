@@ -88,6 +88,16 @@
 		WHERE BA_TYPE = 'NOTICE' and BA_NO = #{baNo}
 	</select>
 	
+	<update id="updateBoard" parameterType="com.fleamarket.vo.BoardVO">
+		UPDATE BOARD 
+		<set>
+			<if test="baTitle != null">BA_TITLE = #{baTitle},</if>
+			<if test="baContent != null">BA_CONTENT = #{baContent},</if>
+		</set>
+		WHERE BA_NO =#{baNo}
+		  AND MEM_NO=#{memNo}
+	</update>
+	
 	<delete id="deleteBoard" parameterType="com.fleamarket.vo.BoardVO">
 		DELETE BOARD
 		WHERE BA_NO=#{baNo}

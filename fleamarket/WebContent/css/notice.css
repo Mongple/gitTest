@@ -1,7 +1,6 @@
 @CHARSET "UTF-8";
 
-body, h1, h2, h3, h4, h5, h6, table, input, select
-,textarea, a
+body, h1, h2, h3, h4, h5, h6, table, select, a
 {
 	color: #333;
 	font-family: Nanum Gothic, Verdana, AppleGothic, sans-serif;
@@ -124,7 +123,6 @@ body, h1, h2, h3, h4, h5, h6, table, input, select
 {
 	width: 600px;
 	height: 250px;
-	font-family: Roboto, Nanum Gothic;
 	border: 1px solid white;
 	resize: none;
 }
