@@ -9,10 +9,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.fleamarket.service.MainPageUtil;
 import com.fleamarket.service.Service;
 import com.fleamarket.vo.BoardVO;
 
@@ -29,8 +29,21 @@ public class MainController {
 	}
 	
 	@RequestMapping("/main")
-	public String goMain2() throws Exception {
+	public String goMain2(HttpServletRequest req) throws Exception {
+		BoardVO wear = new BoardVO();
+		BoardVO pro = new BoardVO();
+		wear.setBaType("WEAR");
+		pro.setBaType("PRODUCT");
 		
+		List<BoardVO> wearList = service.selectList("board.selectRecentlyBoard", wear, new RowBounds(0,3));
+		List<BoardVO> proList = service.selectList("board.selectRecentlyBoard", pro, new RowBounds(0,3));
+		
+		MainPageUtil util = new MainPageUtil();
+		wearList = util.getPicture(wearList);
+		proList = util.getPicture(proList);
+		System.out.println("/////////////////////////////////////////////////////"+wearList.get(0).getBaContent());
+		req.setAttribute("wearList", wearList);
+		req.setAttribute("proList", proList);
 		return "/main/main";
 	}
 	
