@@ -45,18 +45,18 @@
 						</td>
 					</tr>
 					<tr>
-						<th>게시물 번호</th>
-						<th>게시글 작성자</th>
-						<th>게시글 제목</th>
-						<th>게시글 작성날짜</th>
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성날짜</th>
 						<th>조회수</th>
 					</tr>
 					<c:forEach items="${list }" var="vo">
 						<tr id="noticeListTR">
 							<td style="width: 30px;">${vo.baNo}</td>
-							<td style="width: 80px;">${vo.memId}</td>
-							<td style="width: 300px;">${vo.baTitle}</td>
-							<td style="width: 200px;">${vo.baDate}</td>
+							<td style="width: 330px;">${vo.baTitle}</td>
+							<td style="width: 70px;">${vo.memId}</td>
+							<td style="width: 150px;">${vo.baDate}</td>
 							<td style="width: 50px;">${vo.baCount}</td>
 						</tr>
 					</c:forEach>

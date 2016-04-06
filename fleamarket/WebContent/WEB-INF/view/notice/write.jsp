@@ -11,7 +11,7 @@
 </script>
 
 
-<title>게시글등록</title>
+<title>:: Notice Board ::</title>
 </head>
 <body>
 	<div id="noticeBoard">
