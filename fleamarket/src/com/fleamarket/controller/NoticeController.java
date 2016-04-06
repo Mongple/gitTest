@@ -30,16 +30,11 @@ public class NoticeController {
 		req.setAttribute("list", list);
 		req.setAttribute("vo", vo);
 		
+		if(req.getRequestURI().contains(".ajax")){
+			return "/notice/resultboard";
+		}
+		
 		return "/notice/noticeBoard";
-	}
-	
-	@RequestMapping("/notice/resultboard")
-	public String viewMyPageResultBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
-		vo.setTotalRowCnt((int) service.selectOne("notice.selectCnt",vo));
-		List<BoardVO> list = service.selectList("notice.selectList", vo, new RowBounds(vo.getOffset(), vo.getLimit()));
-		req.setAttribute("list", list);
-		req.setAttribute("vo", vo);
-		return "/member/resultboard";
 	}
 	
 	@RequestMapping("/notice/noticeList/write")
