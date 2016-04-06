@@ -178,8 +178,8 @@ CREATE TABLE BOARD
 ( BA_NO NUMBER NOT NULL        -- 글번호(PK)
 , MEM_NO NUMBER                -- 회원번호(FK)
 , BA_TYPE VARCHAR2(20)         -- 게시판종류
-, BA_TITLE VARCHAR2(60)        -- 제목
-, BA_CONTENT VARCHAR2(60)      -- 내용
+, BA_TITLE VARCHAR2(1000)        -- 제목
+, BA_CONTENT VARCHAR2(4000)      -- 내용
 , BA_COUNT NUMBER              -- 조회수
 , BA_DATE DATE                 -- 게시날짜
 , CONSTRAINT BOARD_BANO_PK PRIMARY KEY(BA_NO)
@@ -200,7 +200,7 @@ CREATE TABLE REPLY
 ( RP_NO NUMBER                -- 댓글번호(PK)
 , BA_NO NUMBER                -- 글번호(FK)
 , MEM_NO NUMBER               -- 회원번호(FK)
-, RP_CONTENT VARCHAR2(60)     -- 내용
+, RP_CONTENT VARCHAR2(1000)     -- 내용
 , RP_DATE DATE                -- 게시날짜
 , CONSTRAINT REPLY_PRNO_PK PRIMARY KEY(RP_NO)
 , CONSTRAINT REPLY_BANO_FK FOREIGN KEY(BA_NO)
@@ -696,35 +696,4 @@ where MEM_GRANT = 'U';
 select nvl(count(MEM_NO), 0) as MEM_NO
 from MEMBER
 where MEM_GRANT = 'A';
-
--- 의류게시판
-select nvl(count(BA_NO), 0) as BA_NO
-from BOARD
-where BA_TYPE = 'WEAR';
-
--- 가전제품 게시판
-select nvl(count(BA_NO), 0) as BA_NO
-from BOARD
-where BA_TYPE = 'PRODUCT';
-
--- 공지사항 게시판
-select nvl(count(BA_NO), 0) as BA_NO
-from BOARD
-where BA_TYPE = 'NOTICE';
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
