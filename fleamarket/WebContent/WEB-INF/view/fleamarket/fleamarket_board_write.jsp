@@ -38,14 +38,14 @@
 			 
 		    oEditors.getById["baContent"].exec("UPDATE_CONTENTS_FIELD", []);
 			
-			/* if($('#baTitle').val().length==0)
+			if($('#baTitle').val().length==0)
 			{
 				alert("후기 게시글 제목을 입력해주세요.");
 				return;
-			}else if($('#baContent').val().length<20){
+			}/* else if($('#baContent').val().length<20){
 				alert("20자 이상으로 내용을 입력해주세요.");
 				return;
-			} */
+			}  */
 			console.log(document.getElementById("baContent").value); 
 			document.frm.submit();
 			try {

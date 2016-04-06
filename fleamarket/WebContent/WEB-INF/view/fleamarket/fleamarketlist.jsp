@@ -96,7 +96,7 @@
 <body>
 	<div id="fleamarketlist">
 		<div id="title">
-			<span id="title_name">물품 리스트</span>
+			<span id="title_name">${vo.baType} 물품 리스트</span>
 		</div>
 		<div id="top_bar">
 			<a href="/fleamarket/market?baType=WEAR"><span id="admin_type">WEAR</span></a>
