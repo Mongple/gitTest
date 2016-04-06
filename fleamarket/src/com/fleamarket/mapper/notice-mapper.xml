@@ -93,6 +93,30 @@
 		WHERE BA_NO=#{baNo}
 	</delete>
 	
+	<insert id="insertBoard" parameterType="com.fleamarket.vo.BoardVO">
+		INSERT 
+			INTO BOARD 
+			(	
+				BA_NO,
+				MEM_NO,
+				BA_TYPE,
+				BA_TITLE,
+				BA_CONTENT,
+				BA_COUNT,
+				BA_DATE
+			) 
+		VALUES 
+			(
+				(SELECT NVL(MAX(BA_NO),0)+1 FROM BOARD),
+				(SELECT MEM_NO FROM MEMBER WHERE MEM_ID=#{memId}),
+				'NOTICE',
+				#{baTitle},
+				#{baContent},
+				0, 
+				sysdate
+			)
+	</insert>
+	
 	
 	<!-- 댓글 -->
 	

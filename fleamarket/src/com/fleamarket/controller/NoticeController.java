@@ -38,6 +38,17 @@ public class NoticeController {
 		return "/notice/noticeBoard";
 	}
 	
+	@RequestMapping("/notice/writeboard")
+	public String insertBoardAction(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
+		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
+		req.setAttribute("vo", vo);
+		if(service.insert("notice.insertBoard",vo) != 0){
+				return "redirect:/notice/noticeList";
+		}
+		return "";
+	}
+	
+	
 	@RequestMapping("/notice/noticeList/write")
 	public String goNoticeWrite(HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null) {
