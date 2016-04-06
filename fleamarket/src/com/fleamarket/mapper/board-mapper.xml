@@ -27,7 +27,7 @@
 		FROM BOARD b
 		LEFT OUTER JOIN MEMBER m
 		   ON b.MEM_NO = m.MEM_NO
-		ORDER BY BA_DATE 
+		ORDER BY BA_DATE DESC
 	</select>
 	<select id="selectBoardCnt" parameterType="com.fleamarket.vo.BoardVO" resultType="int">
 		SELECT COUNT(1)
@@ -102,7 +102,7 @@
 	     		 AND b.BA_CONTENT LIKE '%${searchData}%'
 	     	</when>
 		</choose>
-		ORDER BY BA_DATE
+		ORDER BY BA_DATE DESC
 	</select>
  	<select id="selectBoardById" parameterType="int" resultMap="boardMap">
 		SELECT BA_NO, b.MEM_NO, BA_TYPE, BA_TITLE, BA_CONTENT, BA_COUNT, BA_DATE 
@@ -111,7 +111,7 @@
 		LEFT OUTER JOIN MEMBER m
 		   ON b.MEM_NO = m.MEM_NO
 		WHERE m.MEM_ID LIKE '% #{memId} %'
-		ORDER BY BA_DATE
+		ORDER BY BA_DATE DESC
 	</select>
 	 <select id="selectBoardByNo" parameterType="int" resultMap="boardMap">
 		SELECT BA_NO, b.MEM_NO, BA_TYPE, BA_TITLE, BA_CONTENT, BA_COUNT, BA_DATE 
@@ -128,7 +128,7 @@
 		LEFT OUTER JOIN MEMBER m
 		   ON b.MEM_NO = m.MEM_NO
 		WHERE m.MEM_NAME LIKE '% #{memName} %'
-		ORDER BY BA_DATE
+		ORDER BY BA_DATE DESC
 	</select>
 	<select id="selectBoardByTitle" parameterType="int" resultMap="boardMap">
 		SELECT BA_NO, b.MEM_NO, BA_TYPE, BA_TITLE, BA_CONTENT, BA_COUNT, BA_DATE 
@@ -137,7 +137,7 @@
 		LEFT OUTER JOIN MEMBER m
 		   ON b.MEM_NO = m.MEM_NO
 		WHERE BA_TITLE = #{baTitle} 
-		ORDER BY BA_DATE
+		ORDER BY BA_DATE DESC
 	</select>
 	<update id="updateBoard" parameterType="com.fleamarket.vo.BoardVO">
 		UPDATE BOARD 
@@ -153,7 +153,7 @@
 	    UPDATE BOARD SET BA_COUNT = BA_COUNT + 1 
     	WHERE BA_NO =#{baNo}
 	</update>
-	<delete id="deleteBoard" parameterType="int" >
+	<delete id="deleteBoard" parameterType="com.fleamarket.vo.BoardVO">
 		DELETE BOARD
 		WHERE BA_NO=#{baNo}
 	</delete>
@@ -208,7 +208,7 @@
 		FROM REPLY r
     	LEFT OUTER JOIN MEMBER m ON r.MEM_NO = m.MEM_NO
 		WHERE BA_NO = #{baNo}
-		ORDER BY RP_DATE
+		ORDER BY RP_DATE DESC
 	</select>
 	<insert id="insertComment" parameterType="com.fleamarket.vo.BoardVO">
     		INSERT INTO REPLY

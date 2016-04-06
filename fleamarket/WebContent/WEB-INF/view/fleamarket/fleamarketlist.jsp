@@ -11,13 +11,11 @@
 	var searchType = "SEARCHALL";
 	$(document).ready(init);
 	function init() {
-		$('td a').click(clickAtag);
 		$('#searchType').change(function () {
 	      	$("#searchType option:selected").each(function () {
 	      		searchType = $(this).val();
 	       	});
 	    })
-	   
 	    $('#searchbtn').click(function () {
 	    	$.ajax({
 				type:"post",
@@ -36,11 +34,7 @@
 			});
 	    })
 	}
-	function clickAtag() {
-		$(location).attr('href','/fleamarket/market/updateBaCount?baNo='+ this.innerHTML);
-	}
 	
-	 
 	function clickA(p) {
 		$.ajax({
 			type:"post",
@@ -124,8 +118,10 @@
 				<!-- jstl -->
 				<c:forEach items="${list}" var="vo">
 					<tr>
-						<td align="center"><a>${vo.baNo}</a></td>
-						<td>${vo.baTitle}</td>
+						<td align="center">${vo.baNo}</td>
+						<td><a href="/fleamarket/market/updateBaCount?baNo=${vo.baNo}">${vo.baTitle}</a></td>
+<%-- 						<td><a href="/fleamarket/market/board?baNo=${vo.baNo}">${vo.baTitle}</a></td> --%>
+						
 						<td>${vo.memId}</td>
 						<td>${vo.memName}</td>
 						<td>${vo.baDate}</td>

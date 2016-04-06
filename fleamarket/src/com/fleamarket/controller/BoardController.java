@@ -35,19 +35,20 @@ public class BoardController {
 	public String insertBoardAction(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
 		System.out.println("//////"+vo.getBaTitle());
 		System.out.println("//////"+vo.getBaContent());
-		/*vo.setMemId((String) req.getSession().getAttribute("sessionId"));
+		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
 		req.setAttribute("vo", vo);
 		if(service.insert("board.insertBoard",vo) != 0){
 			logger.debug("등록성공");
 
 			System.out.println("확인"+vo.getBaType());
+
 			if(vo.getBaType().equals("WEAR")){
 				return "redirect:/market";
 			}
 			else{
-				return "redirect:/market/prod";
+				return "redirect:/market?baType="+vo.getBaType();
 			}
-		}*/
+		}
 		return "";
 	}
 	@RequestMapping("/market/editboard")/*fleamarket_board_edit*/
@@ -75,9 +76,16 @@ public class BoardController {
 	@RequestMapping("/market/deleteBoard")
 	public String deleteBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {	
 		req.setAttribute("vo", vo);
+		logger.debug("삭제 전"+vo.getBaType());
 		if(service.delete("board.deleteBoard",vo.getBaNo()) != 0){
-			logger.debug("삭제 성공");
-			return "redirect:/market";
+			logger.debug("삭제 성공"+vo.getBaType());
+			/*return "redirect:/market";*/
+			if(vo.getBaType().equals("WEAR")){
+				return "redirect:/market";
+			}
+			else{
+				return "redirect:/market?baType="+vo.getBaType();
+			}
 		}
 		return "";
 	}

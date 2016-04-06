@@ -17,7 +17,7 @@
 			if (baType == "WEAR") {
 				$(location).attr('href', '/fleamarket/market');
 			} else {
-				$(location).attr('href', '/fleamarket/market/prod');
+				$(location).attr('href', '/fleamarket/market?baType='+baType);
 			}
 		} else
 			return;
@@ -52,10 +52,6 @@
 				elClickedObj.frm.submit();
 			} catch(e) {}
 		}
-	
-	
-	
-
 </script>
 
 
@@ -87,13 +83,6 @@
 				</tr>
 			</table>
 		</form>
-		
-		
-		
-		
-		
-		
-		
 		
 		
 		
