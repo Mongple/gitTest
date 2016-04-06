@@ -72,7 +72,7 @@
 			<br />
 			<table>
 				<tr>
-					<td colspan="2" align="center" width="300">
+					<td colspan="2" align="center" width="350">
 						<input type="button" class="btn" id="update" value="회원수정">
 						<input type="button" class="btn" id="delete" value="회원탈퇴">
 					</td>
