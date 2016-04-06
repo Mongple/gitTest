@@ -40,12 +40,12 @@
 			
 			if($('#baTitle').val().length==0)
 			{
-				alert("후기 게시글 제목을 입력해주세요.");
+				alert("제목을 입력해주세요.");
 				return;
-			}/* else if($('#baContent').val().length<20){
-				alert("20자 이상으로 내용을 입력해주세요.");
+			}else if($('#baContent').val().length<10){
+				alert("10자 이상으로 내용을 입력해주세요.");
 				return;
-			}  */
+			}
 			console.log(document.getElementById("baContent").value); 
 			document.frm.submit();
 			try {
