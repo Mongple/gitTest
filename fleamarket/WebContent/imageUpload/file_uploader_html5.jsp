@@ -10,7 +10,6 @@
     String sFileInfo = "";
     //파일명을 받는다 - 일반 원본파일명
     String filename = request.getHeader("file-name");
-    //파일 확장자
     String filename_ext = filename.substring(filename.lastIndexOf(".") + 1);
     //확장자를소문자로 변경
     filename_ext = filename_ext.toLowerCase();
@@ -62,7 +61,7 @@
         // 정보 출력
         sFileInfo += "&bNewLine=true";    
         sFileInfo += "&sFileName=" + filename;    
-        sFileInfo += "&sFileURL=/dure/se2/multiupload/"+realFileNm;
+        sFileInfo += "&sFileURL=/fleamarket/se2/multiupload/"+realFileNm;
         out.println(sFileInfo);
     }
 %>

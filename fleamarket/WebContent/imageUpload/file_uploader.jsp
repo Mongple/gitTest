@@ -79,7 +79,7 @@ if (ServletFileUpload.isMultipartContent(request)){
                     return3 += "&bNewLine=true";
                                 // img 태그의 title 옵션에 들어갈 원본파일명
                     return3 += "&sFileName="+ name;
-                    return3 += "&sFileURL=/dure/se2/upload/"+realFileNm;
+                    return3 += "&sFileURL=/fleamarket/se2/upload/"+realFileNm;
                 }
             }else {
                   return3 += "&errstr=error";
