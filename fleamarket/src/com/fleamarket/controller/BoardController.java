@@ -24,24 +24,19 @@ public class BoardController {
 	
 	Logger logger = LogManager.getLogger(this.getClass());
 	
-	@RequestMapping("/market/writeboard")/*/fleamarket_board_write*/
+	@RequestMapping("/market/writeboard")
 	public String insertBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception{
 		if((String)req.getSession().getAttribute("sessionId") == null )
 			return "redirect:/main";
 		req.setAttribute("vo", vo);
 		return "/fleamarket/fleamarket_board_write";
 	}
-	@RequestMapping("/market/writeboard/action")/*/fleamarket_board_write_action*/
+	@RequestMapping("/market/writeboard/action")
 	public String insertBoardAction(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
-		System.out.println("//////"+vo.getBaTitle());
-		System.out.println("//////"+vo.getBaContent());
 		vo.setMemId((String) req.getSession().getAttribute("sessionId"));
 		req.setAttribute("vo", vo);
 		if(service.insert("board.insertBoard",vo) != 0){
 			logger.debug("등록성공");
-
-			System.out.println("확인"+vo.getBaType());
-
 			if(vo.getBaType().equals("WEAR")){
 				return "redirect:/market";
 			}
@@ -51,7 +46,7 @@ public class BoardController {
 		}
 		return "";
 	}
-	@RequestMapping("/market/editboard")/*fleamarket_board_edit*/
+	@RequestMapping("/market/editboard")
 	public String editBoard(@ModelAttribute("BoardVO") BoardVO vo, Model model) throws Exception{
 		vo = (BoardVO) service.selectOne("board.selectBoardByNo", vo);
 		model.addAttribute("vo", vo);
@@ -76,14 +71,11 @@ public class BoardController {
 	@RequestMapping("/market/deleteBoard")
 	public String deleteBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {	
 		req.setAttribute("vo", vo);
-		logger.debug("삭제 전"+vo.getBaType());
 		if(service.delete("board.deleteBoard",vo.getBaNo()) != 0){
 			logger.debug("삭제 성공"+vo.getBaType());
-			/*return "redirect:/market";*/
 			if(vo.getBaType().equals("WEAR")){
 				return "redirect:/market";
-			}
-			else{
+			}else{
 				return "redirect:/market?baType="+vo.getBaType();
 			}
 		}
@@ -91,7 +83,7 @@ public class BoardController {
 	}
 	
 	/* 댓글 */
-	@RequestMapping("/market/board")/*fleamarket_board*/
+	@RequestMapping("/market/board")
 	public String boardForm(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception{
 		vo = (BoardVO) service.selectOne("board.selectBoardByNo", vo);
 		List<BoardVO> rplist = service.selectList("board.selectReplyByBaNo", vo, new RowBounds(vo.getOffset(), vo.getLimit()));
