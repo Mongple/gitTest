@@ -24,6 +24,11 @@ public class MemberController {
 	
 	Logger logger = LogManager.getLogger(this.getClass());
 	
+	@RequestMapping("/mustLogin")
+	public String mustLogin(HttpServletRequest req) throws Exception {
+		return "/common/mustLogin";
+	}
+	
 	@RequestMapping("/member/loginSign")
 	@ResponseBody
 	public String loginSign(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
@@ -50,12 +55,6 @@ public class MemberController {
 	*/
 	@RequestMapping("/member/insertMember")
 	public String insertMember(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
-		System.out.println("////"+vo.getMemId());
-		//System.out.println("////"+vo.getMemPwd1());
-		System.out.println("////"+vo.getMemBirth());
-		System.out.println("////"+vo.getMemBirth());
-		System.out.println("////"+vo.getMemBirth());
-		System.out.println("////"+vo.getMemPhone());
 		if(service.insert("member.insertMember", vo) != 0) {
 			logger.debug("가입완료");
 			return "redirect:/main";
@@ -101,7 +100,7 @@ public class MemberController {
 	@RequestMapping("/member/mypage/board")
 	public String viewMyPageBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
+			return "redirect:/mustLogin";
 		}
 		if(vo.getBaType() == null)
 			vo.setBaType("PRODUCT");
@@ -118,7 +117,7 @@ public class MemberController {
 	@RequestMapping("/member/mypage/chkPwd")
 	public String chkPwd(HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
+			return "redirect:/mustLogin";
 		}
 		return "/member/chkpwd";
 	}
@@ -139,7 +138,7 @@ public class MemberController {
 	@RequestMapping("/member/mypage/memberinfo")
 	public String viewMemberInfo(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
+			return "redirect:/mustLogin";
 		}
 		vo.setMemId((String)req.getSession().getAttribute("sessionId"));
 		MemberVO vo2 = (MemberVO) service.selectOne("member.selectMemberInfo", vo);
@@ -150,7 +149,7 @@ public class MemberController {
 	@RequestMapping("/member/mypage/update")
 	public String update(HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
+			return "redirect:/mustLogin";
 		}
 		MemberVO vo = new MemberVO();
 		vo.setMemId((String)req.getSession().getAttribute("sessionId"));
@@ -162,7 +161,7 @@ public class MemberController {
 	@RequestMapping("/member/mypage/updateAction")
 	public String updateAction(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
+			return "redirect:/mustLogin";
 		}
 		if(service.update("member.updateMember", vo) != 0)
 			return "redirect:/member/mypage/memberinfo";

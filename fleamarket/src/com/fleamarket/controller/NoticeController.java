@@ -58,17 +58,20 @@ public class NoticeController {
 	
 	@RequestMapping("/notice/noticeList/write")
 	public String goNoticeWrite(HttpServletRequest req) throws Exception {
-		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
+		if(req.getSession().getAttribute("sessionId") == null || req.getSession().getAttribute("sessionGrant").equals("U")) {
+			return "redirect:/mustLogin";
 		}
 		return "/notice/write";
 	}
 	
 	
 	@RequestMapping("/notice/editboard")
-	public String editBoard(@ModelAttribute("BoardVO") BoardVO vo, Model model) throws Exception{
+	public String editBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception{
+		if(req.getSession().getAttribute("sessionId") == null || req.getSession().getAttribute("sessionGrant").equals("U")) {
+			return "redirect:/mustLogin";
+		}
 		vo = (BoardVO) service.selectOne("notice.selectBoardByNo", vo);
-		model.addAttribute("vo", vo);
+		req.setAttribute("vo", vo);
 		return "/notice/edit";
 	}
 	

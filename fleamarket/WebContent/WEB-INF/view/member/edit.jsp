@@ -53,6 +53,9 @@ $(document).ready(function() {
 		else
 			$("#memberInsertForm").submit();
 	});
+	$(".cancleBtn").click(function(){
+		$(location).attr('href', '/fleamarket/member/mypage/memberinfo');
+	});
 });
 //정규식을 이용한 체크
 function chk(re, e, msg, span,type) {
@@ -162,17 +165,18 @@ function validate() {
 
 </head>
 <body>
-	<div align="center">
-		<a href="/fleamarket/member/mypage/board?baType=PRODUCT">가전제품 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
-		<a href="/fleamarket/member/mypage/board?baType=WEAR">의류 게시판 활동내역</a>&nbsp&nbsp//&nbsp&nbsp
-		<a href="/fleamarket/member/mypage/chkPwd">나의정보</a>
-		
-	</div>
+	
 	<div id="join">
 		<div id="title">
 			<span id="title_name">MEMBER EDIT</span>
 		</div>
-		
+		<div id="top_bar">
+			<a href="/fleamarket/member/mypage/board?baType=PRODUCT"><span class="mypage_type">Product Board Active</span></a>
+			&nbsp / &nbsp
+			<a href="/fleamarket/member/mypage/board?baType=WEAR"><span class="mypage_type">Wear Board Active</span></a>
+			&nbsp / &nbsp
+			<a href="/fleamarket/member/mypage/chkPwd"><span class="mypage_type">Mypage Manage</span></a>
+		</div>
 		<div id="content">
 		<form action="/fleamarket/member/mypage/updateAction" method="post" id="memberInsertForm">
 			<table id="form_table">

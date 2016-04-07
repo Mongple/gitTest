@@ -42,31 +42,37 @@
 		<br />
 		
 		<div id="inner">
-			<div id="content">
+			<div id="content" style="width: 250px">
 			<table id="mypageList" class="mypageList">
 				<tr>
-					<th>아이디</th>
-					<td width="300">${vo.memId }</td>
+					<th width="70px">아이디</th>
+					<td>&nbsp&nbsp&nbsp&nbsp</td>
+					<td align="left" width="200">${vo.memId }</td>
 				</tr>
 				<tr>
-					<th>이름</th>
-					<td width="300">${vo.memName }</td>
+					<th width="70px">이름</th>
+					<td>&nbsp&nbsp&nbsp&nbsp</td>
+					<td align="left" width="200">${vo.memName }</td>
 				</tr>
 				<tr>
-					<th>전화번호</th>
-					<td width="300">${vo.memPhone }</td>
+					<th width="70px">전화번호</th>
+					<td>&nbsp&nbsp&nbsp&nbsp</td>
+					<td align="left"  width="200">${vo.memPhone }</td>
 				</tr>
 				<tr>
-					<th>E-mail</th>
-					<td width="300">${vo.memEmail }</td>
+					<th width="70px">E-mail</th>
+					<td>&nbsp&nbsp&nbsp&nbsp</td>
+					<td align="left"  width="200">${vo.memEmail }</td>
 				</tr>
 				<tr>
-					<th>가입일</th>
-					<td width="300">${vo.memDate}</td>
+					<th width="70px">가입일</th>
+					<td>&nbsp&nbsp&nbsp&nbsp</td>
+					<td align="left"  width="200">${vo.memDate}</td>
 				</tr>
 				<tr>
-					<th>경고횟수</th>
-					<td width="300">${vo.memBlack}</td>
+					<th width="70px">경고횟수</th>
+					<td>&nbsp&nbsp&nbsp&nbsp</td>
+					<td align="left"  width="200">${vo.memBlack}</td>
 				</tr>
 			</table>
 			<br />

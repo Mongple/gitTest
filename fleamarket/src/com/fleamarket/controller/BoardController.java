@@ -26,8 +26,9 @@ public class BoardController {
 	
 	@RequestMapping("/market/writeboard")
 	public String insertBoard(@ModelAttribute("BoardVO") BoardVO vo, HttpServletRequest req) throws Exception{
-		if((String)req.getSession().getAttribute("sessionId") == null )
-			return "redirect:/main";
+		if(req.getSession().getAttribute("sessionId") == null) {
+			return "redirect:/mustLogin";
+		}
 		req.setAttribute("vo", vo);
 		return "/fleamarket/fleamarket_board_write";
 	}

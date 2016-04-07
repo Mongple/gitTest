@@ -25,8 +25,8 @@ public class AdminController {
 	
 	@RequestMapping("/admin/adminMain/rate")
 	public String viewAdminRate(HttpServletRequest req) throws Exception {
-		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
+		if(req.getSession().getAttribute("sessionId") == null || req.getSession().getAttribute("sessionGrant").equals("U")) {
+			return "redirect:/mustLogin";
 		}
 		MemberVO vo = new MemberVO();
 		BoardVO vo2 = new BoardVO();
@@ -51,8 +51,8 @@ public class AdminController {
 	
 	@RequestMapping("/admin/userManage/manageList")
 	public String viewUserList(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
-		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
+		if(req.getSession().getAttribute("sessionId") == null || req.getSession().getAttribute("sessionGrant").equals("U")) {
+			return "redirect:/mustLogin";
 		}
 		
 		vo.setTotalRowCnt((int) service.selectOne("admin.selectUserListCnt", vo));
@@ -73,8 +73,8 @@ public class AdminController {
 	
 	@RequestMapping("/admin/userManage/add")
 	public String addBlack(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
-		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
+		if(req.getSession().getAttribute("sessionId") == null || req.getSession().getAttribute("sessionGrant").equals("U")) {
+			return "redirect:/mustLogin";
 		}
 		service.update("admin.addBlack", vo);
 		return "redirect:/admin/userManage/manageList";
@@ -82,8 +82,8 @@ public class AdminController {
 	
 	@RequestMapping("/admin/userManage/udate")
 	public String adminUpdate(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
-		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
+		if(req.getSession().getAttribute("sessionId") == null || req.getSession().getAttribute("sessionGrant").equals("U")) {
+			return "redirect:/mustLogin";
 		}
 		service.update("admin.updateMember", vo);
 		return "redirect:/admin/userManage/manageList";

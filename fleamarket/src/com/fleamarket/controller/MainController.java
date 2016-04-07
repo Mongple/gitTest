@@ -41,7 +41,6 @@ public class MainController {
 		MainPageUtil util = new MainPageUtil();
 		wearList = util.getPicture(wearList);
 		proList = util.getPicture(proList);
-		System.out.println("/////////////////////////////////////////////////////"+wearList.get(0).getBaContent());
 		req.setAttribute("wearList", wearList);
 		req.setAttribute("proList", proList);
 		return "/main/main";
@@ -90,17 +89,16 @@ public class MainController {
 	
 	@RequestMapping("/member/mypage")
 	public String goMyPage(HttpServletRequest req) throws Exception {
-
 		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
+			return "redirect:/mustLogin";
 		}
 		return "redirect:/member/mypage/board";
 	}
 	
 	@RequestMapping("/admin/adminMain")
 	public String goAdminMain(HttpServletRequest req) throws Exception {
-		if(req.getSession().getAttribute("sessionId") == null) {
-			return "redirect:/main";
+		if(req.getSession().getAttribute("sessionId") == null || req.getSession().getAttribute("sessionGrant").equals("U")) {
+			return "redirect:/mustLogin";
 		}
 		return "redirect:/admin/adminMain/rate";
 	}

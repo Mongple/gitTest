@@ -80,7 +80,30 @@ table, tr, td, th
 	color: white;
 	border-radius: 4px;
 }
+#title
+{
+	width: 250px;
+	height: 42px;
+	margin-top: 0px;
+	margin-bottom: 1.2%;
+	margin-right: auto;
+	margin-left: auto;
+	padding-top: 10px;
+	border-top: 1px solid #e1e1e1;
+	border-bottom: 1px solid #e1e1e1;
+}
 
+#title_name, .mypage_type
+{
+	color: #333;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	font-family: Roboto, Nanum Gothic;
+	font-size: 12px;
+	font-weight: bold;
+	margin-top: 10%;
+	margin-bottom: 10%;	
+}
 
 
 

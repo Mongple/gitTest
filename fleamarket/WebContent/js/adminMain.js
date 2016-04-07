@@ -6,24 +6,42 @@ var AdminMain = function() {
 	
 	function memberCountChart(user, admin) {
 		$(document).ready(function(){
-		    var line1 = [['Member', user],['Admin', admin]];
 
-		    $('#chart1').jqplot([line1], {
-		        title:'Total Member Count',
+		    $.jqplot.config.enablePlugins = true;
+		    var s1 = [['Member', user],['Admin', admin]];
+		    
+		     
+		    plot1 = $.jqplot('chart1', [s1], {
+		    	title: 'Total Member Count',
+		        animate: !$.jqplot.use_excanvas,
+		        seriesColors:['#ff3d00', '#ff3d00'],
+		        negativeSeriesColors:['#bdbdbd', '#bdbdbd'],
 		        seriesDefaults:{
 		            renderer:$.jqplot.BarRenderer,
 		            rendererOptions: {
-		                // Set the varyBarColor option to true to use different colors for each bar.
-		                // The default series colors are used.
-		                varyBarColor: true
+		                fillToZero: true
+		            },
+		            pointLabels: { show: true }
+		        },
+		        axes: {
+		            xaxis: {
+		                renderer: $.jqplot.CategoryAxisRenderer
+		               
 		            }
 		        },
-		        axes:{
-		            xaxis:{
-		                renderer: $.jqplot.CategoryAxisRenderer
-		            }
-		        }
+		        highlighter: { show: false }
 		    });
+		 
+		    $('#chart1').bind('jqplotDataClick', 
+		        function (ev, seriesIndex, pointIndex, data) {
+		            $('#info1').html('series: '+seriesIndex+', point: '+pointIndex+', data: '+data);
+		        }
+		    );
+		    
+		    
+		    
+		    
+		    
 		});
 	}
 
