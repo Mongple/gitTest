@@ -105,13 +105,20 @@ function waringMember(memId, memBlack) {
 	}
 }
 
+
 function updateMember(memId) {
 	result = confirm("정보를 수정하시겠습니까?");
+	
 	if(result == true) {
+		this.memName = $('#memName').val();
+		this.memPhone = $('#memPhone').val();
+		this.memEmail = $('#memEmail').val();
+		this.memGrant = $('#memGrant').val();
+		this.memBlack = $('#memBlack').val();
 		
-		/* 유효성 넣을 곳 */
-		
-		$("#adminUpdateForm").attr('action', '/fleamarket/admin/userManage/update?memId='+memId);
+		$(location).attr('href', '/fleamarket/admin/userManage/update?memId='
+				+memId+'&memName='+memName+'&memPhone='+memPhone+'&memEmail='+memEmail
+				+'&memGrant='+memGrant+'&memBlack='+memBlack);
 	} else { return; }
 }
 
@@ -121,6 +128,7 @@ function outMember(memId) {
 		$(location).attr('href', '/fleamarket/admin/userManage/delete?memId='+memId);
 	} else { return; }
 }
+
 
 </script>
 
@@ -177,17 +185,17 @@ function outMember(memId) {
 						<td style="width: 30px;">${vo.memNo}</td>
 						<td style="width: 80px;">${vo.memId}</td>
 						<td>
-							<input type="text" style="width: 60px;" value="${vo.memName}" /></td>
+							<input type="text" id="memName" style="width: 60px;" value="${vo.memName}" /></td>
 						<td style="width: 80px;">${vo.memBirth}</td>
 						<td style="width: 100px;">${vo.memDate}</td>
 						<td>
-							<input type="text" style="width: 100px;" value="${vo.memPhone}" /></td>
+							<input type="text" id="memPhone" style="width: 100px;" value="${vo.memPhone}" /></td>
 						<td>
-							<input type="text" style="width: 180px;" value="${vo.memEmail}" /></td>
+							<input type="text" id="memEmail" style="width: 180px;" value="${vo.memEmail}" /></td>
 						<td>
-							<input type="text" style="width: 30px;" value="${vo.memGrant}" /></td>
+							<input type="text" id="memGrant" style="width: 30px;" value="${vo.memGrant}" /></td>
 						<td>
-							<input type="text" style="width: 30px;" value="${vo.memBlack}" /></td>
+							<input type="text" id="memBlack" style="width: 30px;" value="${vo.memBlack}" /></td>
 						<td style="width: 100px;">
 							<a><span id="updateMember" class="mgBtn" onclick="updateMember('${vo.memId}')">수정</span></a>
 							<a><span id="waringMember" class="mgBtn" onclick="waringMember('${vo.memId}','${vo.memBlack}')">경고</span></a>

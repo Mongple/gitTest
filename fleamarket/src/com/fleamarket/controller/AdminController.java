@@ -80,7 +80,7 @@ public class AdminController {
 		return "redirect:/admin/userManage/manageList";
 	}
 	
-	@RequestMapping("/admin/userManage/udate")
+	@RequestMapping("/admin/userManage/update")
 	public String adminUpdate(@ModelAttribute("MemberVO") MemberVO vo, HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null || req.getSession().getAttribute("sessionGrant").equals("U")) {
 			return "redirect:/mustLogin";
