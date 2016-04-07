@@ -27,15 +27,23 @@
 </script>
 <title>:: FLEAMARKET ::</title>
 </head>
-<body>
-	<div align="center">
-		<form id="frm" action="/fleamarket/member/login" method="post">
-			<div id="text2">
-	      		<img alt="" src="/fleamarket/img/error.jpg" width="100%" height="600px"><br>
-				<h3>접근권한이 필요한 페이지 입니다.</h3>
-				<h3><span id="time">5</span>초 후 로그인창으로 이동합니다.</h3><br><br><br><br><br>
-	      	</div>
-		</form>
+<body style="padding-top: 0px;">
+	<div style="height: 89.5vh;">
+		<div align="center" class="image-bg-fluid-height">
+	        <img src="/fleamarket/img/error.jpg" style="width: 100%; height: 670px;">
+	    </div>
+	    
+	    <div>
+	        <div class="container">
+	            <div class="row">
+	                <div class="col-lg-12" align="center">
+	                    <h1 class="section-heading">접근권한이 필요한 페이지 입니다.</h1>
+	                    <p class="lead section-lead"><span id="time">5</span>초 후 로그인창으로 이동합니다.</p>
+	            
+	                </div>
+	            </div>
+	        </div>
+	    </div>
 	</div>
 </body>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
