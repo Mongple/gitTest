@@ -68,7 +68,7 @@
 						<td style="width: 30px;">${vo.baCount}</td>
 					</tr>
 					<tr>
-						<td colspan="8">${vo.baContent}</td>
+						<td colspan="8" height="340">${vo.baContent}</td>
 					</tr>
 			</table>
 			</form>
