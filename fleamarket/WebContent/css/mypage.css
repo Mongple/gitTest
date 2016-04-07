@@ -15,6 +15,24 @@ body, h1, h2, h3, h4, h5, h6, table, select, a
 	margin-top: 5%;
 	min-height: 73.7vh;
 }
+
+#findMain
+{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5%;
+	min-height: 53.6vh;
+}
+
+#findMain1
+{
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 5%;
+	min-height: 59.6vh;
+}
 	
 #title
 {

@@ -92,17 +92,17 @@
 	}		
 	
 </script>
-<title>플리 마켓 리스트</title>
+<title>:: FLEAMARKET BOARD ::</title>
 </head>
 <body>
 	<div id="fleamarketlist">
 		<div id="title">
-			<span id="title_name">${vo.baType} 물품 리스트</span>
+			<span id="title_name">${vo.baType} BOARD</span>
 		</div>
 		<div id="top_bar">
-			<a href="/fleamarket/market?baType=WEAR"><span id="admin_type">WEAR</span></a>
+			<a href="/fleamarket/market?baType=WEAR"><span class="fleamarket_type">WEAR</span></a>
 			&nbsp / &nbsp
-			<a href="/fleamarket/market?baType=PRODUCT"><span id="admin_type">PRODUCT</span></a>
+			<a href="/fleamarket/market?baType=PRODUCT"><span class="fleamarket_type">PRODUCT</span></a>
 		</div>
 		<div>
 			<select id="searchType">

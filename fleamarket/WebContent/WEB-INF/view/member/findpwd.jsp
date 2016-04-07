@@ -48,19 +48,26 @@ function chkEmailBtn() {
 <title>:: MYPAGE ::</title>
 </head>
 <body>
-<div align="center">
-	<table>
-		<tr>
-			<td><input id="memId" type="text" placeholder="ID를 입력해주세요" size="30px" value=""></td>
-			
-		</tr>
-		<tr>
-			<td><input id="memEmail" type="text" placeholder="가입하신 이메일 계정을 입력해주세요" size="30px" value="">
-		</tr>
-		<tr>
-			<td align="right"><input id="chkEmailBtn"  class="btn"type="button" value="확인"></td>
-		</tr>
-	</table>
+<div id="findMain">
+	<div id="title" style="margin-top: 15%;">
+			<span id="title_name">MYPAGE MANAGE</span>
+	</div>
+	<br />
+
+	<div id="inner">
+		<div align="center">
+		<table id="mypageList">
+			<tr>
+				<td><input id="memId" type="text" placeholder="ID를 입력해주세요" size="30px" value=""></td>
+			</tr>
+			<tr>
+				<td><input id="memEmail" type="text" placeholder="가입하신 이메일 계정을 입력해주세요" size="30px" value="">
+			</tr>
+		</table>
+		<br />
+		<input id="chkEmailBtn"  class="btn"type="button" value="확인">
+		</div>
+	</div>
 </div>
 </body>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>

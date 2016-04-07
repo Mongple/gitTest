@@ -7,6 +7,7 @@ var MemberJoin = function() {
 	var flag = true;
 	// 키 업될때마다 실행
 	function init() {
+		
 		$('#memberInsertForm input').keyup(
 				function() {
 					// 유효성 체크, 모든게 정상이면 true;
@@ -53,7 +54,7 @@ var MemberJoin = function() {
 				});
 		// 서브밋
 		$(".joinBtn").click(function() {
-
+			flag = validate();
 			if (flag == undefined || flag == false)
 				alert("유효하지 않은 데이터입니다.");
 			else

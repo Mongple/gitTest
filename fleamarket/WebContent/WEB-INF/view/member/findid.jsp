@@ -46,8 +46,8 @@ function chkEmailBtn() {
 <title>:: MYPAGE ::</title>
 </head>
 <body>
-<div id="mypageMain">
-	<div id="title">
+<div id="findMain">
+	<div id="title" style="margin-top: 15%;">
 			<span id="title_name">MYPAGE MANAGE</span>
 	</div>
 	<br />
