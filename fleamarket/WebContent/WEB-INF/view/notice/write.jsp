@@ -32,7 +32,15 @@
 			 
 		    oEditors.getById["baContent"].exec("UPDATE_CONTENTS_FIELD", []);
 			
-			console.log(document.getElementById("baContent").value); 
+		    if($('#baTitle').val().length==0)
+			{
+				alert("제목을 입력해주세요.");
+				return;
+			}else if($('#baContent').val().length<10){
+				alert("10자 이상으로 내용을 입력해주세요.");
+				return;
+			}
+		    
 			document.frm.submit();
 			try {
 				elClickedObj.frm.submit();
