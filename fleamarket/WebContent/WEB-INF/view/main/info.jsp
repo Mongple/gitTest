@@ -8,10 +8,10 @@
 
 <title>:: FLEAMARKET ::</title>
 </head>
-<body style="padding-top: 0px">
-
+<body style="padding-top: 0px;">
+	<div style="height: 89.5vh;">
     <div align="center" class="image-bg-fluid-height">
-        <img src="/fleamarket/img/market.png" style="max-width: 100%; height: auto;">
+        <img src="/fleamarket/img/market.png" style="width: 100%; height: 670px;">
     </div>
     
     <div>
@@ -25,6 +25,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </div>	
 </body>
 <jsp:include page="/WEB-INF/view/common/footer.jsp"></jsp:include>
