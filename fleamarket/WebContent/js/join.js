@@ -69,8 +69,7 @@ var MemberJoin = function() {
 			span.html('');
 		}
 		if (type == 'memBirth') {
-			if (e.val().length == 1 && 1 < parseInt(e.val())
-					&& parseInt(e.val()) < 10) {
+			if (e.val().length == 1 && 3 < parseInt(e.val())) {
 				e.val('0' + e.val());
 			}
 		}
