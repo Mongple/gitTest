@@ -27,7 +27,7 @@ public class MainController {
 	public String goMain() throws Exception {
 		return "redirect:/main";
 	}
-	//모디파이드
+	//스테이지드
 	@RequestMapping("/main")
 	public String goMain2(HttpServletRequest req) throws Exception {
 		BoardVO wear = new BoardVO();
