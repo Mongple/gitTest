@@ -13,6 +13,6 @@ public interface Service {
 	public int update(String statement, Object parameter) throws Exception;
 
 	public int delete(String statement, Object parameter) throws Exception;
-
+	//이상하네 스토리지영역에 안넣음
 	public int insert(String statement, Object parameter) throws Exception;
 }

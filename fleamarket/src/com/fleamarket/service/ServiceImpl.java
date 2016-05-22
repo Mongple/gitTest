@@ -12,7 +12,7 @@ public class ServiceImpl implements Service{
 	
 	@Autowired
 	SqlSessionTemplate template;
-
+	//스토리지영역에 넣음
 	@Override
 	public List selectList(String statement, Object parameter, RowBounds rowBounds) throws Exception {
 		// TODO Auto-generated method stub
