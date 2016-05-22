@@ -27,7 +27,7 @@ public class MainController {
 	public String goMain() throws Exception {
 		return "redirect:/main";
 	}
-	//스테이지드
+	//스테이지영역 생략하고 커밋 푸쉬가 됨?
 	@RequestMapping("/main")
 	public String goMain2(HttpServletRequest req) throws Exception {
 		BoardVO wear = new BoardVO();
