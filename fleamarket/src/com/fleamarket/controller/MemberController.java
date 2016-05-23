@@ -23,7 +23,7 @@ public class MemberController {
 	Service service;
 	
 	Logger logger = LogManager.getLogger(this.getClass());
-	
+	//주석추가
 	@RequestMapping("/mustLogin")
 	public String mustLogin(HttpServletRequest req) throws Exception {
 		return "/common/mustLogin";
