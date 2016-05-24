@@ -22,7 +22,8 @@ public class AdminController {
 	Service service;
 	
 	Logger logger = LogManager.getLogger(this.getClass());
-	//branch생성 후 master도 변경
+	
+	//master에 commit
 	@RequestMapping("/admin/adminMain/rate")
 	public String viewAdminRate(HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null || req.getSession().getAttribute("sessionGrant").equals("U")) {
