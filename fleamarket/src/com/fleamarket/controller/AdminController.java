@@ -22,7 +22,7 @@ public class AdminController {
 	Service service;
 	
 	Logger logger = LogManager.getLogger(this.getClass());
-	//testBranch commit
+	//Rebase 테스트1
 	@RequestMapping("/admin/adminMain/rate")
 	public String viewAdminRate(HttpServletRequest req) throws Exception {
 		if(req.getSession().getAttribute("sessionId") == null || req.getSession().getAttribute("sessionGrant").equals("U")) {
